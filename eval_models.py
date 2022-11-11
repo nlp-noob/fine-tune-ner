@@ -9,6 +9,7 @@ from seqeval.metrics import classification_report
 
 # 是否把sub-word全部标记的选项
 LABEL_ALL_TOKENS = True
+
 # 设置打标签的名字，分别对应前面的标签和后面的标签
 PREVIOUS_LABEL = "B-PER"
 CENTER_LABEL = "I-PER"
@@ -16,6 +17,7 @@ ALL_LABEL = "PER"
 
 # 设置是否有前缀：
 HAVE_PRE = True
+
 # 设置窗口大小(决定实时识别)
 MAX_SLIDING_WIN_SIZE = 10
 
@@ -40,35 +42,6 @@ def get_data_from_json():
             conversation_list.append(conversation)
             conversation = []
             label_list.append(item["label"])
-    return label_list, conversation_list
-
-
-#################################################
-def get_conversations_and_labels():
-    file_list = os.listdir("conversation_data")
-    conversation_list = []
-    label_list = []
-    for file_name_num in range(len(file_list)-1):
-        f = open("conversation_data/"+str(file_name_num+1)+"conversation.txt")
-        lines = f.readlines()
-        conversation = [] 
-        label = []
-        index = 0
-        for line in lines:
-            if(line[0]=="["):
-                name = re.findall("(.*)\t:.*",line)[0]
-                content = re.findall(".*\t:(.*)",line)[0]
-                conversation_temp = name + " " + ":" + " " + content
-                conversation.append(conversation_temp.split())
-            else:
-                if(len(line)==0):
-                    continue
-                index_list = line.split()
-                for i in range(len(index_list)):
-                    index_list[i] = int(index_list[i])
-                label.append(index_list)
-        label_list.append(label)
-        conversation_list.append(conversation)
     return label_list, conversation_list
 
 
@@ -116,7 +89,7 @@ def align_label(sentence, label, tokenizer):
     label_bias = 0
     for token_id in range(len(tokenized_sentence)):
         if tokenized_sentence[token_id]==None:
-            continue
+            continue 
         if ":" in tokenized_sentence[token_id]:
             label_bias = word_ids[token_id] + 1
             break
@@ -279,27 +252,13 @@ def get_eval(per_y_true, per_y_pred):
 
 
 def main():
-    # labels, conversations = get_conversations_and_labels()
     labels, conversations = get_data_from_json()
     print(labels)
-    num = 0
-    for conversation in conversations:
-        print("**"*20)
-        print(num)
-        line_num = 1
-        for line in conversation:
-            print(line)
-            print(line_num)
-            print("--"*20)
-            line_num += 1
-        num += 1
-    return
-    # model_path = "dslim/bert-base-NER"
     model_path = "Davlan/bert-base-multilingual-cased-ner-hrl"
     print("the model is: {}".format(model_path))
-    # model_path = "Jean-Baptiste/roberta-large-ner-english"
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = AutoModelForTokenClassification.from_pretrained(model_path)
+
     print("=="*20)
     print("这一部分是基于后期识别的(非实时)")
     print(labels)
@@ -313,6 +272,7 @@ def main():
         predict_labels = get_predict_label(inputs[i], model, tokenizer, add_special_tokens=True)
         per_y_true.extend(true_labels[i])
         per_y_pred.extend(predict_labels)
+
     # 输出一下label检查设置的有没有出错：
     print("**"*20)
     print("The Check Label List is {}".format(CHECK_LABEL_LIST))
@@ -321,6 +281,7 @@ def main():
     end_time = time.time()
     print("Using time: {}".format(end_time-start_time), 's')
     print("=="*20)
+
     print("=="*20)
     print("这一部分是基于滑动窗口进行评估的(实时)")
     for sliding_win_size in range(MAX_SLIDING_WIN_SIZE+1):

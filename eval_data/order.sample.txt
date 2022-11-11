@@ -1,0 +1,442 @@
+==================== pair: 000000 ====================
+	 order_price: 0, total_cost: 150, 3m_free: True, 3m_convert_tag: 1
+-------------------- order: 00 --------------------
+	2022-05-18 07:25:01.856040	Healing Lady	:Hi
+	2022-05-18 07:25:03.821761	Healing Lady	:Hru
+	2022-05-18 07:25:06.348208	Healing Lady	:Good to see u
+	2022-05-18 07:25:10.492849	Healing Lady	:How can I help u
+	2022-05-18 07:25:28.307122	pi_709886593	:A love reading 
+
+	2022-05-18 07:25:37.952617	Healing Lady	:Names dob both of you
+	2022-05-18 07:26:12.947077	pi_709886593	:Brandy Hall 8/4/1994 & Michael sosa don't know the birthday
+	2022-05-18 07:26:20.757272	Healing Lady	:Let me see 
+	2022-05-18 07:27:09.831659	pi_709886593	:Are we going to be together?
+	2022-05-18 07:27:12.893036	Healing Lady	:Yes
+	2022-05-18 07:27:20.269153	Healing Lady	:There will be good future 
+	2022-05-18 07:27:21.729392	Healing Lady	:But 
+	2022-05-18 07:27:27.510727	Healing Lady	:It will take time
+	2022-05-18 07:27:31.528516	healing lady	:he will take time 
+	2022-05-18 07:27:36.184500	Healing Lady	:He having some issues
+	2022-05-18 07:27:44.254482	Healing Lady	:Few issues between both of you 
+	2022-05-18 07:27:53.456040	Healing Lady	:Where I feel both of you should work on
+	2022-05-18 07:27:56.763963	pi_709886593	:Do you know when he will come in contact with me
+	 order_price: 150, total_cost: 150, 3m_free: False, 3m_convert_tag: 0
+-------------------- order: 01 --------------------
+	2022-05-18 07:36:31.105173	Healing Lady	:Hi
+	2022-05-18 07:36:33.193041	Healing Lady	:Hru
+	2022-05-18 07:36:38.811696	Healing Lady	:God to see u
+	2022-05-18 07:36:46.289387	Healing Lady	:How can I help u
+	2022-05-18 07:37:07.628115	pi_709886593	:Can you tell me when he will be in contact with me we are in separation
+	2022-05-18 07:37:42.087803	Healing Lady	:Names dob of u
+	2022-05-18 07:37:57.945493	pi_709886593	:Brandy Hall 8/4/1994 Michael sosa 
+	2022-05-18 07:38:04.732208	Healing Lady	:Let me see
+	2022-05-18 07:38:56.231390	Healing Lady	:This mid of year 
+	2022-05-18 07:39:00.839681	Healing Lady	:He will communicate 
+	2022-05-18 07:39:03.731134	Healing Lady	:He still loves u
+	2022-05-18 07:39:07.864639	Healing Lady	:He having some issues
+	2022-05-18 07:39:13.120525	Healing Lady	:That making distance 
+	2022-05-18 07:39:19.926684	Healing Lady	:But he will make good effort
+	2022-05-18 07:39:34.312329	Healing Lady	:Few issues where I feel both of you should work on 
+	2022-05-18 07:39:36.561501	pi_709886593	:Does he miss me?
+	2022-05-18 07:39:42.648655	Healing Lady	:Communication gap, lack of sharing and understanding issues
+	2022-05-18 07:39:44.131916	Healing Lady	:Yes
+	2022-05-18 07:39:48.790498	Healing Lady	:You are his mind
+	2022-05-18 07:39:56.252914	Healing Lady	:He can't forget you for a moment
+	2022-05-18 07:40:05.941961	pi_709886593	:Wi he contact me this week or weekend
+	2022-05-18 07:40:07.913950	Healing Lady	:He have alot of things. That remind him of you 
+	2022-05-18 07:40:16.820066	Healing Lady	:Coming month 
+	2022-05-18 07:40:26.278244	Healing Lady	:Willl bless with alot
+	2022-05-18 07:40:38.448833	Healing Lady	:All wishes and dreams going to come true 
+	2022-05-18 07:40:44.151167	Healing Lady	:He is your soulmate 
+	2022-05-18 07:40:50.744465	Healing Lady	:He also missing you badly 
+	2022-05-18 07:41:01.308258	Healing Lady	:He never feel like this for anyone else
+	2022-05-18 07:41:05.850965	Healing Lady	:As he feel for you 
+	2022-05-18 07:41:15.453708	Healing Lady	:It shows you are special and important for him 
+	2022-05-18 07:41:24.499500	Healing Lady	:Though if things seem kinda stuck
+==================== pair: 000001 ====================
+	 order_price: 200, total_cost: 325, 3m_free: False, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2021-11-14 23:37:28.927584	Psychic Sara 💫	:hello how can I help you today? 
+	2021-11-14 23:37:54.840372	pi_415117878	:My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
+	2021-11-14 23:37:56.363104	pi_415117878	:My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
+	2021-11-14 23:38:58.919544	pi_415117878	:my birthdate is 1982
+	2021-11-14 23:39:32.907143	Psychic Sara 💫	:from what I am picking up, I feel that Jesse does still have feelings for you and does still care about you. I can see that he does think about you from time to time but isn’t quite sure as to where things are headed and if it’s something he should try to rekindle 
+	2021-11-14 23:39:50.116319	Psychic Sara 💫	:mainly because he is always overthinking. not ready to settle down or really commit. 
+	2021-11-14 23:40:15.802249	Psychic Sara 💫	:that’s a big reason why he stays away, he isn’t sure if it’s something he can put his all into. 
+	2021-11-14 23:40:28.259613	pi_415117878	:oh
+	2021-11-14 23:40:33.139029	Psychic Sara 💫	:but when it comes down to it the connection he feels with you is something he hasn’t let go of. 
+	2021-11-14 23:40:50.396010	Psychic Sara 💫	:he does want you to be apart of your life but in all truth he isn’t ready for it. 
+	2021-11-14 23:41:02.412964	Psychic Sara 💫	:he still needs time to come to himself and find his way in your relationship. 
+	2021-11-14 23:41:02.513759	pi_415117878	:then I shall move on
+	2021-11-14 23:41:14.629881	pi_415117878	:I can’t wait for him anymore
+	2021-11-14 23:41:20.193625	Psychic Sara 💫	:at the end of the day it is a choice you have to make. 
+==================== pair: 000002 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2021-09-05 19:52:15.352391	pi_78228937	:hi dear is the session for free ?
+	2021-09-05 19:52:35.630339	Spiritualist Autumn 	:you have three free minutes for chat, yes 
+	2021-09-05 19:52:54.570555	pi_78228937	:oh too short it’s okay Thankyou 
+	2021-09-05 19:53:17.708720	Spiritualist Autumn 	:do you have any questions before you run out of time?
+	2021-09-05 19:53:33.873605	pi_78228937	:why is my partner always lying 
+	2021-09-05 19:54:25.152417	Spiritualist Autumn 	:I do feel that this person is being deceptive and can be very manipulative towards you I feel this person has a lot of shadow work and healing to work on within themselves 
+	2021-09-05 19:54:51.652021	Spiritualist Autumn 	:they have to learn the lessons from this connection and that’s gonna take them going within 
+==================== pair: 000003 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-02-15 02:34:58.113945	⭐️✨psychic Valerie✨⭐️	:Can I have your name and date of birth please
+	2022-02-15 02:35:12.934518	pi_542548731	:June 19 2001
+	2022-02-15 02:35:33.806254	⭐️✨psychic Valerie✨⭐️	: I am seeing that you are confuse about a certain person and their feelings towards you can I have a person‘s first name and date of birth plz
+	2022-02-15 02:36:08.634292	pi_542548731	:Eddravian February 6 2001
+	2022-02-15 02:36:46.886955	⭐️✨psychic Valerie✨⭐️	:My Energy Is showing me that you want this person is going to be OK on this person is going to make things work but right now you need to be patient because both of you guys are going through a lot of personal problems a lot of personal changes right now that’s why this person is very confused about all of this
+	2022-02-15 02:36:49.787635	⭐️✨psychic Valerie✨⭐️	: Is this correct 
+	2022-02-15 02:37:15.401731	pi_542548731	:Yes
+	2022-02-15 02:37:25.518097	⭐️✨psychic Valerie✨⭐️	:How long had you been knoing him 
+	2022-02-15 02:37:48.274115	pi_542548731	:6years 
+==================== pair: 000004 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-01-25 08:32:25.888753	psychic Moon 🌙	: hi sweetheart this is psychic Moon nice to meet you let’s begin your reading 🌕🔮……..
+	2022-01-25 08:32:34.058825	psychic Moon 🌙	:How can I help you sweetheart 
+	2022-01-25 08:33:48.991716	pi_215188921	:Hey my name vernon I’m really missing my ex Ashanti but she with somebody else I want to know would we ever get back together 
+	2022-01-25 08:34:07.800090	psychic Moon 🌙	:I can definitely look into this for you 
+	2022-01-25 08:34:20.842111	psychic Moon 🌙	:I do see and pick up that there is hope 
+	2022-01-25 08:34:33.477937	psychic Moon 🌙	: The connection between the both of you is a very strong connection but I do see a lot of Blockages holding your ex back 
+	2022-01-25 08:34:38.785502	psychic Moon 🌙	: These blockages would need to be removed 
+	2022-01-25 08:34:46.582725	psychic Moon 🌙	: In order for your ex to come back into your life 
+	2022-01-25 08:34:57.866757	psychic Moon 🌙	: There is also a lot of negative energy between the both of you
+	2022-01-25 08:35:06.465727	psychic Moon 🌙	: I do see and pick up that she is not happy in her relationship right now 
+	2022-01-25 08:35:11.911685	psychic Moon 🌙	: She is just settling for it 
+	2022-01-25 08:35:16.403511	psychic Moon 🌙	:Our time is running low please add minutes for your reading sweetheart 
+==================== pair: 000005 ====================
+	 order_price: 120, total_cost: 74920, 3m_free: False, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-01-16 22:22:30.723222	Varun 	:My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+	2022-01-16 22:22:34.145567	Varun 	:Hi 
+	2022-01-16 22:22:42.140835	Psychic Miss Lee 	:Hi
+	2022-01-16 22:22:43.774685	Varun 	:Want to ask if she is unbothered by me
+	2022-01-16 22:22:49.085806	Psychic Miss Lee 	: How can I help you today
+	2022-01-16 22:22:50.749145	Varun 	:And if she doesn’t care
+	2022-01-16 22:22:55.628518	Varun 	:Resham 
+	2022-01-16 22:23:00.937666	Varun 	:Feb 3 1999
+	2022-01-16 22:23:18.785155	Psychic Miss Lee 	: She does care and no you are not a bother to her 
+	2022-01-16 22:23:30.076912	Varun 	:No reconciliation?
+	2022-01-16 22:23:34.653160	Psychic Miss Lee 	:She does want to come closer towards you and I definitely see right now she’s got a lot going on but she’s having a really tough time with it
+	2022-01-16 22:23:36.571938	Psychic Miss Lee 	:She does want to come closer towards you and I definitely see right now she’s got a lot going on but she’s having a really tough time with it
+	2022-01-16 22:23:39.367421	Varun 	: No apologies 
+	2022-01-16 22:23:45.723352	Varun 	:No friendship restored
+	2022-01-16 22:23:59.911486	Varun 	:Does she really care at all?
+	2022-01-16 22:24:03.043392	Psychic Miss Lee 	:It will take time because she’s going through so much right now and it’s gonna take time for her to come forward and to be herself
+	2022-01-16 22:24:03.754798	Psychic Miss Lee 	:It will take time because she’s going through so much right now and it’s gonna take time for her to come forward and to be herself
+	2022-01-16 22:24:14.559301	Varun 	:What’s the point
+	2022-01-16 22:24:23.301913	Varun 	:We’ve lost so much time together 
+	2022-01-16 22:24:27.344702	Psychic Miss Lee 	:I know it’s very hard for you to see this right now and this is causing you a lot of emotional stress
+	2022-01-16 22:24:28.097000	Psychic Miss Lee 	:I know it’s very hard for you to see this right now and this is causing you a lot of emotional stress
+	2022-01-16 22:24:48.936771	Psychic Miss Lee 	: I know you guys did but you guys will come back together but it will take a little time for her to find herself over, situation and be able to come forward 
+	2022-01-16 22:25:22.017083	Psychic Miss Lee 	: I see that she will come forward and once she does she will continuously coming forward and I do see things working out there is new doors opening and positive changes coming for the both of you
+	 order_price: 120, total_cost: 74920, 3m_free: False, 3m_convert_tag: 0
+-------------------- order: 01 --------------------
+	2022-01-29 04:18:10.048063	Varun 	:My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+	2022-01-29 04:18:14.478966	Varun 	:Hey again 
+	2022-01-29 04:18:15.498386	Psychic Miss Lee 	:Ho
+	2022-01-29 04:18:29.181161	Psychic Miss Lee 	: Hi how can I help you 
+	2022-01-29 04:18:30.369606	Varun 	:I wanted to ask if Resham is thinking about me 
+	2022-01-29 04:18:36.555497	Varun 	:Feb 3 1999 
+	2022-01-29 04:18:51.237276	Psychic Miss Lee 	:Yes from what I can see she is thinking about you a lot
+	2022-01-29 04:18:54.252353	Psychic Miss Lee 	:Yes from what I can see she is thinking about you a lot
+	2022-01-29 04:19:03.684244	Varun 	:Sure?
+	2022-01-29 04:19:14.632204	Varun 	:Will she reach out soon?
+	2022-01-29 04:19:27.198501	Psychic Miss Lee 	: Yes I am for sure I see that she does miss you she is thinking about you but I do know she has a lot going on right now but she is really missing you and she is going to initiate some kind of communication soon  
+	2022-01-29 04:19:45.440969	Varun 	:Will she be my friend again?
+	2022-01-29 04:19:52.234752	Varun 	:Or is it over?
+	2022-01-29 04:19:57.360742	Psychic Miss Lee 	: Yes you and her will be friends again  
+	2022-01-29 04:20:05.035498	Psychic Miss Lee 	:No it is not over 
+	2022-01-29 04:20:08.134769	Varun 	:Does she miss me a lot? 
+	2022-01-29 04:20:23.295115	Psychic Miss Lee 	: Yes she does miss you a lot and she thinks about you all the time  
+	 order_price: 160, total_cost: 74920, 3m_free: False, 3m_convert_tag: 0
+-------------------- order: 02 --------------------
+	2022-01-31 06:08:56.633668	Varun 	:My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+	2022-01-31 06:09:00.590911	Psychic Miss Lee 	:Hi
+	2022-01-31 06:09:00.946255	Varun 	:Hey again 
+	2022-01-31 06:09:11.442972	Varun 	:Want to ask if she’s thinking of me or not 
+	2022-01-31 06:09:15.137770	Psychic Miss Lee 	:How can I help you 
+	2022-01-31 06:09:16.500523	Varun 	:It’s almost 10 months 
+	2022-01-31 06:09:18.838171	Varun 	:Resham 
+	2022-01-31 06:09:22.014172	Varun 	:Feb 3 1999 
+	2022-01-31 06:09:41.106754	Psychic Miss Lee 	:Ok looking one min ok ty
+	2022-01-31 06:09:49.943022	Varun 	:What is our connection?
+	2022-01-31 06:09:53.990253	Varun 	:Is it lost or not
+	2022-01-31 06:10:00.939245	Varun 	:Or restorable?
+	2022-01-31 06:10:29.495080	Psychic Miss Lee 	:From what I can see she has been thinking of you a lot I definitely see the communication is I don’t see you and her being in communication and I definitely see her coming forward towards you soon
+	2022-01-31 06:10:30.918861	Psychic Miss Lee 	:From what I can see she has been thinking of you a lot I definitely see the communication is I don’t see you and her being in communication and I definitely see her coming forward towards you soon
+	2022-01-31 06:11:14.107981	Psychic Miss Lee 	:I didn’t see one she does contact you you and her will slowly get back together and have a very strong friend relationship
+	2022-01-31 06:11:15.176287	Psychic Miss Lee 	:I didn’t see one she does contact you you and her will slowly get back together and have a very strong friend relationship
+	2022-01-31 06:11:24.204154	Varun 	:Didn’t or did?
+	2022-01-31 06:11:33.120136	Psychic Miss Lee 	:Did
+	2022-01-31 06:11:39.252881	Psychic Miss Lee 	:Sorry About that
+	2022-01-31 06:11:41.290260	Psychic Miss Lee 	:Sorry About that
+	2022-01-31 06:11:52.751272	Varun 	:Does she have any regret?
+	2022-01-31 06:11:53.197985	Psychic Miss Lee 	:She does miss you a lot
+	2022-01-31 06:11:54.025000	Psychic Miss Lee 	:She does miss you a lot
+	2022-01-31 06:12:03.594621	Varun 	:Does she feel bad about losing me at all?
+	2022-01-31 06:12:05.578895	Psychic Miss Lee 	: Yes she has a ton of regrets  
+	2022-01-31 06:12:15.035585	Varun 	:ARE YOU SUREEE
+	2022-01-31 06:12:19.629818	Psychic Miss Lee 	: Yes she does feel bad but she just had too much going on  
+	2022-01-31 06:12:29.855373	Varun 	:But 10 months?
+	2022-01-31 06:12:30.812717	Psychic Miss Lee 	:Yes 100%
+	2022-01-31 06:12:45.355060	Psychic Miss Lee 	: There was someone that came between you and her and created a lot of problems or issues for her  
+	2022-01-31 06:12:49.558899	Varun 	:And now?
+	2022-01-31 06:13:12.325853	Psychic Miss Lee 	: And now she has distanced herself from that influence and she’s focusing on herself and she has been thinking about you a lot and I’m showing anytime now she is going to reach out to you  
+	2022-01-31 06:13:19.615065	Varun 	:How soon?
+	2022-01-31 06:13:24.382884	Varun 	:How will she reach out?
+	2022-01-31 06:13:29.548538	Varun 	:Text? SMS?
+	2022-01-31 06:13:32.343996	Varun 	:Call?
+==================== pair: 000006 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2021-12-01 23:17:25.149980	psychic Clarissa 	:hi
+	2021-12-01 23:17:29.672337	psychic Clarissa 	:how may I help
+	2021-12-01 23:17:51.006771	pi_287822595	:I’m I going to have a next love soon? 
+	2021-12-01 23:18:19.894384	psychic Clarissa 	:may I have both full names and date of birth 
+==================== pair: 000007 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2021-11-11 04:19:33.008875	⭐️✨psychic Valerie✨⭐️	:Can I have your name and date of birth please
+	2021-11-11 04:19:58.204457	pi_679224808	:Kendra 03/07/1988
+	2021-11-11 04:20:12.282040	⭐️✨psychic Valerie✨⭐️	:I am picking up that you are confused about a certain person
+	2021-11-11 04:20:27.846235	pi_679224808	:yes
+	2021-11-11 04:20:38.122543	⭐️✨psychic Valerie✨⭐️	: Can I have the person’s first name and date of birth please
+	2021-11-11 04:21:16.580417	pi_679224808	:Angela 12/18/1990
+	2021-11-11 04:21:16.813357	⭐️✨psychic Valerie✨⭐️	: Hello are you there
+	2021-11-11 04:21:40.312026	⭐️✨psychic Valerie✨⭐️	: Well I am saying that you are very confused about this person’s feelings towards you why are you still confused about this person with u
+	2021-11-11 04:21:56.596220	⭐️✨psychic Valerie✨⭐️	: why are you doubting you and  this person so much 
+==================== pair: 000008 ====================
+	 order_price: 260, total_cost: 476, 3m_free: False, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-05-24 21:45:40.624058	Psychic Faith	:Hi welcome.How are you
+	2022-05-24 21:45:54.764661	Psychic Faith	:Welcome 
+	2022-05-24 21:45:57.136784	179337959	:Hello I am good wanna a love question 
+	2022-05-24 21:46:01.793168	Psychic Faith	:How may i help you today ?
+	2022-05-24 21:46:10.689568	179337959	:My birthday is 12/11/2001 
+	2022-05-24 21:46:13.904139	Psychic Faith	:Sure dear ask please 
+	2022-05-24 21:46:37.469332	179337959	:How does Luis feel about me? I have gotten a reading saying he loves me but I don’t know 
+	2022-05-24 21:47:01.299009	Psychic Faith	:Can you please tell me his name and dob please 
+	2022-05-24 21:47:21.110803	179337959	:I don’t know his date of my birthday he doesn’t wanna tell me it
+	2022-05-24 21:47:44.184200	Psychic Faith	:It’s okay dear tell me your name please
+	2022-05-24 21:47:48.197682	179337959	:Alexandra 
+	2022-05-24 21:47:59.888012	Psychic Faith	:Okay dear please wait let me connect please 
+	2022-05-24 21:48:09.189208	179337959	:Ok
+	2022-05-24 21:49:01.660196	Psychic Faith	:Dear as i can see and sense that though right now there’s gap in between both of you
+	2022-05-24 21:49:09.804650	Psychic Faith	:But he’s connected with you all senses 
+	2022-05-24 21:49:14.478802	179337959	:Does he love me?
+	2022-05-24 21:49:40.142049	Psychic Faith	:Yes dear he loves you but right now he’s not ready for commitment 
+	2022-05-24 21:49:54.180701	179337959	:Are we going to be together at all?
+	2022-05-24 21:50:14.724673	Psychic Faith	:Hun as i can see that there is strong spiritual connection in between both of you with love,care and respect 
+	2022-05-24 21:50:21.311623	Psychic Faith	:Yes but it’s take a bit time 
+	2022-05-24 21:50:31.004610	Psychic Faith	:Meanwhile you should try to be patience 
+	2022-05-24 21:50:34.544888	Psychic Faith	:Hun
+	2022-05-24 21:50:52.764894	Psychic Faith	:As i can see that he is very nice guy with having a beautiful heart 
+	2022-05-24 21:51:17.387067	179337959	:I don’t get it at all because in a week we go in a vacation will he give his number or something for to text him on?
+	2022-05-24 21:52:04.989632	Psychic Faith	:Yes dear he will give you
+	2022-05-24 21:52:20.268461	179337959	:Do have a time frame when you think he give it?
+	2022-05-24 21:52:31.104108	Psychic Faith	:Hun he feel very strong attraction towards you
+	2022-05-24 21:53:11.164326	Psychic Faith	:Dear generally as i can see that coming month will be very positive for you alot of happiness coming in your life and he will be part of your happiness 
+	2022-05-24 21:53:11.739022	179337959	:Does he get jealous I had said something about one of his friends because I have love for Dylan and I felt him get mad sort 
+	2022-05-24 21:53:35.704818	Psychic Faith	:Yes dear he is 
+	2022-05-24 21:53:44.944134	Psychic Faith	:Dear 
+	2022-05-24 21:53:52.900429	179337959	:Yes? 
+	2022-05-24 21:54:06.229029	Psychic Faith	:I would like to remain you this isn’t artificial connection this is spiritual connection in between both of you
+	2022-05-24 21:54:15.479485	179337959	:Oh no
+	2022-05-24 21:54:17.754283	Psychic Faith	:Which is always keep pushing him towards you
+	2022-05-24 21:54:34.260041	179337959	:At least your honest
+	2022-05-24 21:54:43.615980	Psychic Faith	:Dear in this all situation you should try to be patience 
+	2022-05-24 21:54:47.903778	Psychic Faith	:And dear stay positive 
+	2022-05-24 21:55:00.664177	Psychic Faith	:As i can see that everything will go in your favour 
+	2022-05-24 21:55:03.889568	179337959	:I will thank you
+	2022-05-24 21:55:12.384899	Psychic Faith	:And everything will comes to you at the right moment 
+	2022-05-24 21:55:18.644091	Psychic Faith	:I will appreciate with your feedback 
+	2022-05-24 21:55:24.404042	Psychic Faith	:Your time is about to finish 
+	2022-05-24 21:55:29.604292	Psychic Faith	:I have much more
+	2022-05-24 21:55:38.664327	Psychic Faith	:Welcome back 
+	2022-05-24 21:55:38.903298	179337959	:Wait Does Dylan love me or no?
+	2022-05-24 21:55:53.305117	Psychic Faith	:No dear he seeing someone else 
+	2022-05-24 21:56:17.180267	179337959	:No I am confused now because I had a reading on here that Dylan like me?
+	2022-05-24 21:56:25.683657	Psychic Faith	:Luis have feelings for you
+	2022-05-24 21:56:43.181812	179337959	:Luis does?
+	2022-05-24 21:56:46.144040	Psychic Faith	:Yes 
+	2022-05-24 21:56:57.983738	Psychic Faith	:But he need some time to express his feelings towards you
+	2022-05-24 21:57:06.979610	179337959	:Well I hope he does then
+	2022-05-24 21:57:22.064632	Psychic Faith	:Because right now he’s not ready for commitment you just need to give him some time
+	2022-05-24 21:57:37.695827	Psychic Faith	:And give him the right opportunities to express his feelings 
+	2022-05-24 21:57:50.067891	179337959	:I am not ready for commitment to
+	2022-05-24 21:58:08.181604	179337959	:So it is good then thank you for answering my questions then
+	2022-05-24 21:58:15.199606	Psychic Faith	:Hun as i can see that everything will go in your favour 
+	2022-05-24 21:58:21.068716	Psychic Faith	:Welcome 
+	2022-05-24 21:58:23.144186	Psychic Faith	:Dear
+	2022-05-24 21:58:25.244163	Psychic Faith	:Stay safe 
+	2022-05-24 21:58:27.669104	Psychic Faith	:God bless you
+	2022-05-24 21:58:37.344200	Psychic Faith	:Will appreciate with your feedback 
+==================== pair: 000009 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-05-03 15:42:07.234506	pi_131877492	:Will I get together with Caleb 
+	2022-05-03 15:42:50.795412	Healing Lady	:Hi 
+	2022-05-03 15:42:51.233046	Healing Lady	:Hru
+==================== pair: 000010 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+==================== pair: 000011 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-05-09 21:11:52.353159	🌸Advisor Angelica 🌸	:Hi love 💕 thanks for connecting with me. How are you doing today?
+	2022-05-09 21:12:08.685079	pi_320937337	:Are we going to be together?
+	2022-05-09 21:12:25.559181	🌸Advisor Angelica 🌸	: May I have your name and date of birth and their date of birth as well ? 
+	2022-05-09 21:13:01.013118	pi_320937337	:My name is Yafreisi 
+	2022-05-09 21:13:25.279213	pi_320937337	:My date of birth is 16-04-1999
+	2022-05-09 21:13:51.795689	pi_320937337	:01-03-1999
+	2022-05-09 21:14:25.835494	🌸Advisor Angelica 🌸	: I feel you guys have a good connection with each other it’s likely you will be together 
+	2022-05-09 21:14:33.964037	🌸Advisor Angelica 🌸	: He has romantic feelings for you and feels attached to you 
+==================== pair: 000012 ====================
+	 order_price: 210, total_cost: 300, 3m_free: True, 3m_convert_tag: 2
+-------------------- order: 00 --------------------
+	2022-04-11 06:37:23.642965	pi_15011353	:Are we going to be together?
+	2022-04-11 06:37:25.715632	Healing Lady	:hi
+	2022-04-11 06:37:27.445279	Healing Lady	:hru
+	2022-04-11 06:37:30.826852	Healing Lady	:good to see u
+	2022-04-11 06:37:34.665657	Healing Lady	:how can i help u
+	2022-04-11 06:38:21.822820	pi_15011353	:Need help with my love life
+	2022-04-11 06:39:34.408528	Healing Lady	:names dob
+	2022-04-11 06:39:48.362699	pi_15011353	:Marshon 
+	2022-04-11 06:39:55.222986	pi_15011353	:10/01/1971
+	2022-04-11 06:40:10.582664	pi_15011353	:Will I ever meet my soulmate??
+	2022-04-11 06:41:47.794439	Healing Lady	:things looks great for you
+	2022-04-11 06:41:55.408580	Healing Lady	:this mid of year
+	2022-04-11 06:42:04.367598	Healing Lady	:good connection 
+	2022-04-11 06:42:16.226302	Healing Lady	:few issues will come but again things will work for good
+	2022-04-11 06:42:26.505466	Healing Lady	:the intention of this guy only towards you
+	2022-04-11 06:42:40.905115	Healing Lady	:few issues where i feel both of you should work on
+	2022-04-11 06:43:24.364769	Healing Lady	:the intention of this guy only towards u
+	2022-04-11 06:43:34.426048	Healing Lady	:coimmunication gap,klack of sharing and understanding issues
+	2022-04-11 06:43:47.125757	Healing Lady	:someone other also can try to cause issues or misunderstandings between both of u
+
+	2022-04-11 06:43:52.583277	Healing Lady	:there will be good future together
+	2022-04-11 06:44:00.431745	Healing Lady	:all worries of this relationship have been ended
+	2022-04-11 06:44:56.207505	Healing Lady	:this year your love life going to chanhged
+	2022-04-11 06:45:22.172092	Healing Lady	:change in the sense that it will more good then the previous days
+	2022-04-11 06:45:29.527718	Healing Lady	:you will see it in yourself more then better
+	2022-04-11 06:45:59.322534	pi_15011353	:Have i already connected with him
+	2022-04-11 06:46:06.905195	Healing Lady	:yes
+	2022-04-11 06:46:19.633407	Healing Lady	:you r still connected to him in all senses
+	2022-04-11 06:46:36.347116	Healing Lady	:stil there is connection between both of u
+	 order_price: 90, total_cost: 300, 3m_free: False, 3m_convert_tag: 0
+-------------------- order: 01 --------------------
+	2022-04-11 06:49:21.708605	Healing Lady	:hi
+	2022-04-11 06:49:24.740645	Healing Lady	:hru
+	2022-04-11 06:49:28.893227	Healing Lady	:good to see u
+	2022-04-11 06:50:02.062226	pi_15011353	:This last guy I didn’t like and have no attention on seeing him
+==================== pair: 000013 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2021-09-12 04:34:47.054426	Psychic Sara 💫	:hello how can I help you today? 
+	2021-09-12 04:35:19.828917	pi_169422369	:me n my ex broke up today and I can’t get over her, we will get bs k together? 
+	2021-09-12 04:35:55.579067	Psychic Sara 💫	:I can take a look into it for you. 
+	2021-09-12 04:36:03.669818	Psychic Sara 💫	:can you provide me with names and date of birth’s? 
+	2021-09-12 04:36:23.267922	pi_169422369	:mine is Katrina Duncan 06-18-02
+	2021-09-12 04:36:49.431478	pi_169422369	:hers is Amira rincon 5-1-02
+	2021-09-12 04:37:33.476895	Psychic Sara 💫	:from what I am picking up, I feel that you two are going to rekindle and get back together. right now she is in her own head and wanting space. she needs to think things through 
+	2021-09-12 04:37:42.366562	Psychic Sara 💫	:but ultimately she will decide to get back with you I feel 
+==================== pair: 000014 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2021-09-09 19:04:53.576929	Psychic Sara 💫	:hello how can I help you? 
+	2021-09-09 19:05:13.062829	pi_316033275	:hi, I was wondering if u could help me figure out a couple of things ab me spiritually
+	2021-09-09 19:05:23.995879	pi_316033275	:a guide?
+	2021-09-09 19:05:57.766760	Psychic Sara 💫	:sure. your name and date of birth as well as your first question? 
+	2021-09-09 19:06:24.885638	pi_316033275	:Kaitlyn, 08-24-2004, how do I turn out spiritually? like, how do I continue with ut
+	2021-09-09 19:06:27.133202	pi_316033275	:it*
+	2021-09-09 19:07:40.640315	Psychic Sara 💫	:you’ll need to really allow your spirituality to manifest and grow. through meditations and building 
+==================== pair: 000015 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+==================== pair: 000016 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-01-15 01:28:10.591570	Bewitched 	:Hello 
+	2022-01-15 01:28:24.960758	pi_992181307	:Hi!
+	2022-01-15 01:28:27.020996	Bewitched 	:How are you doing this evening ? 
+	2022-01-15 01:28:33.549147	pi_992181307	:Pretty good you ?
+	2022-01-15 01:28:41.648193	Bewitched 	:Good thanks ! 
+	2022-01-15 01:28:46.116860	Bewitched 	:How can I help you 
+	2022-01-15 01:29:09.964260	pi_992181307	:So I’m a girl and I have a crush on this one girl and I wanna know if she like me 
+	2022-01-15 01:29:25.011278	Bewitched 	:Okay sure I’ll take a loook 
+	2022-01-15 01:29:36.525044	Bewitched 	:Can I have your name and birthday please and hers 
+	2022-01-15 01:30:11.043796	pi_992181307	:My name is Sarah and my birthday is the 7 November and her name is zoe and her birthday is the 8 February 
+	2022-01-15 01:30:45.574322	Bewitched 	:Okay one moment Sarah 
+	2022-01-15 01:30:54.768501	pi_992181307	:Thanks :) 
+==================== pair: 000017 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-01-20 00:24:50.197076	Psychic Sara 💫	:Hello how can I help you today? 
+	2022-01-20 00:24:53.969931	pi_730234217	:My name is ?
+	2022-01-20 00:25:13.504563	pi_730234217	:Do she love me? 
+	2022-01-20 00:25:21.388961	Psychic Sara 💫	:Your name is ?
+	2022-01-20 00:25:26.411633	pi_730234217	:Donnay 
+==================== pair: 000018 ====================
+	 order_price: 70, total_cost: 175, 3m_free: True, 3m_convert_tag: 2
+-------------------- order: 00 --------------------
+	2022-04-26 16:20:04.618812	🔮Psychic💘💔Monika💎	:Welcome to my chat room!!!
+	2022-04-26 16:20:08.409209	🔮Psychic💘💔Monika💎	:Hey dear friend 
+	2022-04-26 16:21:44.019418	🔮Psychic💘💔Monika💎	:Hey dear friend 
+	2022-04-26 16:22:01.998880	pi_819873317	:Hey , I was confused on my reading back he’s not my husband he only my son dad we have not together . He’s in a relationship with somebody else and she does a lot for him but he gave me money for my son . I just wanted to know if he love her fr or only with her because of the money 
+	2022-04-26 16:22:05.598975	🔮Psychic💘💔Monika💎	:Ok
+	2022-04-26 16:22:08.961792	🔮Psychic💘💔Monika💎	:Just waiting please 
+	2022-04-26 16:22:18.739065	🔮Psychic💘💔Monika💎	:I see again 
+	2022-04-26 16:22:44.470594	pi_819873317	:So I can know how to move on 
+	2022-04-26 16:23:24.845681	🔮Psychic💘💔Monika💎	:He loves her very much
+	2022-04-26 16:23:37.983457	pi_819873317	:Ok thanks so much . 
+	2022-04-26 16:23:47.476537	🔮Psychic💘💔Monika💎	:He has no greed for money
+	2022-04-26 16:23:59.448784	🔮Psychic💘💔Monika💎	:He just wants to make everyone happy
+	2022-04-26 16:24:15.886407	🔮Psychic💘💔Monika💎	:Because he loves you the most
+	2022-04-26 16:24:34.727075	🔮Psychic💘💔Monika💎	:Because he can't leave her alone in life
+	2022-04-26 16:24:47.956546	pi_819873317	:So basically he love both of us ? 
+	2022-04-26 16:24:48.213528	🔮Psychic💘💔Monika💎	:Wants to be with her forever
+	 order_price: 105, total_cost: 175, 3m_free: False, 3m_convert_tag: 0
+-------------------- order: 01 --------------------
+	2022-04-26 16:45:48.552722	🔮Psychic💘💔Monika💎	:Welcome to my chat room!!!
+	2022-04-26 16:45:51.514258	🔮Psychic💘💔Monika💎	:Hey dear friend 
+	2022-04-26 16:46:11.100018	pi_819873317	:Hey you had more information for me 
+	2022-04-26 16:46:15.436548	🔮Psychic💘💔Monika💎	:Ok
+	2022-04-26 16:46:30.718280	pi_819873317	:Because I am trying to get a peace of mind 
+	2022-04-26 16:46:38.794062	🔮Psychic💘💔Monika💎	:I wanted to tell you that you should not doubt anyone, you should trust him completely
+	2022-04-26 16:46:57.324595	🔮Psychic💘💔Monika💎	:Because trusting relationships are established
+	2022-04-26 16:47:02.856628	pi_819873317	:How ? 
+	2022-04-26 16:47:19.133802	🔮Psychic💘💔Monika💎	:The more you doubt your relationship, the weaker it becomes
+	2022-04-26 16:47:38.823686	🔮Psychic💘💔Monika💎	:And the more you trust your love and your relationship, the more you will love and be stronger.
+	2022-04-26 16:47:40.842074	pi_819873317	:He’s in a relationship with somebody else 
+	2022-04-26 16:48:10.434333	🔮Psychic💘💔Monika💎	:But I look forward to seeing you both together in the future
+	2022-04-26 16:48:26.124811	🔮Psychic💘💔Monika💎	:I see that he thinks a lot about you and feels great about you
+==================== pair: 000019 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2022-05-12 00:21:30.855659	pi_127029808	:I just want my cards read
+	2022-05-12 00:21:57.173273	Healing Lady	:Yes
+	2022-05-12 00:22:08.574555	pi_127029808	:So how does it work
+	2022-05-12 00:22:09.421385	Healing Lady	:Send me your name with full date of birth 
+	2022-05-12 00:22:21.836680	pi_127029808	:Tyaisha hamilton 11/16/93
+	2022-05-12 00:22:36.189532	Healing Lady	:Ok
+	2022-05-12 00:22:54.105439	Healing Lady	:i can see and sense things work slow right now but everything will come to you 
+	2022-05-12 00:23:09.575210	Healing Lady	:your love life going to improved
+	2022-05-12 00:23:46.048101	pi_127029808	:I hope so
+	2022-05-12 00:23:53.052648	Healing Lady	:i can see and sense things looks good for you
+	2022-05-12 00:24:11.709915	Healing Lady	:Everything will comes to you 
+==================== pair: 000020 ====================
+	 order_price: 0, total_cost: 0, 3m_free: True, 3m_convert_tag: 0
+-------------------- order: 00 --------------------
+	2021-09-06 22:36:56.766670	Psychic Sara 💫	: hello how can I help you today? 
+	2021-09-06 22:37:03.701451	pi_310705534	:Hiii 
+	2021-09-06 22:37:17.169883	pi_310705534	:thanks 
+	2021-09-06 22:37:57.821454	pi_310705534	:I’m hooking up with someone and he gives me mixed signals we didn’t plan on it being something serious but I think I’m falling for him
+	2021-09-06 22:38:13.291109	Psychic Sara 💫	:okay. 
+	2021-09-06 22:38:20.802185	Psychic Sara 💫	: can you provide me with names and date of births?
+	2021-09-06 22:38:39.842490	pi_310705534	:Samiksha 14/12/2002
+	2021-09-06 22:39:36.267482	Psychic Sara 💫	:and yours please?
+	2021-09-06 22:39:46.589282	pi_310705534	:Anirudha 21/08/1996

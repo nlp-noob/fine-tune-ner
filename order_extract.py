@@ -6,6 +6,13 @@ catch_text_compile = re.compile(r".*(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{
 pair_line = "==================== pair:"
 order_line = "-------------------- order:"
 
+def get_labels_in_line(label_list, line_index):
+    label_in_line = []
+    for label in label_list:
+        if label[0]-1 == line_index:
+            label_in_line.append(label[1:])
+    return label_in_line
+
 def get_data(fin, label_list, name_list, byte_name_list):
     pair_no = -1
     orders = []
@@ -49,6 +56,13 @@ def get_data(fin, label_list, name_list, byte_name_list):
             an_order["order"].append([name,text])
 
     orders.append(an_order)
+
+    # 把label转换成每行一个
+    for order in orders:
+        label_list = order["label"]
+        order["label"] = []
+        for index in range(len(order["order"])):
+            order["label"].append(get_labels_in_line(label_list, index))
             
     return orders
 

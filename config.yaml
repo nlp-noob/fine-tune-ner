@@ -1,8 +1,9 @@
 LABEL_ALL_TOKENS: True
-MAX_SLIDING_WIN_SIZE: 10
+SLIDING_WIN_SIZE: 10
 HAVE_PRE: True
 MODEL_PATH: Davlan/bert-base-multilingual-cased-ner-hrl 
 DATA_FILE_PATH: eval_data/eval_data.json
 PRE_LABEL: B-PER
 CEN_LABEL: I-LABEL
 DEFAULT_LABEL: PER
+ADD_SPECIAL_TOKENS: True

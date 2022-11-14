@@ -1,1 +1,3 @@
 badcases/*.txt
+eval_data/order.txt
+eval_data/order.zip

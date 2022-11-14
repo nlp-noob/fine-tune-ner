@@ -18,6 +18,7 @@ class Evaluator:
         self.data = self._get_data_from_json()
         self._align_labels()
         self.inputs = None
+        self.badcase = []
         
     def _get_data_from_json(self):
         data_dict = {}
@@ -157,6 +158,7 @@ class Evaluator:
                    a_tag!=self.config["DEFAULT_LABEL"]):
                     predicted_tokens_classes[index] = "O"
             a_input["pred"] = predicted_tokens_classes
+            a_input["tokenized_words"] = self.tokenizer.convert_ids_to_tokens(tokenized_sentence["input_ids"][0])
 
     def eval(self):
         True_P = 0
@@ -165,13 +167,28 @@ class Evaluator:
         for item in self.inputs:
             per_y_true = item["tag"]
             per_y_pred = item["pred"]
+            list_badcase = []
+            write_bad_case_flag = False
             for true_label, pred_label in zip(per_y_true, per_y_pred):
                 if(true_label!='O' and true_label==pred_label):
+                    list_badcase.append("TF")
                     True_P += 1
                 elif(pred_label!='O' and true_label!=pred_label):
+                    write_bad_case_flag = True
+                    list_badcase.append("FP")
                     False_P += 1
                 elif(pred_label=='O' and true_label!='O'):
+                    write_bad_case_flag = True
+                    list_badcase.append("FN")
                     False_N += 1
+                else:
+                    list_badcase.append("O")
+            if write_bad_case_flag:
+                    self.badcase.append(item["input"])
+                    self.badcase.append(item["tokenized_words"])
+                    self.badcase.append(item["tag"])
+                    self.badcase.append(item["pred"])
+                    self.badcase.append("**"*20)
         print("**"*20)
         print("Overlap:  "+str(self.inputs[0]["overlap"]))
         print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
@@ -185,6 +202,13 @@ class Evaluator:
         print("The Recall is:\t\t {}".format(Recall))
         print("The F1 is:\t\t {}".format(F1))
         print("**"*20)
+
+    def write_badcase(self):
+
+        with open("badcases/{}_Win{}{}.txt".format(self.config["MODEL_PATH"], self.config["SLIDING_WIN_SIZE"], self.inputs[0]["overlap"]),  "w") as bf:
+            for line in self.badcase:
+                bf.write(line)
+            
                             
 def main():
     with open("config.yaml","r") as stream:
@@ -198,10 +222,12 @@ def main():
         evaluator.collate_inputs_Win()
         evaluator.get_predict_label()
         evaluator.eval()
+        evaluator.write_badcase()
 
         evaluator.collate_inputs_Win_no_overlaps()
         evaluator.get_predict_label()
         evaluator.eval()
+        evaluator.write_badcase()
 
 
 if __name__=="__main__":

@@ -166,6 +166,12 @@ class Evaluator:
             a_input["pred"] = predicted_tokens_classes
             a_input["tokenized_words"] = self.tokenizer.convert_ids_to_tokens(tokenized_sentence["input_ids"][0])
 
+    def _format_out_put(self, word_list):
+        out_str = ""
+        for word in word_list:
+             tab_num = int(len(word)/4)
+             out_str += word+"\t"*(4-tab_num) 
+        return out_str
 
     def eval(self):
         True_P = 0
@@ -192,9 +198,9 @@ class Evaluator:
                     list_badcase.append("O")
             if write_bad_case_flag:
                     self.badcase.append(item["input"])
-                    self.badcase.append(item["tokenized_words"])
-                    self.badcase.append(item["tag"])
-                    self.badcase.append(item["pred"])
+                    self.badcase.append(self._format_out_put(item["tokenized_words"]))
+                    self.badcase.append("true_label: \t"+self._format_out_put(item["tag"]))
+                    self.badcase.append("pred_lable: \t"+self._format_out_put(item["pred"]))
                     self.badcase.append("**"*20)
         print("**"*20)
         print("Overlap:  "+str(self.inputs[0]["overlap"]))
@@ -220,7 +226,7 @@ class Evaluator:
             overlap = "no_overlap"
         with open("badcases/{}_Win{}_{}.txt".format(model_path, win_size, overlap),  "w") as bf:
             for line in self.badcase:
-                bf.write("  ".join(line)+"\n")
+                bf.write(line+"\n")
             
                             
 def main():

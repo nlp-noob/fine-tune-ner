@@ -4,6 +4,6 @@ HAVE_PRE: True
 MODEL_PATH: Davlan/bert-base-multilingual-cased-ner-hrl 
 DATA_FILE_PATH: eval_data/eval_data.json
 PRE_LABEL: B-PER
-CEN_LABEL: I-LABEL
+CEN_LABEL: I-PER
 DEFAULT_LABEL: PER
 ADD_SPECIAL_TOKENS: True

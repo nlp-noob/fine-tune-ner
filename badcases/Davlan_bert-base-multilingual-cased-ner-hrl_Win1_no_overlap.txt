@@ -1,1 +1,200 @@
-[  U  S  E  R  ]     M  y     n  a  m  e     i  s     E  m  i  l  y     R  a  t  h  b  o  n  e     M  a  y     2  2  ,     1  9  8  0     t  o     m  y     P  O  A     i  s     J  e  s  s  e     A  p  r  i  l     5  ,     1  9  8  7     a  n  d     I     w  a  s     j  u  s  t     w  o  n  d  e  r  i  n  g     i  f     h  e     h  a  s     b  e  e  n     t  h  i  n  k  i  n  g     a  b  o  u  t     m  e     a  n  d     m  i  s  s  e  s     m  e     a  n  d     i  f     w  e     w  i  l  l     g  e  t     b  a  c  k     t  o  g  e  t  h  e  r[CLS]  [  US  ##ER  ]  My  name  is  Emily  Rat  ##h  ##bone  May  22  ,  1980  to  my  P  ##O  ##A  is  Jesse  April  5  ,  1987  and  I  was  just  won  ##dering  if  he  has  been  thinking  about  me  and  miss  ##es  me  and  if  we  will  get  back  together  [SEP]O  O  O  O  O  O  O  B-PER  I-LABEL  I-LABEL  I-LABEL  O  O  O  O  O  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     E  m  i  l  y     R  a  t  h  b  o  n  e     M  a  y     2  2  ,     1  9  8  0     t  o     m  y     P  O  A     i  s     J  e  s  s  e     A  p  r  i  l     5  ,     1  9  8  7     a  n  d     I     w  a  s     j  u  s  t     w  o  n  d  e  r  i  n  g     i  f     h  e     h  a  s     b  e  e  n     t  h  i  n  k  i  n  g     a  b  o  u  t     m  e     a  n  d     m  i  s  s  e  s     m  e     a  n  d     i  f     w  e     w  i  l  l     g  e  t     b  a  c  k     t  o  g  e  t  h  e  r[CLS]  [  US  ##ER  ]  My  name  is  Emily  Rat  ##h  ##bone  May  22  ,  1980  to  my  P  ##O  ##A  is  Jesse  April  5  ,  1987  and  I  was  just  won  ##dering  if  he  has  been  thinking  about  me  and  miss  ##es  me  and  if  we  will  get  back  together  [SEP]O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     t  h  e  n     I     s  h  a  l  l     m  o  v  e     o  n[CLS]  [  US  ##ER  ]  then  I  shall  move  on  [SEP]O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     V  a  r  u  n     ,     I     w  a  s     b  o  r  n     i  n     J  a  n     9  ,     1  9  9  9  ,     M  y     g  e  n  d  e  r     i  s     M  a  l  e  .[CLS]  [  US  ##ER  ]  My  name  is  Var  ##un  ,  I  was  born  in  Jan  9  ,  1999  ,  My  gender  is  Male  .  [SEP]O  O  O  O  O  O  O  B-PER  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     A  n  d     i  f     s  h  e     d  o  e  s  n  ’  t     c  a  r  e[CLS]  [  US  ##ER  ]  And  if  she  doesn  [UNK]  t  care  [SEP]O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     R  e  s  h  a  m   [CLS]  [  US  ##ER  ]  Res  ##ham  [SEP]O  O  O  O  B-PER  B-PERO  O  O  O  B-PER  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]        N  o     a  p  o  l  o  g  i  e  s   [CLS]  [  US  ##ER  ]  No  apo  ##logie  ##s  [SEP]O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     N  o     f  r  i  e  n  d  s  h  i  p     r  e  s  t  o  r  e  d[CLS]  [  US  ##ER  ]  No  friendship  restored  [SEP]O  O  O  O  O  O  OO  B-PER  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     V  a  r  u  n     ,     I     w  a  s     b  o  r  n     i  n     J  a  n     9  ,     1  9  9  9  ,     M  y     g  e  n  d  e  r     i  s     M  a  l  e  .[CLS]  [  US  ##ER  ]  My  name  is  Var  ##un  ,  I  was  born  in  Jan  9  ,  1999  ,  My  gender  is  Male  .  [SEP]O  O  O  O  O  O  O  B-PER  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     I     w  a  n  t  e  d     t  o     a  s  k     i  f     R  e  s  h  a  m     i  s     t  h  i  n  k  i  n  g     a  b  o  u  t     m  e   [CLS]  [  US  ##ER  ]  I  wanted  to  ask  if  Res  ##ham  is  thinking  about  me  [SEP]O  O  O  O  O  O  O  O  O  B-PER  B-PER  O  O  O  OO  B-PER  O  O  O  O  O  O  O  B-PER  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     W  i  l  l     s  h  e     b  e     m  y     f  r  i  e  n  d     a  g  a  i  n  ?[CLS]  [  US  ##ER  ]  Will  she  be  my  friend  again  ?  [SEP]O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     R  e  s  h  a  m   [CLS]  [  US  ##ER  ]  Res  ##ham  [SEP]O  O  O  O  B-PER  B-PERO  O  O  O  B-PER  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     W  h  a  t     i  s     o  u  r     c  o  n  n  e  c  t  i  o  n  ?[CLS]  [  US  ##ER  ]  What  is  our  connection  ?  [SEP]O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     H  o  w     s  o  o  n  ?[CLS]  [  US  ##ER  ]  How  soon  ?  [SEP]O  O  O  O  O  O  OO  B-PER  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     H  o  w     w  i  l  l     s  h  e     r  e  a  c  h     o  u  t  ?[CLS]  [  US  ##ER  ]  How  will  she  reach  out  ?  [SEP]O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     Y  a  f  r  e  i  s  i   [CLS]  [  US  ##ER  ]  My  name  is  Ya  ##fre  ##isi  [SEP]O  O  O  O  O  O  O  B-PER  B-PER  B-PERO  B-PER  O  O  O  O  O  B-PER  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     d  a  t  e     o  f     b  i  r  t  h     i  s     1  6  -  0  4  -  1  9  9  9[CLS]  [  US  ##ER  ]  My  date  of  birth  is  16  -  04  -  1999  [SEP]O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  a  r  s  h  o  n   [CLS]  [  US  ##ER  ]  Marsh  ##on  [SEP]O  O  O  O  B-PER  B-PERO  O  O  O  B-PER  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     m  i  n  e     i  s     K  a  t  r  i  n  a     D  u  n  c  a  n     0  6  -  1  8  -  0  2[CLS]  [  US  ##ER  ]  mine  is  Katrina  Duncan  06  -  18  -  02  [SEP]O  O  O  O  O  O  B-PER  I-LABEL  O  O  O  O  OO  O  O  O  O  O  B-PER  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     K  a  i  t  l  y  n  ,     0  8  -  2  4  -  2  0  0  4  ,     h  o  w     d  o     I     t  u  r  n     o  u  t     s  p  i  r  i  t  u  a  l  l  y  ?     l  i  k  e  ,     h  o  w     d  o     I     c  o  n  t  i  n  u  e     w  i  t  h     u  t[CLS]  [  US  ##ER  ]  Kai  ##tly  ##n  ,  08  -  24  -  2004  ,  how  do  I  turn  out  spiritual  ##ly  ?  like  ,  how  do  I  continue  with  ut  [SEP]O  O  O  O  B-PER  B-PER  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     ?[CLS]  [  US  ##ER  ]  My  name  is  ?  [SEP]O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     E  m  i  l  y     R  a  t  h  b  o  n  e     M  a  y     2  2  ,     1  9  8  0     t  o     m  y     P  O  A     i  s     J  e  s  s  e     A  p  r  i  l     5  ,     1  9  8  7     a  n  d     I     w  a  s     j  u  s  t     w  o  n  d  e  r  i  n  g     i  f     h  e     h  a  s     b  e  e  n     t  h  i  n  k  i  n  g     a  b  o  u  t     m  e     a  n  d     m  i  s  s  e  s     m  e     a  n  d     i  f     w  e     w  i  l  l     g  e  t     b  a  c  k     t  o  g  e  t  h  e  r[CLS]  [  US  ##ER  ]  My  name  is  Emily  Rat  ##h  ##bone  May  22  ,  1980  to  my  P  ##O  ##A  is  Jesse  April  5  ,  1987  and  I  was  just  won  ##dering  if  he  has  been  thinking  about  me  and  miss  ##es  me  and  if  we  will  get  back  together  [SEP]O  O  O  O  O  O  O  B-PER  I-LABEL  I-LABEL  I-LABEL  O  O  O  O  O  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     E  m  i  l  y     R  a  t  h  b  o  n  e     M  a  y     2  2  ,     1  9  8  0     t  o     m  y     P  O  A     i  s     J  e  s  s  e     A  p  r  i  l     5  ,     1  9  8  7     a  n  d     I     w  a  s     j  u  s  t     w  o  n  d  e  r  i  n  g     i  f     h  e     h  a  s     b  e  e  n     t  h  i  n  k  i  n  g     a  b  o  u  t     m  e     a  n  d     m  i  s  s  e  s     m  e     a  n  d     i  f     w  e     w  i  l  l     g  e  t     b  a  c  k     t  o  g  e  t  h  e  r[CLS]  [  US  ##ER  ]  My  name  is  Emily  Rat  ##h  ##bone  May  22  ,  1980  to  my  P  ##O  ##A  is  Jesse  April  5  ,  1987  and  I  was  just  won  ##dering  if  he  has  been  thinking  about  me  and  miss  ##es  me  and  if  we  will  get  back  together  [SEP]O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     t  h  e  n     I     s  h  a  l  l     m  o  v  e     o  n[CLS]  [  US  ##ER  ]  then  I  shall  move  on  [SEP]O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     V  a  r  u  n     ,     I     w  a  s     b  o  r  n     i  n     J  a  n     9  ,     1  9  9  9  ,     M  y     g  e  n  d  e  r     i  s     M  a  l  e  .[CLS]  [  US  ##ER  ]  My  name  is  Var  ##un  ,  I  was  born  in  Jan  9  ,  1999  ,  My  gender  is  Male  .  [SEP]O  O  O  O  O  O  O  B-PER  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     A  n  d     i  f     s  h  e     d  o  e  s  n  ’  t     c  a  r  e[CLS]  [  US  ##ER  ]  And  if  she  doesn  [UNK]  t  care  [SEP]O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     R  e  s  h  a  m   [CLS]  [  US  ##ER  ]  Res  ##ham  [SEP]O  O  O  O  B-PER  B-PERO  O  O  O  B-PER  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]        N  o     a  p  o  l  o  g  i  e  s   [CLS]  [  US  ##ER  ]  No  apo  ##logie  ##s  [SEP]O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     N  o     f  r  i  e  n  d  s  h  i  p     r  e  s  t  o  r  e  d[CLS]  [  US  ##ER  ]  No  friendship  restored  [SEP]O  O  O  O  O  O  OO  B-PER  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     V  a  r  u  n     ,     I     w  a  s     b  o  r  n     i  n     J  a  n     9  ,     1  9  9  9  ,     M  y     g  e  n  d  e  r     i  s     M  a  l  e  .[CLS]  [  US  ##ER  ]  My  name  is  Var  ##un  ,  I  was  born  in  Jan  9  ,  1999  ,  My  gender  is  Male  .  [SEP]O  O  O  O  O  O  O  B-PER  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     I     w  a  n  t  e  d     t  o     a  s  k     i  f     R  e  s  h  a  m     i  s     t  h  i  n  k  i  n  g     a  b  o  u  t     m  e   [CLS]  [  US  ##ER  ]  I  wanted  to  ask  if  Res  ##ham  is  thinking  about  me  [SEP]O  O  O  O  O  O  O  O  O  B-PER  B-PER  O  O  O  OO  B-PER  O  O  O  O  O  O  O  B-PER  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     W  i  l  l     s  h  e     b  e     m  y     f  r  i  e  n  d     a  g  a  i  n  ?[CLS]  [  US  ##ER  ]  Will  she  be  my  friend  again  ?  [SEP]O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     R  e  s  h  a  m   [CLS]  [  US  ##ER  ]  Res  ##ham  [SEP]O  O  O  O  B-PER  B-PERO  O  O  O  B-PER  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     W  h  a  t     i  s     o  u  r     c  o  n  n  e  c  t  i  o  n  ?[CLS]  [  US  ##ER  ]  What  is  our  connection  ?  [SEP]O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     H  o  w     s  o  o  n  ?[CLS]  [  US  ##ER  ]  How  soon  ?  [SEP]O  O  O  O  O  O  OO  B-PER  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     H  o  w     w  i  l  l     s  h  e     r  e  a  c  h     o  u  t  ?[CLS]  [  US  ##ER  ]  How  will  she  reach  out  ?  [SEP]O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     Y  a  f  r  e  i  s  i   [CLS]  [  US  ##ER  ]  My  name  is  Ya  ##fre  ##isi  [SEP]O  O  O  O  O  O  O  B-PER  B-PER  B-PERO  B-PER  O  O  O  O  O  B-PER  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     d  a  t  e     o  f     b  i  r  t  h     i  s     1  6  -  0  4  -  1  9  9  9[CLS]  [  US  ##ER  ]  My  date  of  birth  is  16  -  04  -  1999  [SEP]O  O  O  O  O  O  O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  a  r  s  h  o  n   [CLS]  [  US  ##ER  ]  Marsh  ##on  [SEP]O  O  O  O  B-PER  B-PERO  O  O  O  B-PER  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     m  i  n  e     i  s     K  a  t  r  i  n  a     D  u  n  c  a  n     0  6  -  1  8  -  0  2[CLS]  [  US  ##ER  ]  mine  is  Katrina  Duncan  06  -  18  -  02  [SEP]O  O  O  O  O  O  B-PER  I-LABEL  O  O  O  O  OO  O  O  O  O  O  B-PER  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     K  a  i  t  l  y  n  ,     0  8  -  2  4  -  2  0  0  4  ,     h  o  w     d  o     I     t  u  r  n     o  u  t     s  p  i  r  i  t  u  a  l  l  y  ?     l  i  k  e  ,     h  o  w     d  o     I     c  o  n  t  i  n  u  e     w  i  t  h     u  t[CLS]  [  US  ##ER  ]  Kai  ##tly  ##n  ,  08  -  24  -  2004  ,  how  do  I  turn  out  spiritual  ##ly  ?  like  ,  how  do  I  continue  with  ut  [SEP]O  O  O  O  B-PER  B-PER  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  OO  O  O  O  B-PER  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *[  U  S  E  R  ]     M  y     n  a  m  e     i  s     ?[CLS]  [  US  ##ER  ]  My  name  is  ?  [SEP]O  O  O  O  O  O  O  OO  B-PER  O  O  O  O  O  O*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
+[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
+[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] then I shall move on
+[CLS]			[				US				##ER			]				then			I				shall			move			on				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] And if she doesn’t care
+[CLS]			[				US				##ER			]				And				if				she				doesn			[UNK]			t				care			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Resham 
+[CLS]			[				US				##ER			]				Res				##ham			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				B-PER			I-PER			
+****************************************
+[USER]  No apologies 
+[CLS]			[				US				##ER			]				No				apo				##logie			##s				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				
+****************************************
+[USER] No friendship restored
+[CLS]			[				US				##ER			]				No				friendship		restored		[SEP]			
+true_label: 	O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] I wanted to ask if Resham is thinking about me 
+[CLS]			[				US				##ER			]				I				wanted			to				ask				if				Res				##ham			is				thinking		about			me				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				
+****************************************
+[USER] Will she be my friend again?
+[CLS]			[				US				##ER			]				Will			she				be				my				friend			again			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[USER] Resham 
+[CLS]			[				US				##ER			]				Res				##ham			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				B-PER			I-PER			
+****************************************
+[USER] What is our connection?
+[CLS]			[				US				##ER			]				What			is				our				connection		?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				
+****************************************
+[USER] How soon?
+[CLS]			[				US				##ER			]				How				soon			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				
+****************************************
+[USER] How will she reach out?
+[CLS]			[				US				##ER			]				How				will			she				reach			out				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Yafreisi 
+[CLS]			[				US				##ER			]				My				name			is				Ya				##fre			##isi			[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			B-PER			
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			
+****************************************
+[USER] My date of birth is 16-04-1999
+[CLS]			[				US				##ER			]				My				date			of				birth			is				16				-				04				-				1999			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Marshon 
+[CLS]			[				US				##ER			]				Marsh			##on			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				B-PER			I-PER			
+****************************************
+[USER] Kaitlyn, 08-24-2004, how do I turn out spiritually? like, how do I continue with ut
+[CLS]			[				US				##ER			]				Kai				##tly			##n				,				08				-				24				-				2004			,				how				do				I				turn			out				spiritual		##ly			?				like			,				how				do				I				continue		with			ut				[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is ?
+[CLS]			[				US				##ER			]				My				name			is				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				
+****************************************
+[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
+[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
+[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] then I shall move on
+[CLS]			[				US				##ER			]				then			I				shall			move			on				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] And if she doesn’t care
+[CLS]			[				US				##ER			]				And				if				she				doesn			[UNK]			t				care			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Resham 
+[CLS]			[				US				##ER			]				Res				##ham			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				B-PER			I-PER			
+****************************************
+[USER]  No apologies 
+[CLS]			[				US				##ER			]				No				apo				##logie			##s				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				
+****************************************
+[USER] No friendship restored
+[CLS]			[				US				##ER			]				No				friendship		restored		[SEP]			
+true_label: 	O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] I wanted to ask if Resham is thinking about me 
+[CLS]			[				US				##ER			]				I				wanted			to				ask				if				Res				##ham			is				thinking		about			me				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				
+****************************************
+[USER] Will she be my friend again?
+[CLS]			[				US				##ER			]				Will			she				be				my				friend			again			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[USER] Resham 
+[CLS]			[				US				##ER			]				Res				##ham			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				B-PER			I-PER			
+****************************************
+[USER] What is our connection?
+[CLS]			[				US				##ER			]				What			is				our				connection		?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				
+****************************************
+[USER] How soon?
+[CLS]			[				US				##ER			]				How				soon			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				
+****************************************
+[USER] How will she reach out?
+[CLS]			[				US				##ER			]				How				will			she				reach			out				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Yafreisi 
+[CLS]			[				US				##ER			]				My				name			is				Ya				##fre			##isi			[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			B-PER			
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			
+****************************************
+[USER] My date of birth is 16-04-1999
+[CLS]			[				US				##ER			]				My				date			of				birth			is				16				-				04				-				1999			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Marshon 
+[CLS]			[				US				##ER			]				Marsh			##on			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				B-PER			I-PER			
+****************************************
+[USER] Kaitlyn, 08-24-2004, how do I turn out spiritually? like, how do I continue with ut
+[CLS]			[				US				##ER			]				Kai				##tly			##n				,				08				-				24				-				2004			,				how				do				I				turn			out				spiritual		##ly			?				like			,				how				do				I				continue		with			ut				[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is ?
+[CLS]			[				US				##ER			]				My				name			is				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				
+****************************************

@@ -16,6 +16,7 @@ class Evaluator:
         self.tokenizer = AutoTokenizer.from_pretrained(self.config["MODEL_PATH"])
         self.model = AutoModelForTokenClassification.from_pretrained(self.config["MODEL_PATH"])
         self.data = self._get_data_from_json()
+        self.total_label = 0
         self._align_labels()
         self.inputs = None
         self.badcase = []
@@ -42,7 +43,7 @@ class Evaluator:
             cen_label = self.config["CEN_LABEL"]
         else:
             pre_label = self.config["DEFAULT_LABEL"]
-            sen_label = self.config["DEFAULT_LABEL"]
+            cen_label = self.config["DEFAULT_LABEL"]
         for item in self.data:
             aligned_label_list = []
             for label, sentence in zip(item["label"], item["order"]):
@@ -58,17 +59,33 @@ class Evaluator:
                 tail_tokenized_sentence = self.tokenizer.convert_ids_to_tokens(tail_inputs["input_ids"][0])
                 # 尾部添加label
                 head_labels = self._get_label_O(len(head_word_ids))
-                tail_labels = self._get_label_O(len(tail_word_ids))
-                
-                for a_label in label:
-                    for label_index in range(len(a_label)):
-                        if label_index==0:
-                            label_to_tag = pre_label
-                        else:
-                            label_to_tag = cen_label
-                        for word_id, tag_index in zip(tail_word_ids, range(len(tail_labels))):
-                            if word_id==a_label[label_index]:
-                                tail_labels[tag_index] = label_to_tag
+                tail_labels = []
+                before_tokenized_sentence = sentence[1].split()
+                change_tail_labels_index = 0
+                for word_index in range(len(before_tokenized_sentence)):
+                    tokenized_word = self.tokenizer(before_tokenized_sentence[word_index], 
+                                                    add_special_tokens=False,
+                                                    return_tensors="pt")
+                    label_to_tag = "O"
+                    get_label_flag = False
+
+                    for a_label in label:
+                        for label_index in range(len(a_label)):
+                            if label_index==0:
+                                label_to_tag = pre_label
+                            else:
+                                label_to_tag = cen_label
+                            if word_index==a_label[label_index]:
+                                    self.total_label += 1
+                                    get_label_flag = True
+                                    break
+                            else:
+                                label_to_tag = "O"
+                        if(get_label_flag):
+                            break
+
+                    for i in range(len(tokenized_word["input_ids"][0])):
+                        tail_labels.append(label_to_tag)
                                 
                 head_labels.extend(tail_labels)
                 aligned_label_list.append(head_labels)
@@ -82,7 +99,7 @@ class Evaluator:
             for sentence_index in range(len(item["order"])):
 
                 if item["order"][sentence_index][0]=="[USER]":
-                    input_index = []
+                    input_index = [sentence_index]
                     for i in range(self.config["SLIDING_WIN_SIZE"]):
                         up_index = i + 1
                         if(sentence_index-up_index<0):
@@ -113,22 +130,15 @@ class Evaluator:
             for sentence_index in range(len(item["order"])):
 
                 if item["order"][sentence_index][0]=="[USER]":
-                    input_index = []
+                    input_index = [sentence_index]
                     for i in range(self.config["SLIDING_WIN_SIZE"]):
                         up_index = i + 1
-                        if(sentence_index-up_index<0):
+                        if(sentence_index-up_index<0 or 
+                           item["order"][sentence_index-up_index][0]=="[USER]"):
                             break
                         else:
                             input_index.append(sentence_index-up_index)
                     input_index.reverse()
-                    check_list = input_index[:-1]
-                    jump_flag = False
-                    for check_index in check_list:
-                        if item["order"][check_index][0]=="[USER]":
-                            jump_flag = True
-                    if jump_flag:
-                        continue
-
                     a_input = []
                     a_label = []
                     for index in input_index:
@@ -198,23 +208,40 @@ class Evaluator:
                     list_badcase.append("O")
             if write_bad_case_flag:
                     self.badcase.append(item["input"])
+                    self.badcase.append("pairNO:"+str(item["pairNO"]))
+                    self.badcase.append("orderNO:"+str(item["orderNO"]))
                     self.badcase.append(self._format_out_put(item["tokenized_words"]))
                     self.badcase.append("true_label: \t"+self._format_out_put(item["tag"]))
                     self.badcase.append("pred_lable: \t"+self._format_out_put(item["pred"]))
                     self.badcase.append("**"*20)
+            
         print("**"*20)
         print("Overlap:  "+str(self.inputs[0]["overlap"]))
         print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
-        print("TF = "+str(True_P))
-        print("FP = "+str(False_P))
-        print("FN = "+str(False_N))
+        print("There are totally {} tags.".format(self.total_label))
+        print("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N))
         Precision = True_P/(True_P + False_P)
         Recall = True_P/(True_P + False_N)
         F1 = 2*Precision*Recall/(Precision+Recall)
-        print("The Precision is:\t {}".format(Precision))
-        print("The Recall is:\t\t {}".format(Recall))
-        print("The F1 is:\t\t {}".format(F1))
+        print("The Precision is:{}".format(Precision), end="\t")
+        print("The Recall is:{}".format(Recall), end="\t")
+        print("The F1 is:{}".format(F1))
         print("**"*20)
+
+        model_path = "_".join(self.config["MODEL_PATH"].split("/"))
+        if self.config["SLIDING_WIN_SIZE"]==0:
+            logf = open("log/{}.txt".format(model_path), "w")
+        else: 
+            logf = open("log/{}.txt".format(model_path), "a")
+        logf.write("**"*20+"\n")
+        logf.write("Overlap:  "+str(self.inputs[0]["overlap"])+"\n")
+        logf.write("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"])+"\n")
+        logf.write("There are totally {} tags.".format(self.total_label)+"\n")
+        logf.write("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N)+"\n")
+        logf.write("The Precision is:{}".format(Precision)+"\n")
+        logf.write("The Recall is:{}".format(Recall)+"\n")
+        logf.write("The F1 is:{}".format(F1)+"\n")
+        logf.write("**"*20+"\n")
 
 
     def write_badcase(self):
@@ -227,27 +254,65 @@ class Evaluator:
         with open("badcases/{}_Win{}_{}.txt".format(model_path, win_size, overlap),  "w") as bf:
             for line in self.badcase:
                 bf.write(line+"\n")
-            
+            bf.close()
+
+
+def modify_config(model_path, config_yaml):
+    try:
+        model = AutoModelForTokenClassification.from_pretrained(model_path)
+    except:
+        print("Something Wrong with the network!!")
+        return False, config_yaml
+    else:
+        config_yaml["MODEL_PATH"] = model_path
+        all_label = []
+        for id_label in range(len(model.config.id2label)):
+            label_to_append = model.config.id2label[id_label]
+            if "PER" in label_to_append:
+                all_label.append(label_to_append)
+        if config_yaml["PRE_LABEL"] in all_label and config_yaml["CEN_LABEL"] in all_label:
+            config_yaml["HAVE_PRE"] = True
+            return True, config_yaml
+        elif(len(all_label)==0):
+            return False, config_yaml
+        else:
+            config_yaml["HAVE_PRE"] = False
+            config_yaml["DEFAULT_LABEL"] = all_label[0]
+            return True, config_yaml
+
                             
 def main():
+    tested_list = ["dslim/bert-base-NER",  "dslim/bert-large-NER",] 
+    # 具有前缀的NER模型
+    model_list = ["dslim/bert-base-NER",  
+                  "dslim/bert-large-NER",
+                  "vlan/bert-base-multilingual-cased-ner-hrl",
+                  "dbmdz/bert-large-cased-finetuned-conll03-english",
+                  "xlm-roberta-large-finetuned-conll03-english",
+                  "Jean-Baptiste/roberta-large-ner-english"]
+        
 
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)
-    win_size = config["SLIDING_WIN_SIZE"]
-    for the_size in range(win_size):
+    for path in model_list:
+        jump_flag, config = modify_config(path, config)
+        if not jump_flag:
+            print("Jump the path:{}. no related label".format(path))
+            continue
+        win_size = config["SLIDING_WIN_SIZE"]
+        for the_size in range(win_size+1):
+            config["SLIDING_WIN_SIZE"] = the_size
+            evaluator = Evaluator(config)
         
-        config["SLIDING_WIN_SIZE"] = the_size + 1 
-        evaluator = Evaluator(config)
-    
-        evaluator.collate_inputs_Win()
-        evaluator.get_predict_label()
-        evaluator.eval()
-        evaluator.write_badcase()
+            evaluator.collate_inputs_Win()
+            evaluator.get_predict_label()
+            evaluator.eval()
+            evaluator.write_badcase()
 
-        evaluator.collate_inputs_Win_no_overlaps()
-        evaluator.get_predict_label()
-        evaluator.eval()
-        evaluator.write_badcase()
+            evaluator.collate_inputs_Win_no_overlaps()
+            evaluator.get_predict_label()
+            evaluator.eval()
+            evaluator.write_badcase()
 
 
 if __name__=="__main__":

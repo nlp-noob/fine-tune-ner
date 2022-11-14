@@ -1,200 +1,650 @@
-[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
-[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
-true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+[ADVISOR] Names dob both of you [USER] Brandy Hall 8/4/1994 & Michael sosa don't know the birthday
+[CLS]			[				AD				##VI			##S				##OR			]				Names			dob				both			of				you				[				US				##ER			]				Brand			##y				Hall			8				/				4				/				1994			&				Michael			sos				##a				don				'				t				know			the				birthday		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			I-PER			O				O				O				O				O				O				B-PER			I-PER			I-PER			O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				
 ****************************************
-[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
-[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
-true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+[ADVISOR] Names dob of u [USER] Brandy Hall 8/4/1994 Michael sosa 
+[CLS]			[				AD				##VI			##S				##OR			]				Names			dob				of				u				[				US				##ER			]				Brand			##y				Hall			8				/				4				/				1994			Michael			sos				##a				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			I-PER			O				O				O				O				O				B-PER			I-PER			I-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				
 ****************************************
-[USER] then I shall move on
-[CLS]			[				US				##ER			]				then			I				shall			move			on				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				
+[ADVISOR] He can't forget you for a moment [USER] Wi he contact me this week or weekend
+[CLS]			[				AD				##VI			##S				##OR			]				He				can				'				t				for				##get			you				for				a				moment			[				US				##ER			]				Wi				he				contact			me				this			week			or				weekend			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together [USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
+[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] he still needs time to come to himself and find his way in your relationship.  [USER] then I shall move on
+[CLS]			[				AD				##VI			##S				##OR			]				he				still			needs			time			to				come			to				himself			and				find			his				way				in				your			relationship	.				[				US				##ER			]				then			I				shall			move			on				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[USER] then I shall move on [USER] I can’t wait for him anymore
+[CLS]			[				US				##ER			]				then			I				shall			move			on				[				US				##ER			]				I				can				[UNK]			t				wait			for				him				any				##more			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] do you have any questions before you run out of time? [USER] why is my partner always lying 
+[CLS]			[				AD				##VI			##S				##OR			]				do				you				have			any				questions		before			you				run				out				of				time			?				[				US				##ER			]				why				is				my				partner			always			lying			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR]  I am seeing that you are confuse about a certain person and their feelings towards you can I have a person‘s first name and date of birth plz [USER] Eddravian February 6 2001
+[CLS]			[				AD				##VI			##S				##OR			]				I				am				seeing			that			you				are				con				##fus			##e				about			a				certain			person			and				their			feelings		towards			you				can				I				have			a				person			[UNK]			s				first			name			and				date			of				birth			pl				##z				[				US				##ER			]				Ed				##dra			##vian			February		6				2001			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] How can I help you sweetheart  [USER] Hey my name vernon I’m really missing my ex Ashanti but she with somebody else I want to know would we ever get back together 
+[CLS]			[				AD				##VI			##S				##OR			]				How				can				I				help			you				sweet			##heart			[				US				##ER			]				Hey				my				name			ver				##non			I				[UNK]			m				really			missing			my				ex				Ash				##anti			but				she				with			some			##body			else			I				want			to				know			would			we				ever			get				back			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 ****************************************
 [USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
 [CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
 true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 ****************************************
-[USER] And if she doesn’t care
-[CLS]			[				US				##ER			]				And				if				she				doesn			[UNK]			t				care			[SEP]			
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male. [USER] Hi 
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[				US				##ER			]				Hi				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				
+****************************************
+[ADVISOR] Hi [USER] Want to ask if she is unbothered by me
+[CLS]			[				AD				##VI			##S				##OR			]				Hi				[				US				##ER			]				Want			to				ask				if				she				is				un				##bot			##here			##d				by				me				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR]  How can I help you today [USER] And if she doesn’t care
+[CLS]			[				AD				##VI			##S				##OR			]				How				can				I				help			you				today			[				US				##ER			]				And				if				she				doesn			[UNK]			t				care			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] And if she doesn’t care [USER] Resham 
+[CLS]			[				US				##ER			]				And				if				she				doesn			[UNK]			t				care			[				US				##ER			]				Res				##ham			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			
+****************************************
+[USER] Resham  [USER] Feb 3 1999
+[CLS]			[				US				##ER			]				Res				##ham			[				US				##ER			]				Feb				3				1999			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				
+****************************************
+[USER]  No apologies  [USER] No friendship restored
+[CLS]			[				US				##ER			]				No				apo				##logie			##s				[				US				##ER			]				No				friendship		restored		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				
+****************************************
+[USER] No friendship restored [USER] Does she really care at all?
+[CLS]			[				US				##ER			]				No				friendship		restored		[				US				##ER			]				Does			she				really			care			at				all				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[USER] What’s the point [USER] We’ve lost so much time together 
+[CLS]			[				US				##ER			]				What			[UNK]			s				the				point			[				US				##ER			]				We				[UNK]			ve				lost			so				much			time			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male. [USER] Hey again 
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[				US				##ER			]				Hey				again			[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				
+****************************************
+[ADVISOR]  Hi how can I help you  [USER] I wanted to ask if Resham is thinking about me 
+[CLS]			[				AD				##VI			##S				##OR			]				Hi				how				can				I				help			you				[				US				##ER			]				I				wanted			to				ask				if				Res				##ham			is				thinking		about			me				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				
+****************************************
+[USER] I wanted to ask if Resham is thinking about me  [USER] Feb 3 1999 
+[CLS]			[				US				##ER			]				I				wanted			to				ask				if				Res				##ham			is				thinking		about			me				[				US				##ER			]				Feb				3				1999			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Hey again  [USER] Want to ask if she’s thinking of me or not 
+[CLS]			[				US				##ER			]				Hey				again			[				US				##ER			]				Want			to				ask				if				she				[UNK]			s				thinking		of				me				or				not				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] It’s almost 10 months  [USER] Resham 
+[CLS]			[				US				##ER			]				It				[UNK]			s				almost			10				months			[				US				##ER			]				Res				##ham			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			
+****************************************
+[USER] Resham  [USER] Feb 3 1999 
+[CLS]			[				US				##ER			]				Res				##ham			[				US				##ER			]				Feb				3				1999			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Sorry About that [USER] Does she have any regret?
+[CLS]			[				AD				##VI			##S				##OR			]				Sorry			About			that			[				US				##ER			]				Does			she				have			any				re				##gret			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR]  There was someone that came between you and her and created a lot of problems or issues for her   [USER] And now?
+[CLS]			[				AD				##VI			##S				##OR			]				There			was				someone			that			came			between			you				and				her				and				created			a				lot				of				problems		or				issues			for				her				[				US				##ER			]				And				now				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				
+****************************************
+[ADVISOR]  And now she has distanced herself from that influence and she’s focusing on herself and she has been thinking about you a lot and I’m showing anytime now she is going to reach out to you   [USER] How soon?
+[CLS]			[				AD				##VI			##S				##OR			]				And				now				she				has				distance		##d				herself			from			that			influence		and				she				[UNK]			s				focusing		on				herself			and				she				has				been			thinking		about			you				a				lot				and				I				[UNK]			m				showing			any				##time			now				she				is				going			to				reach			out				to				you				[				US				##ER			]				How				soon			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				
+****************************************
+[USER] How soon? [USER] How will she reach out?
+[CLS]			[				US				##ER			]				How				soon			?				[				US				##ER			]				How				will			she				reach			out				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] how may I help [USER] I’m I going to have a next love soon? 
+[CLS]			[				AD				##VI			##S				##OR			]				how				may				I				help			[				US				##ER			]				I				[UNK]			m				I				going			to				have			a				next			love			soon			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Can I have your name and date of birth please [USER] Kendra 03/07/1988
+[CLS]			[				AD				##VI			##S				##OR			]				Can				I				have			your			name			and				date			of				birth			pl				##eas			##e				[				US				##ER			]				Ken				##dra			03				/				07				/				1988			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				
+****************************************
+[ADVISOR] I am picking up that you are confused about a certain person [USER] yes
+[CLS]			[				AD				##VI			##S				##OR			]				I				am				pick			##ing			up				that			you				are				confused		about			a				certain			person			[				US				##ER			]				ye				##s				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				
+****************************************
+[ADVISOR] But he’s connected with you all senses  [USER] Does he love me?
+[CLS]			[				AD				##VI			##S				##OR			]				But				he				[UNK]			s				connected		with			you				all				sense			##s				[				US				##ER			]				Does			he				love			me				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				
+****************************************
+[ADVISOR] Yes dear he loves you but right now he’s not ready for commitment  [USER] Are we going to be together at all?
+[CLS]			[				AD				##VI			##S				##OR			]				Yes				dea				##r				he				loves			you				but				right			now				he				[UNK]			s				not				ready			for				commitment		[				US				##ER			]				Are				we				going			to				be				together		at				all				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] As i can see that he is very nice guy with having a beautiful heart  [USER] I don’t get it at all because in a week we go in a vacation will he give his number or something for to text him on?
+[CLS]			[				AD				##VI			##S				##OR			]				As				i				can				see				that			he				is				very			nic				##e				gu				##y				with			having			a				beautiful		heart			[				US				##ER			]				I				don				[UNK]			t				get				it				at				all				because			in				a				week			we				go				in				a				va				##cation		will			he				give			his				number			or				something		for				to				text			him				on				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Dear generally as i can see that coming month will be very positive for you alot of happiness coming in your life and he will be part of your happiness  [USER] Does he get jealous I had said something about one of his friends because I have love for Dylan and I felt him get mad sort 
+[CLS]			[				AD				##VI			##S				##OR			]				Dear			generally		as				i				can				see				that			coming			month			will			be				very			positive		for				you				al				##ot			of				ha				##ppi			##ness			coming			in				your			life			and				he				will			be				part			of				your			ha				##ppi			##ness			[				US				##ER			]				Does			he				get				je				##alo			##us			I				had				said			something		about			one				of				his				friends			because			I				have			love			for				Dylan			and				I				felt			him				get				ma				##d				sort			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] I would like to remain you this isn’t artificial connection this is spiritual connection in between both of you [USER] Oh no
+[CLS]			[				AD				##VI			##S				##OR			]				I				would			like			to				remain			you				this			isn				[UNK]			t				artificial		connection		this			is				spiritual		connection		in				between			both			of				you				[				US				##ER			]				Oh				no				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				
+****************************************
+[ADVISOR] Which is always keep pushing him towards you [USER] At least your honest
+[CLS]			[				AD				##VI			##S				##OR			]				W				##hic			##h				is				always			keep			push			##ing			him				towards			you				[				US				##ER			]				At				least			your			hon				##est			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] But he need some time to express his feelings towards you [USER] Well I hope he does then
+[CLS]			[				AD				##VI			##S				##OR			]				But				he				need			some			time			to				express			his				feelings		towards			you				[				US				##ER			]				Well			I				hope			he				does			then			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] And give him the right opportunities to express his feelings  [USER] I am not ready for commitment to
+[CLS]			[				AD				##VI			##S				##OR			]				And				give			him				the				right			opportunities	to				express			his				feelings		[				US				##ER			]				I				am				not				ready			for				commitment		to				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[USER] Will I get together with Caleb 
+[CLS]			[				US				##ER			]				Will			I				get				together		with			Cal				##eb			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				B-PER			I-PER			
+****************************************
+[ADVISOR]  May I have your name and date of birth and their date of birth as well ?  [USER] My name is Yafreisi 
+[CLS]			[				AD				##VI			##S				##OR			]				May				I				have			your			name			and				date			of				birth			and				their			date			of				birth			as				well			?				[				US				##ER			]				My				name			is				Ya				##fre			##isi			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			I-PER			
+****************************************
+[USER] My name is Yafreisi  [USER] My date of birth is 16-04-1999
+[CLS]			[				US				##ER			]				My				name			is				Ya				##fre			##isi			[				US				##ER			]				My				date			of				birth			is				16				-				04				-				1999			[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Are we going to be together?
+[CLS]			[				US				##ER			]				Are				we				going			to				be				together		?				[SEP]			
 true_label: 	O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] names dob [USER] Marshon 
+[CLS]			[				AD				##VI			##S				##OR			]				names			dob				[				US				##ER			]				Marsh			##on			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			
+****************************************
+[USER] Marshon  [USER] 10/01/1971
+[CLS]			[				US				##ER			]				Marsh			##on			[				US				##ER			]				10				/				01				/				1971			[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] good to see u [USER] This last guy I didn’t like and have no attention on seeing him
+[CLS]			[				AD				##VI			##S				##OR			]				good			to				see				u				[				US				##ER			]				This			last			gu				##y				I				didn			[UNK]			t				like			and				have			no				attention		on				seeing			him				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] mine is Katrina Duncan 06-18-02 [USER] hers is Amira rincon 5-1-02
+[CLS]			[				US				##ER			]				mine			is				Katrina			Duncan			06				-				18				-				02				[				US				##ER			]				her				##s				is				Amir			##a				rin				##con			5				-				1				-				02				[SEP]			
+true_label: 	O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			I-PER			I-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				
+****************************************
+[USER] hi, I was wondering if u could help me figure out a couple of things ab me spiritually [USER] a guide?
+[CLS]			[				US				##ER			]				hi				,				I				was				won				##dering		if				u				could			help			me				figure			out				a				couple			of				things			ab				me				spiritual		##ly			[				US				##ER			]				a				guide			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				
+****************************************
+[ADVISOR] sure. your name and date of birth as well as your first question?  [USER] Kaitlyn, 08-24-2004, how do I turn out spiritually? like, how do I continue with ut
+[CLS]			[				AD				##VI			##S				##OR			]				sure			.				your			name			and				date			of				birth			as				well			as				your			first			question		?				[				US				##ER			]				Kai				##tly			##n				,				08				-				24				-				2004			,				how				do				I				turn			out				spiritual		##ly			?				like			,				how				do				I				continue		with			ut				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Kaitlyn, 08-24-2004, how do I turn out spiritually? like, how do I continue with ut [USER] it*
+[CLS]			[				US				##ER			]				Kai				##tly			##n				,				08				-				24				-				2004			,				how				do				I				turn			out				spiritual		##ly			?				like			,				how				do				I				continue		with			ut				[				US				##ER			]				it				*				[SEP]			
+true_label: 	O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Can I have your name and birthday please and hers  [USER] My name is Sarah and my birthday is the 7 November and her name is zoe and her birthday is the 8 February 
+[CLS]			[				AD				##VI			##S				##OR			]				Can				I				have			your			name			and				birthday		pl				##eas			##e				and				her				##s				[				US				##ER			]				My				name			is				Sarah			and				my				birthday		is				the				7				November		and				her				name			is				zo				##e				and				her				birthday		is				the				8				February		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Your name is ? [USER] Donnay 
+[CLS]			[				AD				##VI			##S				##OR			]				Your			name			is				?				[				US				##ER			]				Donna			##y				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			
+****************************************
+[ADVISOR] Hey dear friend  [USER] Hey , I was confused on my reading back he’s not my husband he only my son dad we have not together . He’s in a relationship with somebody else and she does a lot for him but he gave me money for my son . I just wanted to know if he love her fr or only with her because of the money 
+[CLS]			[				AD				##VI			##S				##OR			]				Hey				dea				##r				friend			[				US				##ER			]				Hey				,				I				was				confused		on				my				reading			back			he				[UNK]			s				not				my				husband			he				only			my				son				dad				we				have			not				together		.				He				[UNK]			s				in				a				relationship	with			some			##body			else			and				she				does			a				lot				for				him				but				he				gave			me				money			for				my				son				.				I				just			wanted			to				know			if				he				love			her				fr				or				only			with			her				because			of				the				money			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] He loves her very much [USER] Ok thanks so much . 
+[CLS]			[				AD				##VI			##S				##OR			]				He				loves			her				very			much			[				US				##ER			]				Ok				thanks			so				much			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Because he can't leave her alone in life [USER] So basically he love both of us ? 
+[CLS]			[				AD				##VI			##S				##OR			]				Because			he				can				'				t				leave			her				alone			in				life			[				US				##ER			]				So				basic			##ally			he				love			both			of				us				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Hey dear friend  [USER] Hey you had more information for me 
+[CLS]			[				AD				##VI			##S				##OR			]				Hey				dea				##r				friend			[				US				##ER			]				Hey				you				had				more			information		for				me				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Ok [USER] Because I am trying to get a peace of mind 
+[CLS]			[				AD				##VI			##S				##OR			]				Ok				[				US				##ER			]				Because			I				am				trying			to				get				a				peace			of				mind			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Because trusting relationships are established [USER] How ? 
+[CLS]			[				AD				##VI			##S				##OR			]				Because			trust			##ing			relationships	are				established		[				US				##ER			]				How				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				
+****************************************
+[ADVISOR] Yes [USER] So how does it work
+[CLS]			[				AD				##VI			##S				##OR			]				Yes				[				US				##ER			]				So				how				does			it				work			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Send me your name with full date of birth  [USER] Tyaisha hamilton 11/16/93
+[CLS]			[				AD				##VI			##S				##OR			]				Sen				##d				me				your			name			with			full			date			of				birth			[				US				##ER			]				Ty				##ais			##ha			ham				##ilt			##on			11				/				16				/				93				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] your love life going to improved [USER] I hope so
+[CLS]			[				AD				##VI			##S				##OR			]				your			love			life			going			to				improved		[				US				##ER			]				I				hope			so				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				
+****************************************
+[USER] thanks  [USER] I’m hooking up with someone and he gives me mixed signals we didn’t plan on it being something serious but I think I’m falling for him
+[CLS]			[				US				##ER			]				thanks			[				US				##ER			]				I				[UNK]			m				ho				##oking			up				with			someone			and				he				gives			me				mixed			signals			we				didn			[UNK]			t				plan			on				it				being			something		serious			but				I				think			I				[UNK]			m				falling			for				him				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR]  can you provide me with names and date of births? [USER] Samiksha 14/12/2002
+[CLS]			[				AD				##VI			##S				##OR			]				can				you				provide			me				with			names			and				date			of				birth			##s				?				[				US				##ER			]				Sami			##ks			##ha			14				/				12				/				2002			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] and yours please? [USER] Anirudha 21/08/1996
+[CLS]			[				AD				##VI			##S				##OR			]				and				your			##s				pl				##eas			##e				?				[				US				##ER			]				Ani				##rud			##ha			21				/				08				/				1996			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Names dob both of you [USER] Brandy Hall 8/4/1994 & Michael sosa don't know the birthday
+[CLS]			[				AD				##VI			##S				##OR			]				Names			dob				both			of				you				[				US				##ER			]				Brand			##y				Hall			8				/				4				/				1994			&				Michael			sos				##a				don				'				t				know			the				birthday		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			I-PER			O				O				O				O				O				O				B-PER			I-PER			I-PER			O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Names dob of u [USER] Brandy Hall 8/4/1994 Michael sosa 
+[CLS]			[				AD				##VI			##S				##OR			]				Names			dob				of				u				[				US				##ER			]				Brand			##y				Hall			8				/				4				/				1994			Michael			sos				##a				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			I-PER			O				O				O				O				O				B-PER			I-PER			I-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				
+****************************************
+[ADVISOR] He can't forget you for a moment [USER] Wi he contact me this week or weekend
+[CLS]			[				AD				##VI			##S				##OR			]				He				can				'				t				for				##get			you				for				a				moment			[				US				##ER			]				Wi				he				contact			me				this			week			or				weekend			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
+[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] my birthdate is 1982
+[CLS]			[				US				##ER			]				my				birth			##date			is				1982			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] he still needs time to come to himself and find his way in your relationship.  [USER] then I shall move on
+[CLS]			[				AD				##VI			##S				##OR			]				he				still			needs			time			to				come			to				himself			and				find			his				way				in				your			relationship	.				[				US				##ER			]				then			I				shall			move			on				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] do you have any questions before you run out of time? [USER] why is my partner always lying 
+[CLS]			[				AD				##VI			##S				##OR			]				do				you				have			any				questions		before			you				run				out				of				time			?				[				US				##ER			]				why				is				my				partner			always			lying			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR]  I am seeing that you are confuse about a certain person and their feelings towards you can I have a person‘s first name and date of birth plz [USER] Eddravian February 6 2001
+[CLS]			[				AD				##VI			##S				##OR			]				I				am				seeing			that			you				are				con				##fus			##e				about			a				certain			person			and				their			feelings		towards			you				can				I				have			a				person			[UNK]			s				first			name			and				date			of				birth			pl				##z				[				US				##ER			]				Ed				##dra			##vian			February		6				2001			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] How can I help you sweetheart  [USER] Hey my name vernon I’m really missing my ex Ashanti but she with somebody else I want to know would we ever get back together 
+[CLS]			[				AD				##VI			##S				##OR			]				How				can				I				help			you				sweet			##heart			[				US				##ER			]				Hey				my				name			ver				##non			I				[UNK]			m				really			missing			my				ex				Ash				##anti			but				she				with			some			##body			else			I				want			to				know			would			we				ever			get				back			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Hi [USER] Want to ask if she is unbothered by me
+[CLS]			[				AD				##VI			##S				##OR			]				Hi				[				US				##ER			]				Want			to				ask				if				she				is				un				##bot			##here			##d				by				me				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR]  How can I help you today [USER] And if she doesn’t care
+[CLS]			[				AD				##VI			##S				##OR			]				How				can				I				help			you				today			[				US				##ER			]				And				if				she				doesn			[UNK]			t				care			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				
 ****************************************
 [USER] Resham 
 [CLS]			[				US				##ER			]				Res				##ham			[SEP]			
 true_label: 	O				O				O				O				B-PER			B-PER			
 pred_lable: 	O				O				O				O				B-PER			I-PER			
-****************************************
-[USER]  No apologies 
-[CLS]			[				US				##ER			]				No				apo				##logie			##s				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				
 ****************************************
 [USER] No friendship restored
 [CLS]			[				US				##ER			]				No				friendship		restored		[SEP]			
 true_label: 	O				O				O				O				O				O				O				
 pred_lable: 	O				B-PER			I-PER			O				O				O				O				
 ****************************************
+[USER] Does she really care at all?
+[CLS]			[				US				##ER			]				Does			she				really			care			at				all				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[USER] We’ve lost so much time together 
+[CLS]			[				US				##ER			]				We				[UNK]			ve				lost			so				much			time			together		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				O				O				
+****************************************
 [USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
 [CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
 true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 ****************************************
-[USER] I wanted to ask if Resham is thinking about me 
-[CLS]			[				US				##ER			]				I				wanted			to				ask				if				Res				##ham			is				thinking		about			me				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				
+[ADVISOR]  Hi how can I help you  [USER] I wanted to ask if Resham is thinking about me 
+[CLS]			[				AD				##VI			##S				##OR			]				Hi				how				can				I				help			you				[				US				##ER			]				I				wanted			to				ask				if				Res				##ham			is				thinking		about			me				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				
 ****************************************
-[USER] Will she be my friend again?
-[CLS]			[				US				##ER			]				Will			she				be				my				friend			again			?				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+[USER] Will she reach out soon?
+[CLS]			[				US				##ER			]				Will			she				reach			out				soon			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				I-PER			O				O				O				O				O				O				O				
+****************************************
+[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
+[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Want to ask if she’s thinking of me or not 
+[CLS]			[				US				##ER			]				Want			to				ask				if				she				[UNK]			s				thinking		of				me				or				not				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				
 ****************************************
 [USER] Resham 
 [CLS]			[				US				##ER			]				Res				##ham			[SEP]			
 true_label: 	O				O				O				O				B-PER			B-PER			
 pred_lable: 	O				O				O				O				B-PER			I-PER			
 ****************************************
-[USER] What is our connection?
-[CLS]			[				US				##ER			]				What			is				our				connection		?				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				
+[USER] Or restorable?
+[CLS]			[				US				##ER			]				Or				resto			##rable			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				
 ****************************************
-[USER] How soon?
-[CLS]			[				US				##ER			]				How				soon			?				[SEP]			
-true_label: 	O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			O				O				O				O				O				
+[ADVISOR] Sorry About that [USER] Does she have any regret?
+[CLS]			[				AD				##VI			##S				##OR			]				Sorry			About			that			[				US				##ER			]				Does			she				have			any				re				##gret			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR]  There was someone that came between you and her and created a lot of problems or issues for her   [USER] And now?
+[CLS]			[				AD				##VI			##S				##OR			]				There			was				someone			that			came			between			you				and				her				and				created			a				lot				of				problems		or				issues			for				her				[				US				##ER			]				And				now				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				
+****************************************
+[ADVISOR]  And now she has distanced herself from that influence and she’s focusing on herself and she has been thinking about you a lot and I’m showing anytime now she is going to reach out to you   [USER] How soon?
+[CLS]			[				AD				##VI			##S				##OR			]				And				now				she				has				distance		##d				herself			from			that			influence		and				she				[UNK]			s				focusing		on				herself			and				she				has				been			thinking		about			you				a				lot				and				I				[UNK]			m				showing			any				##time			now				she				is				going			to				reach			out				to				you				[				US				##ER			]				How				soon			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				
 ****************************************
 [USER] How will she reach out?
 [CLS]			[				US				##ER			]				How				will			she				reach			out				?				[SEP]			
 true_label: 	O				O				O				O				O				O				O				O				O				O				
 pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				
 ****************************************
-[USER] My name is Yafreisi 
-[CLS]			[				US				##ER			]				My				name			is				Ya				##fre			##isi			[SEP]			
-true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			B-PER			
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			
+[ADVISOR] how may I help [USER] I’m I going to have a next love soon? 
+[CLS]			[				AD				##VI			##S				##OR			]				how				may				I				help			[				US				##ER			]				I				[UNK]			m				I				going			to				have			a				next			love			soon			?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Can I have your name and date of birth please [USER] Kendra 03/07/1988
+[CLS]			[				AD				##VI			##S				##OR			]				Can				I				have			your			name			and				date			of				birth			pl				##eas			##e				[				US				##ER			]				Ken				##dra			03				/				07				/				1988			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				
+****************************************
+[ADVISOR] I am picking up that you are confused about a certain person [USER] yes
+[CLS]			[				AD				##VI			##S				##OR			]				I				am				pick			##ing			up				that			you				are				confused		about			a				certain			person			[				US				##ER			]				ye				##s				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				
+****************************************
+[ADVISOR] But he’s connected with you all senses  [USER] Does he love me?
+[CLS]			[				AD				##VI			##S				##OR			]				But				he				[UNK]			s				connected		with			you				all				sense			##s				[				US				##ER			]				Does			he				love			me				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				
+****************************************
+[ADVISOR] Yes dear he loves you but right now he’s not ready for commitment  [USER] Are we going to be together at all?
+[CLS]			[				AD				##VI			##S				##OR			]				Yes				dea				##r				he				loves			you				but				right			now				he				[UNK]			s				not				ready			for				commitment		[				US				##ER			]				Are				we				going			to				be				together		at				all				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] As i can see that he is very nice guy with having a beautiful heart  [USER] I don’t get it at all because in a week we go in a vacation will he give his number or something for to text him on?
+[CLS]			[				AD				##VI			##S				##OR			]				As				i				can				see				that			he				is				very			nic				##e				gu				##y				with			having			a				beautiful		heart			[				US				##ER			]				I				don				[UNK]			t				get				it				at				all				because			in				a				week			we				go				in				a				va				##cation		will			he				give			his				number			or				something		for				to				text			him				on				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Dear generally as i can see that coming month will be very positive for you alot of happiness coming in your life and he will be part of your happiness  [USER] Does he get jealous I had said something about one of his friends because I have love for Dylan and I felt him get mad sort 
+[CLS]			[				AD				##VI			##S				##OR			]				Dear			generally		as				i				can				see				that			coming			month			will			be				very			positive		for				you				al				##ot			of				ha				##ppi			##ness			coming			in				your			life			and				he				will			be				part			of				your			ha				##ppi			##ness			[				US				##ER			]				Does			he				get				je				##alo			##us			I				had				said			something		about			one				of				his				friends			because			I				have			love			for				Dylan			and				I				felt			him				get				ma				##d				sort			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] I would like to remain you this isn’t artificial connection this is spiritual connection in between both of you [USER] Oh no
+[CLS]			[				AD				##VI			##S				##OR			]				I				would			like			to				remain			you				this			isn				[UNK]			t				artificial		connection		this			is				spiritual		connection		in				between			both			of				you				[				US				##ER			]				Oh				no				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				
+****************************************
+[ADVISOR] Which is always keep pushing him towards you [USER] At least your honest
+[CLS]			[				AD				##VI			##S				##OR			]				W				##hic			##h				is				always			keep			push			##ing			him				towards			you				[				US				##ER			]				At				least			your			hon				##est			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] But he need some time to express his feelings towards you [USER] Well I hope he does then
+[CLS]			[				AD				##VI			##S				##OR			]				But				he				need			some			time			to				express			his				feelings		towards			you				[				US				##ER			]				Well			I				hope			he				does			then			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] And give him the right opportunities to express his feelings  [USER] I am not ready for commitment to
+[CLS]			[				AD				##VI			##S				##OR			]				And				give			him				the				right			opportunities	to				express			his				feelings		[				US				##ER			]				I				am				not				ready			for				commitment		to				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[USER] So it is good then thank you for answering my questions then
+[CLS]			[				US				##ER			]				So				it				is				good			then			than			##k				you				for				answer			##ing			my				questions		then			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] Will I get together with Caleb 
+[CLS]			[				US				##ER			]				Will			I				get				together		with			Cal				##eb			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				B-PER			I-PER			
+****************************************
+[ADVISOR]  May I have your name and date of birth and their date of birth as well ?  [USER] My name is Yafreisi 
+[CLS]			[				AD				##VI			##S				##OR			]				May				I				have			your			name			and				date			of				birth			and				their			date			of				birth			as				well			?				[				US				##ER			]				My				name			is				Ya				##fre			##isi			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			I-PER			
 ****************************************
 [USER] My date of birth is 16-04-1999
 [CLS]			[				US				##ER			]				My				date			of				birth			is				16				-				04				-				1999			[SEP]			
 true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				
 ****************************************
-[USER] Marshon 
-[CLS]			[				US				##ER			]				Marsh			##on			[SEP]			
-true_label: 	O				O				O				O				B-PER			B-PER			
-pred_lable: 	O				O				O				O				B-PER			I-PER			
-****************************************
-[USER] Kaitlyn, 08-24-2004, how do I turn out spiritually? like, how do I continue with ut
-[CLS]			[				US				##ER			]				Kai				##tly			##n				,				08				-				24				-				2004			,				how				do				I				turn			out				spiritual		##ly			?				like			,				how				do				I				continue		with			ut				[SEP]			
-true_label: 	O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-****************************************
-[USER] My name is ?
-[CLS]			[				US				##ER			]				My				name			is				?				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			O				O				O				O				O				O				
-****************************************
-[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
-[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
-true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-****************************************
-[USER] My name is Emily Rathbone May 22, 1980 to my POA is Jesse April 5, 1987 and I was just wondering if he has been thinking about me and misses me and if we will get back together
-[CLS]			[				US				##ER			]				My				name			is				Emily			Rat				##h				##bone			May				22				,				1980			to				my				P				##O				##A				is				Jesse			April			5				,				1987			and				I				was				just			won				##dering		if				he				has				been			thinking		about			me				and				miss			##es			me				and				if				we				will			get				back			together		[SEP]			
-true_label: 	O				O				O				O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-****************************************
-[USER] then I shall move on
-[CLS]			[				US				##ER			]				then			I				shall			move			on				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				
-****************************************
-[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
-[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
-true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-****************************************
-[USER] And if she doesn’t care
-[CLS]			[				US				##ER			]				And				if				she				doesn			[UNK]			t				care			[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				O				
-****************************************
-[USER] Resham 
-[CLS]			[				US				##ER			]				Res				##ham			[SEP]			
-true_label: 	O				O				O				O				B-PER			B-PER			
-pred_lable: 	O				O				O				O				B-PER			I-PER			
-****************************************
-[USER]  No apologies 
-[CLS]			[				US				##ER			]				No				apo				##logie			##s				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				
-****************************************
-[USER] No friendship restored
-[CLS]			[				US				##ER			]				No				friendship		restored		[SEP]			
-true_label: 	O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				
-****************************************
-[USER] My name is Varun , I was born in Jan 9, 1999, My gender is Male.
-[CLS]			[				US				##ER			]				My				name			is				Var				##un			,				I				was				born			in				Jan				9				,				1999			,				My				gender			is				Male			.				[SEP]			
-true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-****************************************
-[USER] I wanted to ask if Resham is thinking about me 
-[CLS]			[				US				##ER			]				I				wanted			to				ask				if				Res				##ham			is				thinking		about			me				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				
-****************************************
-[USER] Will she be my friend again?
-[CLS]			[				US				##ER			]				Will			she				be				my				friend			again			?				[SEP]			
+[USER] Are we going to be together?
+[CLS]			[				US				##ER			]				Are				we				going			to				be				together		?				[SEP]			
 true_label: 	O				O				O				O				O				O				O				O				O				O				O				
 pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				
 ****************************************
-[USER] Resham 
-[CLS]			[				US				##ER			]				Res				##ham			[SEP]			
-true_label: 	O				O				O				O				B-PER			B-PER			
-pred_lable: 	O				O				O				O				B-PER			I-PER			
+[ADVISOR] names dob [USER] Marshon 
+[CLS]			[				AD				##VI			##S				##OR			]				names			dob				[				US				##ER			]				Marsh			##on			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			
 ****************************************
-[USER] What is our connection?
-[CLS]			[				US				##ER			]				What			is				our				connection		?				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				
+[USER] Will I ever meet my soulmate??
+[CLS]			[				US				##ER			]				Will			I				ever			meet			my				soul			##mate			?				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				
 ****************************************
-[USER] How soon?
-[CLS]			[				US				##ER			]				How				soon			?				[SEP]			
+[ADVISOR] good to see u [USER] This last guy I didn’t like and have no attention on seeing him
+[CLS]			[				AD				##VI			##S				##OR			]				good			to				see				u				[				US				##ER			]				This			last			gu				##y				I				didn			[UNK]			t				like			and				have			no				attention		on				seeing			him				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[USER] hers is Amira rincon 5-1-02
+[CLS]			[				US				##ER			]				her				##s				is				Amir			##a				rin				##con			5				-				1				-				02				[SEP]			
+true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			I-PER			I-PER			O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				
+****************************************
+[USER] a guide?
+[CLS]			[				US				##ER			]				a				guide			?				[SEP]			
 true_label: 	O				O				O				O				O				O				O				
 pred_lable: 	O				B-PER			O				O				O				O				O				
 ****************************************
-[USER] How will she reach out?
-[CLS]			[				US				##ER			]				How				will			she				reach			out				?				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				
+[ADVISOR] sure. your name and date of birth as well as your first question?  [USER] Kaitlyn, 08-24-2004, how do I turn out spiritually? like, how do I continue with ut
+[CLS]			[				AD				##VI			##S				##OR			]				sure			.				your			name			and				date			of				birth			as				well			as				your			first			question		?				[				US				##ER			]				Kai				##tly			##n				,				08				-				24				-				2004			,				how				do				I				turn			out				spiritual		##ly			?				like			,				how				do				I				continue		with			ut				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 ****************************************
-[USER] My name is Yafreisi 
-[CLS]			[				US				##ER			]				My				name			is				Ya				##fre			##isi			[SEP]			
-true_label: 	O				O				O				O				O				O				O				B-PER			B-PER			B-PER			
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				B-PER			I-PER			I-PER			
+[ADVISOR] Can I have your name and birthday please and hers  [USER] My name is Sarah and my birthday is the 7 November and her name is zoe and her birthday is the 8 February 
+[CLS]			[				AD				##VI			##S				##OR			]				Can				I				have			your			name			and				birthday		pl				##eas			##e				and				her				##s				[				US				##ER			]				My				name			is				Sarah			and				my				birthday		is				the				7				November		and				her				name			is				zo				##e				and				her				birthday		is				the				8				February		[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 ****************************************
-[USER] My date of birth is 16-04-1999
-[CLS]			[				US				##ER			]				My				date			of				birth			is				16				-				04				-				1999			[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				
+[USER] Do she love me? 
+[CLS]			[				US				##ER			]				Do				she				love			me				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				
 ****************************************
-[USER] Marshon 
-[CLS]			[				US				##ER			]				Marsh			##on			[SEP]			
-true_label: 	O				O				O				O				B-PER			B-PER			
-pred_lable: 	O				O				O				O				B-PER			I-PER			
+[ADVISOR] Your name is ? [USER] Donnay 
+[CLS]			[				AD				##VI			##S				##OR			]				Your			name			is				?				[				US				##ER			]				Donna			##y				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			
 ****************************************
-[USER] Kaitlyn, 08-24-2004, how do I turn out spiritually? like, how do I continue with ut
-[CLS]			[				US				##ER			]				Kai				##tly			##n				,				08				-				24				-				2004			,				how				do				I				turn			out				spiritual		##ly			?				like			,				how				do				I				continue		with			ut				[SEP]			
-true_label: 	O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
-pred_lable: 	O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+[ADVISOR] Hey dear friend  [USER] Hey , I was confused on my reading back he’s not my husband he only my son dad we have not together . He’s in a relationship with somebody else and she does a lot for him but he gave me money for my son . I just wanted to know if he love her fr or only with her because of the money 
+[CLS]			[				AD				##VI			##S				##OR			]				Hey				dea				##r				friend			[				US				##ER			]				Hey				,				I				was				confused		on				my				reading			back			he				[UNK]			s				not				my				husband			he				only			my				son				dad				we				have			not				together		.				He				[UNK]			s				in				a				relationship	with			some			##body			else			and				she				does			a				lot				for				him				but				he				gave			me				money			for				my				son				.				I				just			wanted			to				know			if				he				love			her				fr				or				only			with			her				because			of				the				money			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 ****************************************
-[USER] My name is ?
-[CLS]			[				US				##ER			]				My				name			is				?				[SEP]			
-true_label: 	O				O				O				O				O				O				O				O				
-pred_lable: 	O				B-PER			O				O				O				O				O				O				
+[ADVISOR] He loves her very much [USER] Ok thanks so much . 
+[CLS]			[				AD				##VI			##S				##OR			]				He				loves			her				very			much			[				US				##ER			]				Ok				thanks			so				much			.				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Because he can't leave her alone in life [USER] So basically he love both of us ? 
+[CLS]			[				AD				##VI			##S				##OR			]				Because			he				can				'				t				leave			her				alone			in				life			[				US				##ER			]				So				basic			##ally			he				love			both			of				us				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Hey dear friend  [USER] Hey you had more information for me 
+[CLS]			[				AD				##VI			##S				##OR			]				Hey				dea				##r				friend			[				US				##ER			]				Hey				you				had				more			information		for				me				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				B-PER			I-PER			O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Ok [USER] Because I am trying to get a peace of mind 
+[CLS]			[				AD				##VI			##S				##OR			]				Ok				[				US				##ER			]				Because			I				am				trying			to				get				a				peace			of				mind			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Because trusting relationships are established [USER] How ? 
+[CLS]			[				AD				##VI			##S				##OR			]				Because			trust			##ing			relationships	are				established		[				US				##ER			]				How				?				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				
+****************************************
+[ADVISOR] Yes [USER] So how does it work
+[CLS]			[				AD				##VI			##S				##OR			]				Yes				[				US				##ER			]				So				how				does			it				work			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] Send me your name with full date of birth  [USER] Tyaisha hamilton 11/16/93
+[CLS]			[				AD				##VI			##S				##OR			]				Sen				##d				me				your			name			with			full			date			of				birth			[				US				##ER			]				Ty				##ais			##ha			ham				##ilt			##on			11				/				16				/				93				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			I-PER			I-PER			I-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] your love life going to improved [USER] I hope so
+[CLS]			[				AD				##VI			##S				##OR			]				your			love			life			going			to				improved		[				US				##ER			]				I				hope			so				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			O				O				O				O				O				
+****************************************
+[USER] I’m hooking up with someone and he gives me mixed signals we didn’t plan on it being something serious but I think I’m falling for him
+[CLS]			[				US				##ER			]				I				[UNK]			m				ho				##oking			up				with			someone			and				he				gives			me				mixed			signals			we				didn			[UNK]			t				plan			on				it				being			something		serious			but				I				think			I				[UNK]			m				falling			for				him				[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+pred_lable: 	O				B-PER			O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR]  can you provide me with names and date of births? [USER] Samiksha 14/12/2002
+[CLS]			[				AD				##VI			##S				##OR			]				can				you				provide			me				with			names			and				date			of				birth			##s				?				[				US				##ER			]				Sami			##ks			##ha			14				/				12				/				2002			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
+****************************************
+[ADVISOR] and yours please? [USER] Anirudha 21/08/1996
+[CLS]			[				AD				##VI			##S				##OR			]				and				your			##s				pl				##eas			##e				?				[				US				##ER			]				Ani				##rud			##ha			21				/				08				/				1996			[SEP]			
+true_label: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				B-PER			B-PER			B-PER			O				O				O				O				O				
+pred_lable: 	O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				O				
 ****************************************

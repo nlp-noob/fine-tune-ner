@@ -1,0 +1,99 @@
+****************************************
+Overlap:  False
+The Window SIZE is:  0
+There are totally 51 tags.
+TF = 13		FP = 54		FN = 21
+The Precision is:0.19402985074626866
+The Recall is:0.38235294117647056
+The F1 is:0.25742574257425743
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  1
+There are totally 51 tags.
+TF = 21		FP = 83		FN = 19
+The Precision is:0.20192307692307693
+The Recall is:0.525
+The F1 is:0.2916666666666667
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  1
+There are totally 51 tags.
+TF = 14		FP = 58		FN = 18
+The Precision is:0.19444444444444445
+The Recall is:0.4375
+The F1 is:0.2692307692307693
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  2
+There are totally 51 tags.
+TF = 30		FP = 109		FN = 18
+The Precision is:0.2158273381294964
+The Recall is:0.625
+The F1 is:0.32085561497326204
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  2
+There are totally 51 tags.
+TF = 15		FP = 60		FN = 18
+The Precision is:0.2
+The Recall is:0.45454545454545453
+The F1 is:0.2777777777777778
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  3
+There are totally 51 tags.
+TF = 29		FP = 122		FN = 22
+The Precision is:0.19205298013245034
+The Recall is:0.5686274509803921
+The F1 is:0.28712871287128716
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  3
+There are totally 51 tags.
+TF = 15		FP = 61		FN = 18
+The Precision is:0.19736842105263158
+The Recall is:0.45454545454545453
+The F1 is:0.27522935779816515
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  4
+There are totally 51 tags.
+TF = 29		FP = 135		FN = 27
+The Precision is:0.17682926829268292
+The Recall is:0.5178571428571429
+The F1 is:0.2636363636363636
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  4
+There are totally 51 tags.
+TF = 15		FP = 61		FN = 18
+The Precision is:0.19736842105263158
+The Recall is:0.45454545454545453
+The F1 is:0.27522935779816515
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  5
+There are totally 51 tags.
+TF = 31		FP = 153		FN = 31
+The Precision is:0.16847826086956522
+The Recall is:0.5
+The F1 is:0.25203252032520324
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  5
+There are totally 51 tags.
+TF = 15		FP = 61		FN = 18
+The Precision is:0.19736842105263158
+The Recall is:0.45454545454545453
+The F1 is:0.27522935779816515
+****************************************

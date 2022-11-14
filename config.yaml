@@ -1,9 +1,9 @@
 LABEL_ALL_TOKENS: True
-SLIDING_WIN_SIZE: 5
-HAVE_PRE: True
-MODEL_PATH: Davlan/bert-base-multilingual-cased-ner-hrl 
+SLIDING_WIN_SIZE: 7
+HAVE_PRE: False
+MODEL_PATH: xlm-roberta-large-finetuned-conll03-english  
 DATA_FILE_PATH: eval_data/eval_data.json
 PRE_LABEL: B-PER
 CEN_LABEL: I-PER
-DEFAULT_LABEL: PER
+DEFAULT_LABEL: I-PER
 ADD_SPECIAL_TOKENS: True

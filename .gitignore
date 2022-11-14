@@ -1,0 +1,6 @@
+badcases/*.txt
+eval_data/order.txt
+eval_data/order.zip
+eval_data/order.sample.txt
+eval_data/label.json
+eval_data/eval_data.json

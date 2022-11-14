@@ -4,6 +4,7 @@ import time
 import json
 import yaml
 import torch
+import time
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from seqeval.metrics import accuracy_score, precision_score, recall_score, f1_score
 from seqeval.metrics import classification_report
@@ -20,6 +21,7 @@ class Evaluator:
         self._align_labels()
         self.inputs = None
         self.badcase = []
+        self.predict_time = 0
 
         
     def _get_data_from_json(self):
@@ -155,6 +157,7 @@ class Evaluator:
 
 
     def get_predict_label(self):
+        start_time = time.time()
         for a_input in self.inputs:
             tokenized_sentence = self.tokenizer(a_input["input"],
                                                 add_special_tokens = self.config["ADD_SPECIAL_TOKENS"],
@@ -175,6 +178,8 @@ class Evaluator:
                     predicted_tokens_classes[index] = "O"
             a_input["pred"] = predicted_tokens_classes
             a_input["tokenized_words"] = self.tokenizer.convert_ids_to_tokens(tokenized_sentence["input_ids"][0])
+        end_time = time.time()
+        self.predict_time = end_time - start_time
 
     def _format_out_put(self, word_list):
         out_str = ""
@@ -215,6 +220,7 @@ class Evaluator:
                     self.badcase.append("pred_lable: \t"+self._format_out_put(item["pred"]))
                     self.badcase.append("**"*20)
             
+        print("model_path:"+self.config["MODEL_PATH"])
         print("**"*20)
         print("Overlap:  "+str(self.inputs[0]["overlap"]))
         print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
@@ -226,6 +232,7 @@ class Evaluator:
         print("The Precision is:{}".format(Precision), end="\t")
         print("The Recall is:{}".format(Recall), end="\t")
         print("The F1 is:{}".format(F1))
+        print("Using time {} in prediction".format(self.predict_time))
         print("**"*20)
 
         model_path = "_".join(self.config["MODEL_PATH"].split("/"))
@@ -238,10 +245,12 @@ class Evaluator:
         logf.write("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"])+"\n")
         logf.write("There are totally {} tags.".format(self.total_label)+"\n")
         logf.write("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N)+"\n")
+        logf.write("Using time {} in prediction".format(self.predict_time)+"\n")
         logf.write("The Precision is:{}".format(Precision)+"\n")
         logf.write("The Recall is:{}".format(Recall)+"\n")
         logf.write("The F1 is:{}".format(F1)+"\n")
         logf.write("**"*20+"\n")
+        logf.close()
 
 
     def write_badcase(self):
@@ -261,7 +270,7 @@ def modify_config(model_path, config_yaml):
     try:
         model = AutoModelForTokenClassification.from_pretrained(model_path)
     except:
-        print("Something Wrong with the network!!")
+        print("Something went Wrong with the network!!")
         return False, config_yaml
     else:
         config_yaml["MODEL_PATH"] = model_path
@@ -282,15 +291,22 @@ def modify_config(model_path, config_yaml):
 
                             
 def main():
-    tested_list = ["dslim/bert-base-NER",  "dslim/bert-large-NER",] 
-    # 具有前缀的NER模型
-    model_list = ["dslim/bert-base-NER",  
+    tested_list = [
+                  "dslim/bert-base-NER",  
                   "dslim/bert-large-NER",
                   "vlan/bert-base-multilingual-cased-ner-hrl",
                   "dbmdz/bert-large-cased-finetuned-conll03-english",
                   "xlm-roberta-large-finetuned-conll03-english",
-                  "Jean-Baptiste/roberta-large-ner-english"]
-        
+                  "Jean-Baptiste/roberta-large-ner-english",
+                  "cmarkea/distilcamembert-base-ner",
+                  "51la5/bert-large-NER", 
+                  "gunghio/distilbert-base-multilingual-cased-finetuned-conll2003-ner"
+                  ] 
+    no_net_work = [
+                  "jplu/tf-xlm-r-ner-40-lang",
+                  ]
+    model_list = [ 
+                 ]
 
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)

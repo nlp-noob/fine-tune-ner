@@ -14,9 +14,6 @@ def write_bytes_name(fin):
     with open("eval_data/advisor_name_byte.json","w+") as fout:
         json_str = json.dumps(name_list)
         fout.write(json_str)
-    
-    with open("eval_data/advisor_name.txt", "w") as fout:
-        fout.write("\n".join(name_list))
 
 def main():
     with open("eval_data/order.sample.txt", "r") as fin:

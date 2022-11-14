@@ -19,6 +19,7 @@ class Evaluator:
         self._align_labels()
         self.inputs = None
         self.badcase = []
+
         
     def _get_data_from_json(self):
         data_dict = {}
@@ -27,11 +28,13 @@ class Evaluator:
             data = json.loads(jf.read())
         return data
 
+
     def _get_label_O(self, lenth):
         label_list = []
         for i in range(lenth):
             label_list.append("O")
         return label_list
+            
 
     def _align_labels(self):
         if self.config["HAVE_PRE"]:
@@ -71,6 +74,7 @@ class Evaluator:
                 aligned_label_list.append(head_labels)
             item["label"] = aligned_label_list
 
+
     def collate_inputs_Win(self):
         # 创建输入的函数
         input_list = []
@@ -100,6 +104,7 @@ class Evaluator:
                                        "pairNO": item["pairNO"],
                                        "overlap": True})
         self.inputs = input_list
+
 
     def collate_inputs_Win_no_overlaps(self):
         # 创建输入的函数
@@ -138,6 +143,7 @@ class Evaluator:
                                        "overlap": False})
         self.inputs = input_list
 
+
     def get_predict_label(self):
         for a_input in self.inputs:
             tokenized_sentence = self.tokenizer(a_input["input"],
@@ -159,6 +165,7 @@ class Evaluator:
                     predicted_tokens_classes[index] = "O"
             a_input["pred"] = predicted_tokens_classes
             a_input["tokenized_words"] = self.tokenizer.convert_ids_to_tokens(tokenized_sentence["input_ids"][0])
+
 
     def eval(self):
         True_P = 0
@@ -203,14 +210,21 @@ class Evaluator:
         print("The F1 is:\t\t {}".format(F1))
         print("**"*20)
 
-    def write_badcase(self):
 
-        with open("badcases/{}_Win{}{}.txt".format(self.config["MODEL_PATH"], self.config["SLIDING_WIN_SIZE"], self.inputs[0]["overlap"]),  "w") as bf:
+    def write_badcase(self):
+        model_path = "_".join(self.config["MODEL_PATH"].split("/"))
+        win_size = self.config["SLIDING_WIN_SIZE"]
+        if self.inputs[0]["overlap"]:
+            overlap = "overlap"
+        else:
+            overlap = "no_overlap"
+        with open("badcases/{}_Win{}_{}.txt".format(model_path, win_size, overlap),  "w") as bf:
             for line in self.badcase:
-                bf.write(line)
+                bf.write("  ".join(line)+"\n")
             
                             
 def main():
+
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)
     win_size = config["SLIDING_WIN_SIZE"]
@@ -232,10 +246,4 @@ def main():
 
 if __name__=="__main__":
     main()
-
-
-
-
-
-
 

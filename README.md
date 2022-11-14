@@ -13,6 +13,13 @@ pip install -r requirements.txt
 vim config.yaml
 ```
 
+首先使用脚本把对话内容中的角色都提取出来：
+```
+python write_names_to_data.py
+```
+编辑输出的相应角色名称文件，把其中不是advisor的名字删除掉，得到一个专门的advisor列表
+
+
 获得evaluation使用的数据集：
 ```
 python order_extract.py

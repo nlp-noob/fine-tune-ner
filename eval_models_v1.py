@@ -18,9 +18,9 @@ class Evaluator:
         self.model = AutoModelForTokenClassification.from_pretrained(self.config["MODEL_PATH"])
         # 判定是否使用special tokens来表示角色
         if self.config["USE_SPECIAL_TOKENS"]:
-            special_tokens_dict = {"additional_special_token": ["[USER]","[ADVISOR]"]}
+            special_tokens_dict = {"additional_special_tokens": ["[USER]","[ADVISOR]"]}
             num_added_toks = self.tokenizer.add_special_tokens(special_tokens_dict)
-            self.model.resize_token_embeddings(len(tokens))
+            self.model.resize_token_embeddings(len(self.tokenizer))
         self.data = self._get_data_from_json()
         self.total_label = 0
         self._align_labels()

@@ -1,0 +1,150 @@
+****************************************
+Overlap:  False
+The Window SIZE is:  0
+There are totally 51 tags.
+TF = 15		FP = 68		FN = 14
+Using time 10.838610172271729 in prediction
+The Precision is:0.18072289156626506
+The Recall is:0.5172413793103449
+The F1 is:0.26785714285714285
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  1
+There are totally 51 tags.
+TF = 22		FP = 89		FN = 14
+Using time 11.688628196716309 in prediction
+The Precision is:0.1981981981981982
+The Recall is:0.6111111111111112
+The F1 is:0.29931972789115646
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  1
+There are totally 51 tags.
+TF = 15		FP = 62		FN = 15
+Using time 11.466307401657104 in prediction
+The Precision is:0.19480519480519481
+The Recall is:0.5
+The F1 is:0.28037383177570097
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  2
+There are totally 51 tags.
+TF = 31		FP = 114		FN = 20
+Using time 13.325947046279907 in prediction
+The Precision is:0.21379310344827587
+The Recall is:0.6078431372549019
+The F1 is:0.31632653061224486
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  2
+There are totally 51 tags.
+TF = 16		FP = 67		FN = 19
+Using time 12.283401012420654 in prediction
+The Precision is:0.1927710843373494
+The Recall is:0.45714285714285713
+The F1 is:0.2711864406779661
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  3
+There are totally 51 tags.
+TF = 28		FP = 145		FN = 17
+Using time 14.076862096786499 in prediction
+The Precision is:0.16184971098265896
+The Recall is:0.6222222222222222
+The F1 is:0.2568807339449541
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  3
+There are totally 51 tags.
+TF = 16		FP = 76		FN = 16
+Using time 12.217649459838867 in prediction
+The Precision is:0.17391304347826086
+The Recall is:0.5
+The F1 is:0.25806451612903225
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  4
+There are totally 51 tags.
+TF = 30		FP = 148		FN = 18
+Using time 16.09972620010376 in prediction
+The Precision is:0.16853932584269662
+The Recall is:0.625
+The F1 is:0.2654867256637168
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  4
+There are totally 51 tags.
+TF = 16		FP = 73		FN = 12
+Using time 12.620482206344604 in prediction
+The Precision is:0.1797752808988764
+The Recall is:0.5714285714285714
+The F1 is:0.2735042735042735
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  5
+There are totally 51 tags.
+TF = 30		FP = 162		FN = 27
+Using time 16.519065856933594 in prediction
+The Precision is:0.15625
+The Recall is:0.5263157894736842
+The F1 is:0.24096385542168675
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  5
+There are totally 51 tags.
+TF = 16		FP = 67		FN = 17
+Using time 12.55928349494934 in prediction
+The Precision is:0.1927710843373494
+The Recall is:0.48484848484848486
+The F1 is:0.27586206896551724
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  6
+There are totally 51 tags.
+TF = 35		FP = 175		FN = 27
+Using time 18.826847791671753 in prediction
+The Precision is:0.16666666666666666
+The Recall is:0.5645161290322581
+The F1 is:0.25735294117647056
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  6
+There are totally 51 tags.
+TF = 16		FP = 69		FN = 15
+Using time 12.66743803024292 in prediction
+The Precision is:0.18823529411764706
+The Recall is:0.5161290322580645
+The F1 is:0.27586206896551724
+****************************************
+****************************************
+Overlap:  True
+The Window SIZE is:  7
+There are totally 51 tags.
+TF = 34		FP = 195		FN = 28
+Using time 18.780471801757812 in prediction
+The Precision is:0.14847161572052403
+The Recall is:0.5483870967741935
+The F1 is:0.23367697594501718
+****************************************
+****************************************
+Overlap:  False
+The Window SIZE is:  7
+There are totally 51 tags.
+TF = 16		FP = 67		FN = 18
+Using time 12.688511610031128 in prediction
+The Precision is:0.1927710843373494
+The Recall is:0.47058823529411764
+The F1 is:0.2735042735042735
+****************************************

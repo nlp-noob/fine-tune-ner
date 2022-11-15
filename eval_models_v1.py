@@ -16,6 +16,11 @@ class Evaluator:
         self.config = config
         self.tokenizer = AutoTokenizer.from_pretrained(self.config["MODEL_PATH"])
         self.model = AutoModelForTokenClassification.from_pretrained(self.config["MODEL_PATH"])
+        # 判定是否使用special tokens来表示角色
+        if self.config["USE_SPECIAL_TOKENS"]:
+            special_tokens_dict = {"additional_special_token": ["[USER]","[ADVISOR]"]}
+            num_added_toks = self.tokenizer.add_special_tokens(special_tokens_dict)
+            self.model.resize_token_embeddings(len(tokens))
         self.data = self._get_data_from_json()
         self.total_label = 0
         self._align_labels()
@@ -236,6 +241,8 @@ class Evaluator:
         print("**"*20)
 
         model_path = "_".join(self.config["MODEL_PATH"].split("/"))
+        if self.config["USE_SPECIAL_TOKENS"]:
+            model_path = model_path +"_S"
         if self.config["SLIDING_WIN_SIZE"]==0:
             logf = open("log/{}.txt".format(model_path), "w")
         else: 
@@ -260,6 +267,8 @@ class Evaluator:
             overlap = "overlap"
         else:
             overlap = "no_overlap"
+        if self.config["USE_SPECIAL_TOKENS"]:
+            overlap = overlap + "_S"
         with open("badcases/{}_Win{}_{}.txt".format(model_path, win_size, overlap),  "w") as bf:
             for line in self.badcase:
                 bf.write(line+"\n")
@@ -292,6 +301,11 @@ def modify_config(model_path, config_yaml):
                             
 def main():
     tested_list = [
+                  ] 
+    no_net_work = [
+                  "jplu/tf-xlm-r-ner-40-lang",
+                  ]
+    model_list = [ 
                   "dslim/bert-base-NER",  
                   "dslim/bert-large-NER",
                   "vlan/bert-base-multilingual-cased-ner-hrl",
@@ -301,11 +315,6 @@ def main():
                   "cmarkea/distilcamembert-base-ner",
                   "51la5/bert-large-NER", 
                   "gunghio/distilbert-base-multilingual-cased-finetuned-conll2003-ner"
-                  ] 
-    no_net_work = [
-                  "jplu/tf-xlm-r-ner-40-lang",
-                  ]
-    model_list = [ 
                  ]
 
     with open("config.yaml","r") as stream:

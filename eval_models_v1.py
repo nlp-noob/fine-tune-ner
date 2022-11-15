@@ -186,12 +186,14 @@ class Evaluator:
         end_time = time.time()
         self.predict_time = end_time - start_time
 
+
     def _format_out_put(self, word_list):
         out_str = ""
         for word in word_list:
              tab_num = int(len(word)/4)
              out_str += word+"\t"*(4-tab_num) 
         return out_str
+
 
     def eval(self):
         True_P = 0

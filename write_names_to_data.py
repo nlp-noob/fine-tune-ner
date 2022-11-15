@@ -12,11 +12,11 @@ def write_bytes_name(fin):
                 name_list.append(name)
     
     with open("eval_data/advisor_name_byte.json","w+") as fout:
-        json_str = json.dumps(name_list)
+        json_str = json.dumps(name_list, indent=2)
         fout.write(json_str)
 
 def main():
-    with open("eval_data/order.sample.txt", "r") as fin:
+    with open("eval_data/order.txt", "r") as fin:
         write_bytes_name(fin)
 
 if __name__=="__main__":

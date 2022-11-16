@@ -99,67 +99,76 @@ class Evaluator:
             item["label"] = aligned_label_list
 
 
-    def collate_inputs_Win(self):
-        # 创建输入的函数
+    def collate_inputs_All(self):
         input_list = []
-        for item in self.data:
+        for item, item_index in zip(self.data, range(len(self.data))):
             for sentence_index in range(len(item["order"])):
+                input_index = [sentence_index]
+                user_index = [] 
+                for i in range(self.config["SLIDING_WIN_SIZE"]):
+                    up_index = i + 1
+                    if(sentence_index-up_index<0):
+                        break
+                    else:
+                        input_index.append(sentence_index-up_index)
+                    if(item["order"][sentence_index-up_index][0]=="[USER]"):
+                        user_index.append(sentence_index-up_index)
+                input_index.reverse()
+                user_index.reverse()
+                a_input = []
+                a_label = []
+                for index in input_index:
+                    a_input.extend(item["order"][index])
+                    a_label.extend(item["label"][index])
+                a_input = " ".join(a_input)
 
-                if item["order"][sentence_index][0]=="[USER]":
-                    input_index = [sentence_index]
-                    for i in range(self.config["SLIDING_WIN_SIZE"]):
-                        up_index = i + 1
-                        if(sentence_index-up_index<0):
-                            break
-                        else:
-                            input_index.append(sentence_index-up_index)
-                    input_index.reverse()
-
-                    a_input = []
-                    a_label = []
-                    for index in input_index:
-                        a_input.extend(item["order"][index])
-                        a_label.extend(item["label"][index])
-                    a_input = " ".join(a_input)
-
-                    input_list.append({"input": a_input,
-                                       "tag": a_label,
-                                       "orderNO": item["orderNO"],
-                                       "pairNO": item["pairNO"],
-                                       "overlap": True})
+                input_list.append({"input": a_input,
+                                   "tag": a_label,
+                                   "orderNO": item["orderNO"],
+                                   "pairNO": item["pairNO"],
+                                   "overlap": True,
+                                   "dataIndex": item_index, 
+                                   "inputIndex": input_list,
+                                   "userIndex": user_index,
+                                   "inputType": "_input_ALL_"})
         self.inputs = input_list
 
-
-    def collate_inputs_Win_no_overlaps(self):
-        # 创建输入的函数
+    def collate_inputs_Only_User(self):
         input_list = []
-        for item in self.data:
+        for item, item_index in zip(self.data, range(len(self.data))):
             for sentence_index in range(len(item["order"])):
+                if item["order"][sentence_index]!="[USER]":
+                    continue
+                input_index = [sentence_index]
+                # 这里第一个就是USER的index
+                user_index = [sentence_index] 
+                for i in range(self.config["SLIDING_WIN_SIZE"]):
+                    up_index = i + 1
+                    if(sentence_index-up_index<0):
+                        break
+                    else:
+                        input_index.append(sentence_index-up_index)
+                    if(item["order"][sentence_index-up_index][0]=="[USER]"):
+                        user_index.append(sentence_index-up_index)
+                input_index.reverse()
+                user_index.reverse()
+                a_input = []
+                a_label = []
+                for index in input_index:
+                    a_input.extend(item["order"][index])
+                    a_label.extend(item["label"][index])
+                a_input = " ".join(a_input)
 
-                if item["order"][sentence_index][0]=="[USER]":
-                    input_index = [sentence_index]
-                    for i in range(self.config["SLIDING_WIN_SIZE"]):
-                        up_index = i + 1
-                        if(sentence_index-up_index<0 or 
-                           item["order"][sentence_index-up_index][0]=="[USER]"):
-                            break
-                        else:
-                            input_index.append(sentence_index-up_index)
-                    input_index.reverse()
-                    a_input = []
-                    a_label = []
-                    for index in input_index:
-                        a_input.extend(item["order"][index])
-                        a_label.extend(item["label"][index])
-                    a_input = " ".join(a_input)
-
-                    input_list.append({"input": a_input,
-                                       "tag": a_label,
-                                       "orderNO": item["orderNO"],
-                                       "pairNO": item["pairNO"],
-                                       "overlap": False})
+                input_list.append({"input": a_input,
+                                   "tag": a_label,
+                                   "orderNO": item["orderNO"],
+                                   "pairNO": item["pairNO"],
+                                   "overlap": True,
+                                   "dataIndex": item_index, 
+                                   "inputIndex": input_list,
+                                   "userIndex": user_index,
+                                   "inputType": "_Only_USER_"})
         self.inputs = input_list
-
 
     def get_predict_label(self):
         start_time = time.time()
@@ -194,8 +203,9 @@ class Evaluator:
              out_str += word+"\t"*(4-tab_num) 
         return out_str
 
+    
 
-    def eval(self):
+    def eval_all(self):
         True_P = 0
         False_P = 0
         False_N = 0
@@ -276,7 +286,7 @@ class Evaluator:
                 bf.write(line+"\n")
             bf.close()
 
-
+# 检测模型是否可用，若可用，通过这个函数提取模型中符合这个人名实体提取任务的标签，设置到config相应的参数中
 def modify_config(model_path, config_yaml):
     try:
         model = AutoModelForTokenClassification.from_pretrained(model_path)
@@ -332,14 +342,14 @@ def main():
             config["SLIDING_WIN_SIZE"] = the_size
             evaluator = Evaluator(config)
         
-            evaluator.collate_inputs_Win()
+            evaluator.collate_inputs_All()
             evaluator.get_predict_label()
-            evaluator.eval()
+            evaluator.eval_all()
             evaluator.write_badcase()
 
-            evaluator.collate_inputs_Win_no_overlaps()
+            evaluator.collate_inputs_Only_User()
             evaluator.get_predict_label()
-            evaluator.eval()
+            evaluator.eval_all()
             evaluator.write_badcase()
 
 

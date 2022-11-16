@@ -12,6 +12,14 @@ def get_labels_in_line(label_list, line_index):
         if label[0]-1 == line_index:
             label_in_line.append(label[1:])
     return label_in_line
+    
+def format_text(text):
+    split_text = text.split()
+    word_list = []
+    for word in split_text:
+        word = word.strip()
+        word_list.append(word)
+    return " ".join(word_list)
 
 def get_data(fin, label_list, name_list, byte_name_list):
     pair_no = -1
@@ -52,7 +60,8 @@ def get_data(fin, label_list, name_list, byte_name_list):
                 name = "[ADVISOR]"
             else:
                 name = "[USER]"
-            text = sentence[0][1].strip()
+            text = sentence[0][1]
+            text = format_text(text)
             an_order["order"].append([name,text])
 
     orders.append(an_order)
@@ -84,7 +93,7 @@ def main():
         orders = get_data(fin, label_list, name_list, byte_name_list)
 
     json_str = json.dumps(orders, indent=2)
-    with open("eval_data/eval_data_test.json", "w") as jf: 
+    with open("eval_data/eval_data.json", "w") as jf: 
         jf.write(json_str)
         print("Write successed.")
     

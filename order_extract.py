@@ -52,7 +52,7 @@ def get_data(fin, label_list, name_list, byte_name_list):
                 name = "[ADVISOR]"
             else:
                 name = "[USER]"
-            text = sentence[0][1]
+            text = sentence[0][1].strip()
             an_order["order"].append([name,text])
 
     orders.append(an_order)
@@ -84,7 +84,7 @@ def main():
         orders = get_data(fin, label_list, name_list, byte_name_list)
 
     json_str = json.dumps(orders, indent=2)
-    with open("eval_data/eval_data.json", "w") as jf: 
+    with open("eval_data/eval_data_test.json", "w") as jf: 
         jf.write(json_str)
         print("Write successed.")
     

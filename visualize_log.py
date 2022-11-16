@@ -3,7 +3,15 @@ import csv
 import os
 
 LOG_PATH = "./log/"
-ALL_KEYS = ["Win", "TP", "FP", "FN", "Precision", "Recall", "F1", "PredictTime"]
+ALL_KEYS = ["Win", "TP", "FP", "FN", 
+            "Precision", "Recall", "F1", "PredictTime", 
+            "TP_A", "FP_A", "FN_A",
+            "TP_B", "FP_B", "FN_B",
+            "TP_C", "FP_C", "FN_C",
+            "Precision_A", "Recall_A", "F1_A",
+            "Precision_B", "Recall_B", "F1_B",
+            "Precision_C", "Recall_C", "F1_C"
+            ]
 
 def modify_the_data(data_path):
     data = json.load(open(LOG_PATH+data_path, "r"))

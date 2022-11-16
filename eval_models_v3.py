@@ -349,6 +349,9 @@ class Evaluator:
                     continue
                 else:
                     word_len += 1
+                    print(tag)
+                    print(word_ids)
+                    print(item)
                     pred_label = pred[index]
                     tag_label = tag[index]
                     if(tag_label!='O' and tag_label==pred_label):
@@ -611,16 +614,16 @@ def modify_config(model_path, config_yaml):
 def main():
 
     tested_list = [
-                  ] 
-    no_net_work = [
-                  "jplu/tf-xlm-r-ner-40-lang",
-                  ]
-    model_list = [ 
                   "xlm-roberta-large-finetuned-conll03-english",
                   "dslim/bert-base-NER",  
                   "dslim/bert-large-NER",
                   "vlan/bert-base-multilingual-cased-ner-hrl",
                   "dbmdz/bert-large-cased-finetuned-conll03-english",
+                  ] 
+    no_net_work = [
+                  "jplu/tf-xlm-r-ner-40-lang",
+                  ]
+    model_list = [ 
                   "Jean-Baptiste/roberta-large-ner-english",
                   "cmarkea/distilcamembert-base-ner",
                   "51la5/bert-large-NER", 

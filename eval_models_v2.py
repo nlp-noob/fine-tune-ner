@@ -104,7 +104,10 @@ class Evaluator:
         for item, item_index in zip(self.data, range(len(self.data))):
             for sentence_index in range(len(item["order"])):
                 input_index = [sentence_index]
-                user_index = [] 
+                if(item["order"][sentence_index][0]=="[USER]"):
+                    user_index = [sentence_index]
+                else:
+                    user_index = [] 
                 for i in range(self.config["SLIDING_WIN_SIZE"]):
                     up_index = i + 1
                     if(sentence_index-up_index<0):
@@ -126,9 +129,8 @@ class Evaluator:
                                    "tag": a_label,
                                    "orderNO": item["orderNO"],
                                    "pairNO": item["pairNO"],
-                                   "overlap": True,
                                    "dataIndex": item_index, 
-                                   "inputIndex": input_list,
+                                   "inputIndex": input_index,
                                    "userIndex": user_index,
                                    "inputType": "_input_ALL_"})
         self.inputs = input_list
@@ -137,7 +139,7 @@ class Evaluator:
         input_list = []
         for item, item_index in zip(self.data, range(len(self.data))):
             for sentence_index in range(len(item["order"])):
-                if item["order"][sentence_index]!="[USER]":
+                if item["order"][sentence_index][0]!="[USER]":
                     continue
                 input_index = [sentence_index]
                 # 这里第一个就是USER的index
@@ -163,9 +165,8 @@ class Evaluator:
                                    "tag": a_label,
                                    "orderNO": item["orderNO"],
                                    "pairNO": item["pairNO"],
-                                   "overlap": True,
                                    "dataIndex": item_index, 
-                                   "inputIndex": input_list,
+                                   "inputIndex": input_index,
                                    "userIndex": user_index,
                                    "inputType": "_Only_USER_"})
         self.inputs = input_list
@@ -203,8 +204,45 @@ class Evaluator:
              out_str += word+"\t"*(4-tab_num) 
         return out_str
 
-    
+    def _get_metrics(self, TP, FP, FN):
+        Precision = TP/(TP + FP)
+        Recall = TP/(TP + FN)
+        F1 = 2*Precision*Recall/(Precision+Recall)
+        return Precision, Recall, F1
 
+    def write_log(self, eval_type, TP, FP, FN):
+        Precision, Recall, F1 = self._get_metrics(TP, FP, FN) 
+        model_path = "_".join(self.config["MODEL_PATH"].split("/"))
+        if self.config["USE_SPECIAL_TOKENS"]:
+            model_path = model_path + "_" + self.inputs[0]["inputType"] + eval_type + "_S"
+        else:
+            model_path = model_path + "_" + self.inputs[0]["inputType"] + eval_type
+        if self.config["SLIDING_WIN_SIZE"]==0:
+            json_dict = {"Win": [0], 
+                         "TP": [TP],
+                         "FP": [FP],
+                         "FN": [FN],
+                         "Precision": [Precision],
+                         "Recall": [Recall],
+                         "F1": [F1],
+                         "PredictTime": [self.predict_time]}
+        else:
+            jfr = open("log/{}.json".format(model_path), "r")
+            json_dict = json.load(jfr)
+            json_dict["Win"].append(self.config["SLIDING_WIN_SIZE"])
+            json_dict["TP"].append(TP)
+            json_dict["FP"].append(FP)
+            json_dict["FN"].append(FN)
+            json_dict["Precision"].append(Precision)
+            json_dict["Recall"].append(Recall)
+            json_dict["F1"].append(F1)
+            json_dict["PredictTime"].append(self.predict_time)
+            jfr.close()
+        with open("log/{}.json".format(model_path), "w") as fout:
+            json_str = json.dumps(json_dict, indent=2)
+            fout.write(json_str)
+            fout.close()
+            
     def eval_all(self):
         True_P = 0
         False_P = 0
@@ -239,49 +277,135 @@ class Evaluator:
             
         print("model_path:"+self.config["MODEL_PATH"])
         print("**"*20)
-        print("Overlap:  "+str(self.inputs[0]["overlap"]))
+        print("evaluation of all")
         print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
         print("There are totally {} tags.".format(self.total_label))
         print("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N))
-        Precision = True_P/(True_P + False_P)
-        Recall = True_P/(True_P + False_N)
-        F1 = 2*Precision*Recall/(Precision+Recall)
+        Precision, Recall, F1 = self._get_metrics(True_P, False_P, False_N)
         print("The Precision is:{}".format(Precision), end="\t")
         print("The Recall is:{}".format(Recall), end="\t")
         print("The F1 is:{}".format(F1))
         print("Using time {} in prediction".format(self.predict_time))
         print("**"*20)
+        self.write_log("eval_all", True_P, False_P, False_N)
 
-        model_path = "_".join(self.config["MODEL_PATH"].split("/"))
-        if self.config["USE_SPECIAL_TOKENS"]:
-            model_path = model_path +"_S"
-        if self.config["SLIDING_WIN_SIZE"]==0:
-            logf = open("log/{}.txt".format(model_path), "w")
-        else: 
-            logf = open("log/{}.txt".format(model_path), "a")
-        logf.write("**"*20+"\n")
-        logf.write("Overlap:  "+str(self.inputs[0]["overlap"])+"\n")
-        logf.write("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"])+"\n")
-        logf.write("There are totally {} tags.".format(self.total_label)+"\n")
-        logf.write("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N)+"\n")
-        logf.write("Using time {} in prediction".format(self.predict_time)+"\n")
-        logf.write("The Precision is:{}".format(Precision)+"\n")
-        logf.write("The Recall is:{}".format(Recall)+"\n")
-        logf.write("The F1 is:{}".format(F1)+"\n")
-        logf.write("**"*20+"\n")
-        logf.close()
+    def eval_bottom_line(self):
+        True_P = 0
+        False_P = 0
+        False_N = 0
+        for item in self.inputs:
+            bottom_index = item["inputIndex"][-1]
+            len_label = len(self.data[item["dataIndex"]]["label"][bottom_index])
+            per_y_true = item["tag"][-len_label:]
+            per_y_pred = item["pred"][-len_label:]
+            for true_label, pred_label in zip(per_y_true, per_y_pred):
+                if(true_label!='O' and true_label==pred_label):
+                    True_P += 1
+                elif(pred_label!='O' and true_label!=pred_label):
+                    False_P += 1
+                elif(pred_label=='O' and true_label!='O'):
+                    False_N += 1
+            
+        print("model_path:"+self.config["MODEL_PATH"])
+        print("evaluation of bottom line")
+        print("**"*20)
+        print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
+        print("There are totally {} tags.".format(self.total_label))
+        print("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N))
+        Precision, Recall, F1 = self._get_metrics(True_P, False_P, False_N)
+        print("The Precision is:{}".format(Precision), end="\t")
+        print("The Recall is:{}".format(Recall), end="\t")
+        print("The F1 is:{}".format(F1))
+        print("Using time {} in prediction".format(self.predict_time))
+        print("**"*20)
+        self.write_log("eval_bottom", True_P, False_P, False_N)
 
+    def eval_weighted_user(self):
+        # 统计overlap次数，并且把user抽取出来
+        overlap_dict = {}
+        for item in self.inputs:
+            data_index = item["dataIndex"]
+            if not data_index in overlap_dict.keys():
+                overlap_dict[data_index] = {}
+            user_index = item["userIndex"]
+            input_index = item["inputIndex"]
+            for index in user_index:
+                if not index in overlap_dict[data_index].keys():
+                    overlap_dict[data_index][index] = 1
+                else:
+                    overlap_dict[data_index][index] += 1
+            all_tag = item["tag"]
+            all_pred = item["pred"]
+            user_tag_list = []
+            user_pred_list = []
+            for index in user_index:
+                head_cut = 0
+                tail_cut = 0
+                add_head = True
+                for index_in in input_index:
+                    if(index==index_in):
+                        add_head=False
+                        continue
+                    cut_len = len(self.data[data_index]["label"][index_in])
+                    if add_head:
+                        head_cut += cut_len 
+                    else:
+                        tail_cut += cut_len
+                user_tag_list.append(all_tag[head_cut:(len(user_tag_list)-tail_cut-1)])
+                user_pred_list.append(all_pred[head_cut:(len(user_pred_list)-tail_cut-1)])
+            item["user_tag_list"] = user_tag_list
+            item["user_pred_list"] = user_pred_list
+
+
+        True_P = 0
+        False_P = 0
+        False_N = 0
+        for item in self.inputs:
+            data_index = item["dataIndex"]
+            user_list = item["userIndex"]
+            per_y_true = item["tag"]
+            per_y_pred = item["pred"]
+            for a_user_label, a_pred_label, user_index in zip(item["user_tag_list"], item["user_pred_list"], user_list):
+                weight = overlap_dict[data_index][user_index]
+                True_P_tmp = 0
+                False_P_tmp = 0
+                False_N_tmp = 0
+                for true_label, pred_label in zip(a_user_label, a_pred_label):
+                    if(true_label!='O' and true_label==pred_label):
+                        True_P_tmp += 1
+                    elif(pred_label!='O' and true_label!=pred_label):
+                        False_P_tmp += 1
+                    elif(pred_label=='O' and true_label!='O'):
+                        False_N_tmp += 1
+                True_P_tmp = True_P_tmp/weight
+                False_P_tmp = False_P_tmp/weight
+                False_N_tmp = False_N_tmp/weight
+                True_P += True_P_tmp
+                False_P += False_P_tmp
+                False_N += False_N_tmp
+        print("model_path:"+self.config["MODEL_PATH"])
+        print("**"*20)
+        print("evaluation of weighted user")
+        print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
+        print("There are totally {} tags.".format(self.total_label))
+        print("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N))
+        Precision, Recall, F1 = self._get_metrics(True_P, False_P, False_N)
+        print("The Precision is:{}".format(Precision), end="\t")
+        print("The Recall is:{}".format(Recall), end="\t")
+        print("The F1 is:{}".format(F1))
+        print("Using time {} in prediction".format(self.predict_time))
+        print("**"*20)
+        self.write_log("eval_weighted_user", True_P, False_P, False_N)
+        
+        
 
     def write_badcase(self):
         model_path = "_".join(self.config["MODEL_PATH"].split("/"))
         win_size = self.config["SLIDING_WIN_SIZE"]
-        if self.inputs[0]["overlap"]:
-            overlap = "overlap"
-        else:
-            overlap = "no_overlap"
+        input_type = self.inputs[0]["inputType"]
         if self.config["USE_SPECIAL_TOKENS"]:
-            overlap = overlap + "_S"
-        with open("badcases/{}_Win{}_{}.txt".format(model_path, win_size, overlap),  "w") as bf:
+            input_type = input_type + "_S"
+        with open("badcases/{}_Win{}_{}.txt".format(model_path, win_size, input_type),  "w") as bf:
             for line in self.badcase:
                 bf.write(line+"\n")
             bf.close()
@@ -319,11 +443,11 @@ def main():
                   "jplu/tf-xlm-r-ner-40-lang",
                   ]
     model_list = [ 
+                  "xlm-roberta-large-finetuned-conll03-english",
                   "dslim/bert-base-NER",  
                   "dslim/bert-large-NER",
                   "vlan/bert-base-multilingual-cased-ner-hrl",
                   "dbmdz/bert-large-cased-finetuned-conll03-english",
-                  "xlm-roberta-large-finetuned-conll03-english",
                   "Jean-Baptiste/roberta-large-ner-english",
                   "cmarkea/distilcamembert-base-ner",
                   "51la5/bert-large-NER", 
@@ -346,11 +470,15 @@ def main():
             evaluator.get_predict_label()
             evaluator.eval_all()
             evaluator.write_badcase()
+            evaluator.eval_bottom_line()
+            evaluator.eval_weighted_user()
 
             evaluator.collate_inputs_Only_User()
             evaluator.get_predict_label()
             evaluator.eval_all()
             evaluator.write_badcase()
+            evaluator.eval_bottom_line()
+            evaluator.eval_weighted_user()
 
 
 if __name__=="__main__":

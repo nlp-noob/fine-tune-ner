@@ -349,9 +349,6 @@ class Evaluator:
                     continue
                 else:
                     word_len += 1
-                    print(tag)
-                    print(word_ids)
-                    print(item)
                     pred_label = pred[index]
                     tag_label = tag[index]
                     if(tag_label!='O' and tag_label==pred_label):

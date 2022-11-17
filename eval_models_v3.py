@@ -6,9 +6,6 @@ import yaml
 import torch
 import time
 from transformers import AutoTokenizer, AutoModelForTokenClassification
-from seqeval.metrics import accuracy_score, precision_score, recall_score, f1_score
-from seqeval.metrics import classification_report
-
 
 class Evaluator:
 

@@ -353,7 +353,7 @@ class Evaluator:
                     tag_label = tag[index]
                     if(tag_label!='O' and tag_label==pred_label):
                         a_word_TP += 1
-                    elif(tag_label!='O' and tag_label!=pred_label):
+                    elif(pred_label!='O' and tag_label!=pred_label):
                         a_word_FP += 1
                     elif(pred_label=='O' and tag_label!='O'):
                         a_word_FN += 1
@@ -611,16 +611,16 @@ def modify_config(model_path, config_yaml):
 def main():
 
     tested_list = [
-                  "xlm-roberta-large-finetuned-conll03-english",
-                  "dslim/bert-base-NER",  
-                  "dslim/bert-large-NER",
-                  "vlan/bert-base-multilingual-cased-ner-hrl",
-                  "dbmdz/bert-large-cased-finetuned-conll03-english",
                   ] 
     no_net_work = [
                   "jplu/tf-xlm-r-ner-40-lang",
                   ]
     model_list = [ 
+                  "xlm-roberta-large-finetuned-conll03-english",
+                  "dslim/bert-base-NER",  
+                  "dslim/bert-large-NER",
+                  "vlan/bert-base-multilingual-cased-ner-hrl",
+                  "dbmdz/bert-large-cased-finetuned-conll03-english",
                   "Jean-Baptiste/roberta-large-ner-english",
                   "cmarkea/distilcamembert-base-ner",
                   "51la5/bert-large-NER", 

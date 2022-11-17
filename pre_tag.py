@@ -10,12 +10,14 @@ from transformers import AutoTokenizer, AutoModelForTokenClassification
 class PreTagger:
 
     def __init__(self, model_path, data_path, dir_path):
+        self.device = torch.device("cuda")
         self.model_path = model_path
         self.dir_path = dir_path
         self.data_path = data_path
         self.data = self._get_data_from_json()
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_path)
-        self.model = AutoModelForTokenClassification.from_pretrained(self.model_path)
+        self.model = AutoModelForTokenClassification.from_pretrained(self.model_path).to(self.device)
+
     
 
     def _get_data_from_json(self):
@@ -34,7 +36,7 @@ class PreTagger:
                 head_text = line[0]
                 tail_text = line[1]
                 text = " ".join(line)
-                tokenized_sentence = self.tokenizer(text, add_special_tokens = True, return_tensors="pt")
+                tokenized_sentence = self.tokenizer(text, add_special_tokens = True, return_tensors="pt").to(self.device)
                 text_word_ids = self.tokenizer(text, add_special_tokens = False, return_tensors="pt").word_ids()
                 head_word_ids = self.tokenizer(head_text, add_special_tokens = False, return_tensors="pt").word_ids()
                 tail_word_ids = self.tokenizer(tail_text, add_special_tokens = False, return_tensors="pt").word_ids()
@@ -81,7 +83,7 @@ class PreTagger:
 
     def write_data(self):
         json_data = json.dumps(self.data, indent=2)
-        with open(self.dir_path+"tagged"+self.data_path, "w") as jf:
+        with open(self.dir_path+"tagged_"+self.data_path, "w") as jf:
             jf.write(json_data)
             print("write successed")
             jf.close()
@@ -89,9 +91,8 @@ class PreTagger:
 
 def main():
     pretag_model = ["xlm-roberta-large-finetuned-conll03-english"]
-    #data_path = "eval_data/untagged_data.json"
+    data_path = "untagged_data.json"
     dir_path = "eval_data/"
-    data_path = "eval_data_test.json"
     pretagger = PreTagger(pretag_model[0], data_path, dir_path)
     pretagger.pretag()
     pretagger.write_data()

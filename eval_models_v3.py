@@ -12,7 +12,8 @@ class Evaluator:
     def __init__(self, config):
         self.config = config
         self.tokenizer = AutoTokenizer.from_pretrained(self.config["MODEL_PATH"])
-        self.model = AutoModelForTokenClassification.from_pretrained(self.config["MODEL_PATH"])
+        self.device = torch.device("cuda")
+        self.model = AutoModelForTokenClassification.from_pretrained(self.config["MODEL_PATH"]).to(self.device)
         # 判定是否使用special tokens来表示角色
         if self.config["USE_SPECIAL_TOKENS"]:
             special_tokens_dict = {"additional_special_tokens": ["[USER]","[ADVISOR]"]}
@@ -188,7 +189,7 @@ class Evaluator:
         for a_input in self.inputs:
             tokenized_sentence = self.tokenizer(a_input["input"],
                                                 add_special_tokens = self.config["ADD_SPECIAL_TOKENS"],
-                                                return_tensors="pt")
+                                                return_tensors="pt").to(self.device)
             with torch.no_grad():
                 logits = self.model(**tokenized_sentence).logits
             

@@ -96,6 +96,7 @@ def get_data(fin, label_list, name_list, byte_name_list):
                 name = "[USER]"
             text = sentence[0][1]
             text = format_text(text)
+
             an_order["order"].append([name,text])
 
         if not(pair_line in line 

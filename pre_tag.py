@@ -17,8 +17,12 @@ class PreTagger:
         self.data = self._get_data_from_json()
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_path)
         self.model = AutoModelForTokenClassification.from_pretrained(self.model_path).to(self.device)
+        self.data_list = []
+        self.final_data = self.data.copy()
 
-    
+    def change_model(self, model_path):
+        self.tokenizer = AutoTokenizer.from_pretrained(model_path)
+        self.model = AutoModelForTokenClassification.from_pretrained(model_path).to(self.device)
 
     def _get_data_from_json(self):
         with open(self.dir_path+self.data_path, "r") as jf:
@@ -48,41 +52,75 @@ class PreTagger:
                     del(predicted_tokens_classes[0])
                 order["pred_label"].append(predicted_tokens_classes)
                 tail_pred = predicted_tokens_classes[len(head_word_ids):]
-
                 word_label = []
-                # 按照词来遍历
-                for word in range(tail_word_ids[-1]+1):
-                    not_O_list = []
-                    for word_id, pred_label in zip(tail_word_ids, tail_pred):
-                        # 跳过非当前词
-                        if word!=word_id:
-                            continue
-                        # 当前词
-                        if pred_label=="O":
-                            word_label.append("O")
-                            break
-                        else:
-                            not_O_list.append(pred_label)
-                    if not_O_list:
-                        word_label.append(not_O_list[0])
 
-                a_piece_indexs = []
-                label_indexs = []
-                for index in range(len(word_label)):
-                    if word_label[index]=="O" and a_piece_indexs:
-                        label_indexs.append(a_piece_indexs)
-                        a_piece_indexs = []
-                    elif word_label[index]!="O":
-                        a_piece_indexs.append(index)
-                order["label"].append(label_indexs)
+                if tail_word_ids:
+                    # 按照词来遍历
+                    for word in range(tail_word_ids[-1]+1):
+                        not_O_list = []
+                        for word_id, pred_label in zip(tail_word_ids, tail_pred):
+                            # 跳过非当前词
+                            if word!=word_id:
+                                continue
+                            # 当前词
+                            if pred_label!="O":
+                                word_label.append(pred_label)
+                                not_O_list.append(pred_label)
+                                break
+                        if not not_O_list:
+                            word_label.append("O")
+
+                    a_piece_indexs = []
+                    label_indexs = []
+                    for index in range(len(word_label)):
+                        if word_label[index]=="O" and a_piece_indexs:
+                            label_indexs.append(a_piece_indexs)
+                            a_piece_indexs = []
+                        elif word_label[index]!="O":
+                            a_piece_indexs.append(index)
+                    order["label"].append(label_indexs)
+                else:
+                    order["label"].append([])
+
             del(order["pred_label"])
+        self.data_list.append(self.data)
 
     def pretag(self):
         self._get_predict_label()
         pass
 
+    def _combine_label(self, label1, label2):
+        label_flat = []
+        result_labels = []
+        for label in label1:
+            label_flat.extend(label)
+        for label in label2:
+            label_flat.extend(label)
+        label_flat.sort()
+        a_label = []
+        for index in label_flat:
+            if not a_label:
+                a_label.append(index)
+                continue
+            if index==a_label[-1]:
+                continue
+            if index==(a_label[-1]+1):
+                a_label.append(index)
+                continue
+            result_labels.append(a_label)
+            a_label = [index]
+        return result_labels
+
+    def combine_the_data(self):
+        for orders in self.data_list:
+            for order, final_order in zip(orders, self.final_data):
+                label_combined = []
+                for label, final_label in zip(order["label"], final_order["label"]):
+                    label_combined.append(self._combine_label(label,final_label))
+                final_order["label"] = label_combined
+
     def write_data(self):
-        json_data = json.dumps(self.data, indent=2)
+        json_data = json.dumps(self.final_data, indent=2)
         with open(self.dir_path+"tagged_"+self.data_path, "w") as jf:
             jf.write(json_data)
             print("write successed")
@@ -90,11 +128,17 @@ class PreTagger:
 
 
 def main():
-    pretag_model = ["xlm-roberta-large-finetuned-conll03-english"]
+    pretag_model = [
+                    "xlm-roberta-large-finetuned-conll03-english", 
+                    "Jean-Baptiste/roberta-large-ner-english"
+                   ]
     data_path = "untagged_data.json"
     dir_path = "eval_data/"
     pretagger = PreTagger(pretag_model[0], data_path, dir_path)
-    pretagger.pretag()
+    for model_path in pretag_model:
+        pretagger.change_model(model_path)
+        pretagger.pretag()
+    pretagger.combine_the_data()
     pretagger.write_data()
 
 

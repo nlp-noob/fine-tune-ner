@@ -1,7 +1,7 @@
 import json
 import readline
 
-DATA_PATH = "eval_data/eval_data.json"
+DATA_PATH = "eval_data/tagged_untagged_data.json"
 
 def check_right_list(check_list):
     for item in check_list:

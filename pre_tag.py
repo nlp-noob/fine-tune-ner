@@ -109,6 +109,8 @@ class PreTagger:
                 continue
             result_labels.append(a_label)
             a_label = [index]
+        if a_label:
+            result_labels.append(a_label)
         return result_labels
 
     def combine_the_data(self):
@@ -118,6 +120,7 @@ class PreTagger:
                 for label, final_label in zip(order["label"], final_order["label"]):
                     label_combined.append(self._combine_label(label,final_label))
                 final_order["label"] = label_combined
+
 
     def write_data(self):
         json_data = json.dumps(self.final_data, indent=2)

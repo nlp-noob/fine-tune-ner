@@ -17,6 +17,26 @@ def get_labels_in_line(label_list, line_index):
             label_in_line.append(label[1:])
     return label_in_line
 
+def split_alnum_word(word):
+    pieces_list = []
+    a_piece = ""
+    special_piece = ""
+    for a_char in word:
+        if a_char.isalpha():
+            if special_piece:
+                pieces_list.append(special_piece)
+                special_piece = ""
+            a_piece += a_char
+        else:
+            if a_piece:
+                pieces_list.append(a_piece)
+                a_piece = ""
+            special_piece += a_char
+    if a_piece:
+        pieces_list.append(a_piece)
+    if special_piece:
+        pieces_list.append(special_piece)
+    return pieces_list
 
 def split_special_word(word):
     pieces_list = []
@@ -49,9 +69,20 @@ def format_text(text):
         word = word.strip()
         # 字母数字组合才能作为一个词
         if word.isalnum():
-            word_list.append(word)
+            if word.isalpha():
+                word_list.append(word)
+            elif word.isdigit():
+                word_list.append(word)
+            else:
+                word_list.extend(split_alnum_word(word))
+                
         else:
-            word_list.extend(split_special_word(word))
+            splitted_word_list = split_special_word(word)
+            for splitted_word in splitted_word_list:
+                if splitted_word.isalnum():
+                    word_list.extend(split_alnum_word(splitted_word))
+                else:
+                    word_list.append(splitted_word)
     return " ".join(word_list)
 
 
@@ -135,7 +166,7 @@ def main():
         orders = get_data(fin, label_list, name_list, byte_name_list)
 
     json_str = json.dumps(orders, indent=2)
-    with open("eval_data/untagged_data.json", "w") as jf: 
+    with open("eval_data/test_untagged_data.json", "w") as jf: 
         jf.write(json_str)
         print("Write successed.")
     

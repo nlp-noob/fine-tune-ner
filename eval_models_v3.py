@@ -4,7 +4,6 @@ import time
 import json
 import yaml
 import torch
-import time
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 
 class Evaluator:

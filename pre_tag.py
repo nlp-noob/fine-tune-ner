@@ -7,9 +7,12 @@ import torch
 import time
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 
+
 class PreTagger:
 
     def __init__(self, model_path, data_path, dir_path):
+        # 所需要提取的标记名字列表
+        self.LABEL_LIST = ["I-PER", "B-PER", "PER"]
         self.device = torch.device("cuda")
         self.model_path = model_path
         self.dir_path = dir_path
@@ -63,7 +66,7 @@ class PreTagger:
                             if word!=word_id:
                                 continue
                             # 当前词
-                            if pred_label!="O":
+                            if pred_label!="O" and pred_label in self.LABEL_LIST:
                                 word_label.append(pred_label)
                                 not_O_list.append(pred_label)
                                 break
@@ -135,7 +138,7 @@ def main():
                     "xlm-roberta-large-finetuned-conll03-english", 
                     "Jean-Baptiste/roberta-large-ner-english"
                    ]
-    data_path = "untagged_data.json"
+    data_path = "empty_big.json"
     dir_path = "eval_data/"
     pretagger = PreTagger(pretag_model[0], data_path, dir_path)
     for model_path in pretag_model:

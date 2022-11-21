@@ -43,7 +43,7 @@ def get_element_template():
     return "".join(element_template_html)
 
 def main():
-    with open("eval_data/tagged_untagged_data.json", "r") as jf:
+    with open("eval_data/per_data_big.json", "r") as jf:
         orders = json.loads(jf.read())
 
     main_template_html = get_main_template()

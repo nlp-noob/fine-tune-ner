@@ -1,7 +1,7 @@
 import json
 import readline
 
-DATA_PATH = "eval_data/tagged_untagged_data.json"
+DATA_PATH = "eval_data/birth_untagged_data_small.json"
 
 def check_right_list(check_list):
     for item in check_list:
@@ -10,7 +10,7 @@ def check_right_list(check_list):
         elif(len(item)==0):
             return False
         for sub_item in item:
-            if(str(type(item))!="<class 'int'>"):
+            if(str(type(sub_item))!="<class 'int'>"):
                 return False
     return True
 

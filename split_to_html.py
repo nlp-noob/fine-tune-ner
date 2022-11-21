@@ -4,8 +4,6 @@ HTML_DIR = "htmls/"
 
 def mark_words(text, labels):
     words = text.split()
-    print(words)
-    print(labels)
     flatten_label = []
     for label in labels:
         words[label[0]] = "<mark>" + words[label[0]]
@@ -87,14 +85,17 @@ def main():
                 content_list.append(a_page)
                 a_page = []
     print(len(content_list))
-    return
 
     for content_index in range(len(content_list)):
+        if content_index < len(content_list)-1:
+            next_page_name = "tagged_page"+str(content_index+1)+".html"
+        else:
+            next_page_name = "thanks_page.html"
         content_to_write = "".join(content_list[content_index])
         html_page = main_template_html.format(mark_style, 
                                               js_code,
                                               content_to_write,
-                                              "label"+str(content_index)+".txt")
+                                              "label"+str(content_index)+".txt", next_page_name)
         with open(HTML_DIR+"tagged_page"+str(content_index)+".html", "w") as fout:
             fout.write(html_page)
             fout.close()

@@ -151,7 +151,7 @@ def get_data(fin, label_list, name_list, byte_name_list):
 
 def main():
 
-    txt_file = sys.argv[1] if len(sys.argv) > 1 else 'eval_data/order.sample.txt'
+    txt_file = sys.argv[1] if len(sys.argv) > 1 else 'eval_data/order.txt'
     
     with open("eval_data/advisor_name_byte.json", "r") as bnf:
         name_list = json.load(bnf)
@@ -169,7 +169,7 @@ def main():
         orders = get_data(fin, label_list, name_list, byte_name_list)
 
     json_str = json.dumps(orders, indent=2)
-    with open("eval_data/birth_untagged_data_small.json", "w") as jf: 
+    with open("eval_data/empty_big.json", "w") as jf: 
         jf.write(json_str)
         print("Write successed.")
     

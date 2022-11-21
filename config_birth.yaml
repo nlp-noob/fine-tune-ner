@@ -1,0 +1,13 @@
+LABEL_ALL_TOKENS: True
+SLIDING_WIN_SIZE: 8
+HAVE_PRE: False
+MODEL_PATH: xlm-roberta-large-finetuned-conll03-english  
+DATA_FILE_PATH: eval_data/birth_data_small.json
+PRE_LABEL: B-DATE
+CEN_LABEL: I-DATE
+DEFAULT_LABEL: I-DATE
+ADD_SPECIAL_TOKENS: True
+USE_SPECIAL_TOKENS: False
+WORD_TRUE_TOR: 0.4
+WORD_FALSE_TOR: 1
+

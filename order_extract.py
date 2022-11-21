@@ -7,7 +7,7 @@ pair_line = "==================== pair:"
 order_line = "-------------------- order:"
 new_line_symbol = " "
 order_price_line = "\t order_price"
-generate_empty_label = True
+generate_empty_label = False
 
 
 def get_labels_in_line(label_list, line_index):
@@ -115,16 +115,16 @@ def get_data(fin, label_list, name_list, byte_name_list):
             an_order = {"pairNO":pair_no,
                         "orderNO":order_no,
                         "order":[],
-                        "label":[] if generate_empty_label else flabel_list[len(orders)]}
+                        "label":[] if generate_empty_label else label_list[len(orders)]}
             order_no = 0
 
         if catch_text_compile.match(line):
             sentence = re.findall("\t.*\t(.*)\t:(.*)", line)
             name = sentence[0][0]
             if name.encode() in byte_name_list or name in name_list:
-                name = "[ADVISOR]"
+                name = False
             else:
-                name = "[USER]"
+                name = True
             text = sentence[0][1]
             text = format_text(text)
 
@@ -151,7 +151,7 @@ def get_data(fin, label_list, name_list, byte_name_list):
 
 def main():
 
-    txt_file = sys.argv[1] if len(sys.argv) > 1 else 'eval_data/order.txt'
+    txt_file = sys.argv[1] if len(sys.argv) > 1 else 'eval_data/order.sample.txt'
     
     with open("eval_data/advisor_name_byte.json", "r") as bnf:
         name_list = json.load(bnf)
@@ -160,7 +160,7 @@ def main():
             byte_name_list.append(name.encode())
 
     if not generate_empty_label:
-        with open("eval_data/label.json", "r") as lf:
+        with open("eval_data/label_birth.json", "r") as lf:
             label_list = json.load(lf)
     else:
         label_list = []
@@ -169,7 +169,7 @@ def main():
         orders = get_data(fin, label_list, name_list, byte_name_list)
 
     json_str = json.dumps(orders, indent=2)
-    with open("eval_data/empty_big.json", "w") as jf: 
+    with open("eval_data/birth_data_small_test.json", "w") as jf: 
         jf.write(json_str)
         print("Write successed.")
     

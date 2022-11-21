@@ -24,11 +24,13 @@ def modify_the_data(data_path):
     return data_list
 
 def main():
-    with open('log.csv', 'w', encoding='UTF8', newline='') as f:
+    with open('log_birth.csv', 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
         dir_list = os.listdir(LOG_PATH)
         dir_list.sort()
         for file_path in dir_list:
+            if not "Jean-Baptiste_camembert-ner-with-dates" in file_path:
+                continue
             data_list = modify_the_data(file_path)
             for data_line in data_list:
                 writer.writerow(data_line)

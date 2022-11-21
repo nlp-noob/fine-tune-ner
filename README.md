@@ -1,5 +1,9 @@
+
 # fine-tune-ner
 # find a model in models
+True--User
+False--ADVISOR
+
 要对这个BERT模型进行微调首先就要找到一个合适的初始模型。那么就可以先使用一个较小的数据集进行测试。
 这里首先使用的是24条对话，对所有模型进行一个简单的评估。
 

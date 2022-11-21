@@ -41,8 +41,12 @@ class PreTagger:
             order["label"] = []
             for line in order["order"]:
                 head_text = line[0]
+                if head_text:
+                    head_text = "[USER]"
+                else:
+                    head_text = "[ADVISOR]"
                 tail_text = line[1]
-                text = " ".join(line)
+                text = " ".join([head_text, tail_text])
                 tokenized_sentence = self.tokenizer(text, add_special_tokens = True, return_tensors="pt").to(self.device)
                 text_word_ids = self.tokenizer(text, add_special_tokens = False, return_tensors="pt").word_ids()
                 head_word_ids = self.tokenizer(head_text, add_special_tokens = False, return_tensors="pt").word_ids()

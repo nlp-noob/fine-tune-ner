@@ -1,4 +1,5 @@
 badcases/*.txt
+badcases_birth/*.txt
 eval_data/
 eval_data/order.txt
 eval_data/order.zip
@@ -8,4 +9,5 @@ eval_data/eval_data.json
 test/
 log/
 log.csv
+log_birth.csv
 htmls/

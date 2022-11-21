@@ -1,6 +1,6 @@
 import json
 
-HTML_DIR = "htmls/"
+HTML_DIR = "htmls/test/"
 
 def mark_words(text, labels):
     words = text.split()

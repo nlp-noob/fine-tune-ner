@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrap {
+        display: block;
+      }
+      .data_table {
+        padding: 12px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        width: 830px;
+      }
+      table {
+        margin-bottom: 5px;
+      }
+      td {
+        width: 100px;
+        height: 110px;
+        padding: 12px;
+      }
+      tr td:first-child {
+        width: 100px;
+        text-align: center;
+      }
+      tr:first-child td:last-child {
+        background-color: rgb(191, 242, 177);
+      }
+
+      tr td:last-child {
+        width: 700px;
+      }
+      tr:last-child td:last-child {
+        background-color: skyblue;
+      }
+      input {
+        width: 20px;
+        height: 20px;
+      }
+      .id {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap"></div>
+    <script>
+      function highlightContent(content) {
+        return `<span style='background-color: red; font-weight: bold'>${content}</span>`;
+      }
+
+      function dealContent(contentObj) {
+        // debugger;
+        const orderArray = contentObj.order.map((item) =>
+          item.join("").split(" ")
+        );
+        contentObj.label.forEach((item, index) => {
+          if (item.length != 0) {
+            item.forEach((element) => {
+              orderArray[index][element[0]] = highlightContent(
+                orderArray[index][element[0]]
+              );
+              if (element.length == 2) {
+                orderArray[index][element[1]] = highlightContent(
+                  orderArray[index][element[1]]
+                );
+              }
+            });
+          }
+        });
+        const b = orderArray.map((item) => item.join(" "));
+        // debugger;
+        return orderArray.map((item) => item.join(" ")).join("<br>");
+      }
+
+      const data = [
+        {
+          order: [
+            ["[USER]: A love reading"],
+            ["[ADVISOR]: Names dob both of you"],
+            [
+              "[USER]: Brandy Hall 8 / 4 / 1994 & Michael sosa don ' t know the birthday",
+            ],
+          ],
+          label: [
+            [],
+            [],
+            [
+              [1, 2],
+              [9, 10],
+            ],
+          ],
+          id: 1,
+          isSelect: false,
+        },
+        {
+          order: [
+            ["[USER]: A love reading"],
+            ["[ADVISOR]: Names dob both of you"],
+            [
+              "[USER]: Brandy Hall 8 / 4 / 1994 & Michael sosa don ' t know the birthday",
+            ],
+          ],
+          label: [
+            [],
+            [],
+            [
+              [1, 2],
+              [9, 10],
+            ],
+          ],
+          id: 2,
+          isSelect: false,
+        },
+      ];
+
+      function changeSelected(index) {
+        data[index].isSelect = !data[index].isSelect;
+      }
+
+      const wrap = document.querySelector(".wrap");
+
+      const dataTable = document.querySelector(".data_table");
+      const array = new Array(2).fill("");
+
+      for (const index in data) {
+        const dataTable = document.createElement("div");
+        dataTable.setAttribute("class", "data_table");
+        wrap.appendChild(dataTable);
+
+        const table = document.createElement("table");
+        table.setAttribute("border", 1);
+        table.setAttribute("align", "center");
+        table.setAttribute("cellpadding", 20);
+        table.setAttribute("cellspacing", 0);
+
+        dataTable.appendChild(table);
+
+        for (const _ in array) {
+          const tr = document.createElement("tr");
+          table.appendChild(tr);
+          for (const __ in array) {
+            const td = document.createElement("td");
+
+            const checkBox = document.createElement("input");
+            checkBox.setAttribute("type", "checkbox");
+            checkBox.setAttribute("id", data[index].id);
+            checkBox.checked = data[index].isSelect;
+            checkBox.addEventListener("click", function () {
+              changeSelected(index);
+            });
+
+            if (_ == 0) {
+              __ == 0
+                ? (td.innerHTML = data[index].id)
+                : (td.innerHTML = dealContent(data[index]));
+              //   td.innerHTML = "<div style='color: #fff'>1212</div>";
+            } else {
+              __ == 0
+                ? td.appendChild(checkBox)
+                : (td.innerHTML = dealContent(data[index]));
+            }
+            tr.appendChild(td);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

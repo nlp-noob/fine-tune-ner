@@ -12,7 +12,7 @@ class PreTagger:
 
     def __init__(self, model_path, data_path, dir_path):
         # 所需要提取的标记名字列表
-        self.LABEL_LIST = ["I-PER", "B-PER", "PER"]
+        self.LABEL_LIST = ["I-DATE", "B-DATE", "DATE"]
         self.device = torch.device("cuda")
         self.model_path = model_path
         self.dir_path = dir_path
@@ -139,8 +139,7 @@ class PreTagger:
 
 def main():
     pretag_model = [
-                    "xlm-roberta-large-finetuned-conll03-english", 
-                    "Jean-Baptiste/roberta-large-ner-english"
+                    "Jean-Baptiste/camembert-ner-with-dates"
                    ]
     data_path = "empty_big.json"
     dir_path = "eval_data/"

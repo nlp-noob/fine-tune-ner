@@ -1,6 +1,6 @@
 import json
 
-HTML_DIR = "htmls/birth/"
+HTML_DIR = "htmls/per/"
 OUT_DIR = "data/"
 WIN_SIZE = 2
 ADD_INFO_SIZE = 2
@@ -74,7 +74,7 @@ def main():
                         "label_check": [
                                         label
                                        ],
-                        "id": len(a_page),
+                        "id": len(a_page) if len(a_page) < 100 else 0,
                         "isSelect": False,
                         "index_order": order_index,
                         "index_line": input_index
@@ -121,10 +121,10 @@ def main():
     check_box_tail = get_check_box_tail()
     for content_index in range(len(content_list)):
         if content_index < len(content_list)-1:
-            next_page_name = "tagged_page"+str(content_index+1)+".html"
+            next_page_name = "tagged_page"+f"{content_index+1:04d}"+".html"
         else:
             next_page_name = "thanks_page.html"
-        this_page_name = "tagged_page"+str(content_index)+".html"
+        this_page_name = "tagged_page"+f"{content_index:04d}"+".html"
         const_data = json.dumps(content_list[content_index], indent=2)
         title_str = "data" + str(content_index+1)
         html_page = main_template.format(style_template, 

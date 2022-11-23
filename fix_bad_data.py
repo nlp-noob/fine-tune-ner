@@ -1,7 +1,7 @@
 import json
 import readline
 
-DATA_PATH = "eval_data/birth_untagged_data_small.json"
+DATA_PATH = "train_data/per_big/bad.json"
 
 def check_right_list(check_list):
     for item in check_list:
@@ -38,13 +38,18 @@ def main():
     with open(DATA_PATH, "r") as jf:
         json_dict = json.load(jf)
     quit_flag = False
+
+    # 用来存储所有类别的字典
+    type_info = {}
+    type_list = []
+
     for item in json_dict:
-        orders = item["order"]
+        order = item["order"]
         labels = item["label"]
         new_label = []
-        for order, label in zip(orders, labels):
+        for line, label in zip(order, labels):
             while(True):
-                number_words_in_sentence(order[1])
+                number_words_in_sentence(line[1])
                 print(label)
                 print("label the PER in the sentence like this: [[0,1],[4,5]]")
                 new_label_list = input("please input the new labels:") 
@@ -85,9 +90,29 @@ def main():
                 break
         if quit_flag:
             break
+
+        # 进行类别的输入
+        while(True):
+            if not type_info:
+                print("\"\""*20)
+                print("There is no type in the list!")
+                print("\"\""*20)
+            else:
+                print("\"\""*20)
+                for a_type in type_list:
+                    print("The {} type info is: {}".format(a_type, type_dict[a_type])
+                print("\"\""*20)
+
+            type_input = input("please enter the type of the order:")
+            item["type"] = type_input
+            if not type_input in type_list:
+                type_info = input("please enter the type info of this order:")
+                type_dict[type_input] = type_info
+            
+
         item["label"] = new_label
     jf.close()
-    with open(DATA_PATH[:-5]+"_tagged"+".json", "w") as fout:
+    with open(DATA_PATH[:-5]+"_fixed"+".json", "w") as fout:
         json_str = json.dumps(json_dict, indent=2)
         fout.write(json_str)
         fout.close()

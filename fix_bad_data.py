@@ -1,7 +1,9 @@
 import json
 import readline
 
-DATA_PATH = "train_data/per_big/bad.json"
+DATA_PATH = "train_data/per_big/bad_1.json"
+continue_process_flag = True
+save_every_order = True
 
 def check_right_list(check_list):
     for item in check_list:
@@ -43,12 +45,26 @@ def main():
     type_info = {}
     type_list = []
 
-    for item in json_dict:
+    for item, progress_order in zip(json_dict, range(len(json_dict))):
+        if len(item)==6 and continue_process_flag:
+            if not item["type"] in type_list:                
+                type_list.append(item["type"])
+                type_info[item["type"]] = item["type_info"]
+            continue
+
         order = item["order"]
         labels = item["label"]
         new_label = []
-        for line, label in zip(order, labels):
+        for line, label, line_index in zip(order, labels, range(len(order))):
             while(True):
+                print("=="*30)
+                print("processing order \t{}/{}".format(progress_order, len(json_dict)))
+                print("processing line \t{}/{}".format(line_index, len(order)))
+                print("=="*30)
+                if line[0]:
+                    print("[USER]:")
+                else:
+                    print("[ADVISOR]:")
                 number_words_in_sentence(line[1])
                 print(label)
                 print("label the PER in the sentence like this: [[0,1],[4,5]]")
@@ -75,7 +91,7 @@ def main():
                             break
                         
                     if new_label_list == "j":
-                        new_label.append([])
+                        new_label.append(label)
                         break
                     elif new_label_list == "quit":
                         quit_flag = True    
@@ -99,18 +115,46 @@ def main():
                 print("\"\""*20)
             else:
                 print("\"\""*20)
-                for a_type in type_list:
-                    print("The {} type info is: {}".format(a_type, type_dict[a_type])
+                for a_type_index in range(len(type_list)):
+                    a_type = type_list[a_type_index]
+                    print("{}:\t {}\t\t type info is: {}".format(a_type_index, a_type, type_info[a_type]))
                 print("\"\""*20)
 
             type_input = input("please enter the type of the order:")
+            if not type_input:
+                print(empty_input)
+                continue
+            if type_input.isdigit():
+                a_type_index = int(type_input)
+                if a_type_index >= len(type_list) or a_type_index < 0:
+                    print("out of range!!")
+                    continue
+                else:
+                    type_input = type_list[a_type_index]
+                    print("\"\""*20)
+                    print("choosing type {}".format(type_input))
             item["type"] = type_input
             if not type_input in type_list:
-                type_info = input("please enter the type info of this order:")
-                type_dict[type_input] = type_info
-            
-
+                type_text = input("please enter the type info of this order:")
+                type_info[type_input] = type_text
+                type_list.append(type_input)
+            item["type_info"] = type_info[type_input]
+            break
         item["label"] = new_label
+
+        # 随时保存
+        if save_every_order:
+            with open(DATA_PATH[:-5]+"_fixed"+".json", "w") as fout:
+                json_str = json.dumps(json_dict, indent=2)
+                fout.write(json_str)
+                fout.close()
+                print("Write Succes")
+            with open(DATA_PATH[:-5]+"_bak"+".json", "w") as fout:
+                json_str = json.dumps(json_dict, indent=2)
+                fout.write(json_str)
+                fout.close()
+                print("Write Succes")
+
     jf.close()
     with open(DATA_PATH[:-5]+"_fixed"+".json", "w") as fout:
         json_str = json.dumps(json_dict, indent=2)

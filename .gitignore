@@ -8,6 +8,7 @@ eval_data/label.json
 eval_data/eval_data.json
 test/
 log/
+test-ner/
 log.csv
 log_birth.csv
 htmls/

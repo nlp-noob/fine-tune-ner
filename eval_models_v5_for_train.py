@@ -5,7 +5,6 @@ import json
 import yaml
 import torch
 from transformers import AutoTokenizer, AutoModelForTokenClassification
-from datasets import load_dataset
 
 class Evaluator:
 
@@ -54,6 +53,10 @@ class Evaluator:
             aligned_label_list = []
             
             for label, sentence in zip(item["label"], item["order"]):
+                if sentence[0]:
+                    sentence[0] = "[USER]"
+                else:
+                    sentence[0] = "[ADVISOR]"
                 head_inputs = self.tokenizer(sentence[0], 
                                              add_special_tokens=False, 
                                              return_tensors="pt")
@@ -609,24 +612,25 @@ def modify_config(model_path, config_yaml):
 def main():
 
     tested_list = [
-                  ] 
-    no_net_work = [
-                  "jplu/tf-xlm-r-ner-40-lang",
-                  ]
-    model_list = [ 
                   "xlm-roberta-large-finetuned-conll03-english",
                   "dslim/bert-base-NER",  
                   "dslim/bert-large-NER",
-                  "vlan/bert-base-multilingual-cased-ner-hrl",
                   "dbmdz/bert-large-cased-finetuned-conll03-english",
-                  "Jean-Baptiste/roberta-large-ner-english",
+                  ] 
+    no_net_work = [
+                  "jplu/tf-xlm-r-ner-40-lang",
+                  "vlan/bert-base-multilingual-cased-ner-hrl",
+                  ]
+    model_list = [ 
                   "cmarkea/distilcamembert-base-ner",
                   "51la5/bert-large-NER", 
                   "gunghio/distilbert-base-multilingual-cased-finetuned-conll2003-ner"
+                  "Jean-Baptiste/roberta-large-ner-english",
                  ]
 
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)
+        config["DATA_FILE_PATH"] = "train_data/per_big/valid0001.json"
     for path in model_list:
         jump_flag, config = modify_config(path, config)
         if not jump_flag:
@@ -639,17 +643,17 @@ def main():
         
             evaluator.collate_inputs_All()
             evaluator.get_predict_label()
-            evaluator.eval_all()
+            # evaluator.eval_all()
             evaluator.write_badcase()
             evaluator.eval_bottom_line()
-            evaluator.eval_weighted_user()
+            # evaluator.eval_weighted_user()
 
             evaluator.collate_inputs_Only_User()
             evaluator.get_predict_label()
-            evaluator.eval_all()
+            # evaluator.eval_all()
             evaluator.write_badcase()
             evaluator.eval_bottom_line()
-            evaluator.eval_weighted_user()
+            #evaluator.eval_weighted_user()
 
 
 if __name__=="__main__":

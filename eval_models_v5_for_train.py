@@ -622,6 +622,7 @@ def main():
                   "vlan/bert-base-multilingual-cased-ner-hrl",
                   ]
     model_list = [ 
+                  "./test.model/",
                   "cmarkea/distilcamembert-base-ner",
                   "51la5/bert-large-NER", 
                   "gunghio/distilbert-base-multilingual-cased-finetuned-conll2003-ner"
@@ -637,23 +638,22 @@ def main():
             print("Jump the path:{}. no related label".format(path))
             continue
         win_size = config["SLIDING_WIN_SIZE"]
-        for the_size in range(win_size+1):
-            config["SLIDING_WIN_SIZE"] = the_size
-            evaluator = Evaluator(config)
+        config["SLIDING_WIN_SIZE"] = the_size
+        evaluator = Evaluator(config)
         
-            evaluator.collate_inputs_All()
-            evaluator.get_predict_label()
-            # evaluator.eval_all()
-            evaluator.write_badcase()
-            evaluator.eval_bottom_line()
-            # evaluator.eval_weighted_user()
+        evaluator.collate_inputs_All()
+        evaluator.get_predict_label()
+        # evaluator.eval_all()
+        evaluator.write_badcase()
+        evaluator.eval_bottom_line()
+        # evaluator.eval_weighted_user()
 
-            evaluator.collate_inputs_Only_User()
-            evaluator.get_predict_label()
-            # evaluator.eval_all()
-            evaluator.write_badcase()
-            evaluator.eval_bottom_line()
-            #evaluator.eval_weighted_user()
+        evaluator.collate_inputs_Only_User()
+        evaluator.get_predict_label()
+        # evaluator.eval_all()
+        evaluator.write_badcase()
+        evaluator.eval_bottom_line()
+        #evaluator.eval_weighted_user()
 
 
 if __name__=="__main__":

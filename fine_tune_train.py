@@ -5,6 +5,8 @@ import json
 import yaml
 import torch
 import pandas as pd
+import numpy as np
+from datasets import load_metric
 from datasets import Dataset
 from datasets import load_dataset
 from transformers import AutoTokenizer
@@ -18,6 +20,7 @@ class MyTrainer:
     def __init__(self, config):
         self.config = config
         self.device = torch.device(config["device"])
+        self.metric = load_metric("seqeval")
 
         self.model_path = None
         self.model = None
@@ -25,6 +28,7 @@ class MyTrainer:
         self.data_collator = None
         self._load_model(None)
         self.label_encoding_dict = {"I-PER": 6, "O": 7}
+        self.label_list = ["I-PER", "O"]
 
         self.valid_data = None
         self.train_data = None
@@ -48,12 +52,12 @@ class MyTrainer:
             self.model_path = self.config["MODEL_PATH"]
 
         self.tokenizer = AutoTokenizer.from_pretrained(self.config["MODEL_PATH"])
-        self.data_collator = DataCollatorForTokenClassification(self.tokenizer)
+        
         if self.config["USE_SPECIAL_TOKENS"]:
             special_tokens_dict = {"additional_special_tokens": ["[USER]","[ADVISOR]"]}
             num_added_toks = self.tokenizer.add_special_tokens(special_tokens_dict)
             self.model.resize_token_embeddings(len(self.tokenizer))
-        self.model = AutoModelForTokenClassification.from_pretrained(self.config["MODEL_PATH"]).to(self.device)
+        self.model = AutoModelForTokenClassification.from_pretrained(self.config["MODEL_PATH"])
 
 
     def _get_labels(self, data):
@@ -88,6 +92,7 @@ class MyTrainer:
                         tag_index = label[label_index] + 1
                         label_flattened[tag_index] = tag
                 item["flat_label"].append(label_flattened)
+
         return data
                 
 
@@ -102,11 +107,6 @@ class MyTrainer:
             self.train_data = json.loads(tf.read())
             tf.close()
 
-    def _get_label_O(self, lenth):
-        label_list = []
-        for i in range(lenth):
-            label_list.append("O")
-        return label_list
 
     def _merge_lines(self, lines):
         result = []
@@ -164,6 +164,7 @@ class MyTrainer:
     
             labels.append(label_ids)
         tokenized_inputs["labels"] = labels
+        import pdb;pdb.set_trace()
         return tokenized_inputs
 
 
@@ -171,16 +172,30 @@ class MyTrainer:
         self.train_tokenized_datasets = self.train_dataset.map(self._tokenize_and_align_labels, batched=True)
         self.valid_tokenized_datasets = self.valid_dataset.map(self._tokenize_and_align_labels, batched=True)
 
+    def _compute_metrics(self,p):
+        predictions, labels = p
+        predictions = np.argmax(predictions, axis=2)
+        true_predictions = [[self.label_list[p] for (p, l) in zip(prediction, label) if l != -100] for prediction, label in zip(predictions, labels)]
+        true_labels = [[self.label_list[l] for (p, l) in zip(prediction, label) if l != -100] for prediction, label in zip(predictions, labels)]
+        results = self.metric.compute(predictions=true_predictions, references=true_labels)
+        return {"precision": results["overall_precision"], "recall": results["overall_recall"], "f1": results["overall_f1"], "accuracy": results["overall_accuracy"]}
+
     def get_trainer(self):
         self.train_args = TrainingArguments(
-            f"test-ner",
+            "test-ner",
             evaluation_strategy = "epoch",
             learning_rate=self.config["lr"],
             per_device_train_batch_size=self.config["batch_size"],
             per_device_eval_batch_size=self.config["batch_size"],
             num_train_epochs=3,
             weight_decay=self.config["weight_decay"],
+            fp16=True,
+            fp16_backend=True,
+            fp16_full_eval=True,
+            fp16_opt_level="O3"
             )
+        self.data_collator = DataCollatorForTokenClassification(self.tokenizer)
+
         self.trainer = Trainer(
             self.model,
             self.train_args,
@@ -188,6 +203,7 @@ class MyTrainer:
             eval_dataset=self.valid_tokenized_datasets,
             data_collator=self.data_collator,
             tokenizer=self.tokenizer,
+            compute_metrics=self._compute_metrics
             )
     
 
@@ -201,7 +217,7 @@ def main():
     mytrainer.get_trainer()
     mytrainer.trainer.train()
     mytrainer.trainer.evaluate()
-    mytrainer.trainer.save_model(test.model)
+    mytrainer.trainer.save_model("test.model")
 
 
     import pdb;pdb.set_trace()

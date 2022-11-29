@@ -54,6 +54,10 @@ class Evaluator:
             aligned_label_list = []
             
             for label, sentence in zip(item["label"], item["order"]):
+                if sentence[0]:
+                    sentence[0] = "[USER]"
+                else:
+                    sentence[0] = "[ADVISOR]"
                 head_inputs = self.tokenizer(sentence[0], 
                                              add_special_tokens=False, 
                                              return_tensors="pt")
@@ -146,6 +150,7 @@ class Evaluator:
         input_list = []
         for item, item_index in zip(self.data, range(len(self.data))):
             for sentence_index in range(len(item["order"])):
+                item["order"][sentence_index][1] = item["order"][sentence_index][1].strip()
                 if item["order"][sentence_index][0]!="[USER]":
                     continue
                 input_index = [sentence_index]
@@ -346,6 +351,8 @@ class Evaluator:
                 if word_ids[index]!=word_id:
                     continue
                 else:
+                    if len(pred) != len(tag):
+                        import pdb;pdb.set_trace()
                     word_len += 1
                     pred_label = pred[index]
                     tag_label = tag[index]
@@ -455,14 +462,26 @@ class Evaluator:
             len_label = len(self.data[item["dataIndex"]]["label"][bottom_index])
             per_y_true = item["tag"][-len_label:]
             per_y_pred = item["pred"][-len_label:]
+            write_bad_case_flag = False
             for true_label, pred_label in zip(per_y_true, per_y_pred):
                 if(true_label!='O' and true_label==pred_label):
                     True_P += 1
                 elif(pred_label!='O' and true_label!=pred_label):
+                    write_bad_case_flag = True
                     False_P += 1
                 elif(pred_label=='O' and true_label!='O'):
+                    write_bad_case_flag = True
                     False_N += 1
             True_P_W, False_P_W, False_N_W = self._get_metrics_ABC(True_P_W, False_P_W, False_N_W, item, "bottom")
+
+            if write_bad_case_flag:
+                    self.badcase.append(item["input"])
+                    self.badcase.append("pairNO:"+str(item["pairNO"]))
+                    self.badcase.append("orderNO:"+str(item["orderNO"]))
+                    self.badcase.append(self._format_out_put(item["tokenized_words"]))
+                    self.badcase.append("true_label: \t"+self._format_out_put(item["tag"]))
+                    self.badcase.append("pred_lable: \t"+self._format_out_put(item["pred"]))
+                    self.badcase.append("**"*20)
             
         print("model_path:"+self.config["MODEL_PATH"])
         print("evaluation of bottom line")
@@ -639,19 +658,19 @@ def main():
             config["SLIDING_WIN_SIZE"] = the_size
             evaluator = Evaluator(config)
         
-            evaluator.collate_inputs_All()
-            evaluator.get_predict_label()
-            evaluator.eval_all()
-            evaluator.write_badcase()
-            evaluator.eval_bottom_line()
-            evaluator.eval_weighted_user()
+            # evaluator.collate_inputs_All()
+            # evaluator.get_predict_label()
+            # evaluator.eval_all()
+            # evaluator.write_badcase()
+            # evaluator.eval_bottom_line()
+            # evaluator.eval_weighted_user()
 
             evaluator.collate_inputs_Only_User()
             evaluator.get_predict_label()
-            evaluator.eval_all()
-            evaluator.write_badcase()
+            # evaluator.eval_all()
             evaluator.eval_bottom_line()
-            evaluator.eval_weighted_user()
+            evaluator.write_badcase()
+            # evaluator.eval_weighted_user()
 
 
 if __name__=="__main__":

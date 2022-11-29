@@ -1,5 +1,5 @@
 LABEL_ALL_TOKENS: True
-SLIDING_WIN_SIZE: 2
+SLIDING_WIN_SIZE: 4
 HAVE_PRE: False
 MODEL_PATH: xlm-roberta-large-finetuned-conll03-english  
 DATA_FILE_PATH: eval_data/eval_data.json

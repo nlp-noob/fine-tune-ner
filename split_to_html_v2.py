@@ -42,7 +42,7 @@ def add_up_label_list(label_list):
             
 
 def main():
-    with open("eval_data/per_data_big.json", "r") as jf:
+    with open("eval_data/pretagged_empty_big.json", "r") as jf:
         orders = json.loads(jf.read())
 
     content_list = []

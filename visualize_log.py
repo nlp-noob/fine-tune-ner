@@ -24,7 +24,7 @@ def modify_the_data(data_path):
     return data_list
 
 def main():
-    with open('log_train_valid.csv', 'w', encoding='UTF8', newline='') as f:
+    with open('log_pretag.csv', 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
         dir_list = os.listdir(LOG_PATH)
         dir_list.sort()

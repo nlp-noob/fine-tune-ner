@@ -1,7 +1,8 @@
 import json
 import readline
 
-DATA_PATH = "eval_data/birth_untagged_data_small.json"
+DATA_PATH = "eval_data/per_data_small_test.json"
+SAVE_WHILE_TAGGING = True
 
 def check_right_list(check_list):
     for item in check_list:
@@ -37,13 +38,22 @@ def main():
     command_list = ["j"]
     with open(DATA_PATH, "r") as jf:
         json_dict = json.load(jf)
+        jf.close()
     quit_flag = False
-    for item in json_dict:
+    for item, item_index in zip(json_dict, range(len(json_dict))):
         orders = item["order"]
         labels = item["label"]
         new_label = []
-        for order, label in zip(orders, labels):
+        for order, label, order_index in zip(orders, labels, range(len(orders))):
+            print("**"*20)
+            print(f"Processing order:{item_index}/{len(json_dict)}")
+            print(f"Processing line:{order_index}/{len(orders)}")
+            print("**"*20)
             while(True):
+                if order[0]:
+                    print("[USER]")
+                else:
+                    print("[ADVISOR]")
                 number_words_in_sentence(order[1])
                 print(label)
                 print("label the PER in the sentence like this: [[0,1],[4,5]]")
@@ -70,7 +80,7 @@ def main():
                             break
                         
                     if new_label_list == "j":
-                        new_label.append([])
+                        new_label.append(label)
                         break
                     elif new_label_list == "quit":
                         quit_flag = True    
@@ -78,7 +88,7 @@ def main():
                     else:
                         print("**"*20)
                         print("Wrong input!!!")
-                        print("you should enter a list of label or just enter \"j\" to jump(empty label)")
+                        print("you should enter a list of label or just enter \"j\" to jump")
                         print("To quit and save, enter: \"quit\"")
                         print("**"*20)
             if quit_flag:
@@ -86,7 +96,12 @@ def main():
         if quit_flag:
             break
         item["label"] = new_label
-    jf.close()
+        if SAVE_WHILE_TAGGING:
+            with open(DATA_PATH[:-5]+"_tagged"+".json", "w") as fout:
+                json_str = json.dumps(json_dict, indent=2)
+                fout.write(json_str)
+                fout.close()
+                print("Write Succes")
     with open(DATA_PATH[:-5]+"_tagged"+".json", "w") as fout:
         json_str = json.dumps(json_dict, indent=2)
         fout.write(json_str)

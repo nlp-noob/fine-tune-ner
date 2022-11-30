@@ -483,7 +483,7 @@ class Evaluator:
         print(False_P_W)
         print(False_N_W)
         print("**"*20)
-        self.write_log("eval_bottom", True_P, False_P, False_N, True_P_W, False_P_W, False_N_W)
+        # self.write_log("eval_bottom", True_P, False_P, False_N, True_P_W, False_P_W, False_N_W)
 
     def eval_weighted_user(self):
         # 统计overlap次数，并且把user抽取出来
@@ -611,47 +611,33 @@ def modify_config(model_path, config_yaml):
                             
 def main():
 
-    tested_list = [
-                  "xlm-roberta-large-finetuned-conll03-english",
-                  "dslim/bert-base-NER",  
-                  "dslim/bert-large-NER",
-                  "dbmdz/bert-large-cased-finetuned-conll03-english",
-                  ] 
-    no_net_work = [
-                  "jplu/tf-xlm-r-ner-40-lang",
-                  "vlan/bert-base-multilingual-cased-ner-hrl",
-                  ]
     model_list = [ 
                   "./test.model/",
-                  "cmarkea/distilcamembert-base-ner",
-                  "51la5/bert-large-NER", 
-                  "gunghio/distilbert-base-multilingual-cased-finetuned-conll2003-ner"
-                  "Jean-Baptiste/roberta-large-ner-english",
                  ]
 
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)
-        config["DATA_FILE_PATH"] = "train_data/per_big/valid0001.json"
+        config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
     for path in model_list:
         jump_flag, config = modify_config(path, config)
         if not jump_flag:
             print("Jump the path:{}. no related label".format(path))
             continue
         win_size = config["SLIDING_WIN_SIZE"]
-        config["SLIDING_WIN_SIZE"] = the_size
+        config["SLIDING_WIN_SIZE"] = 2
         evaluator = Evaluator(config)
         
-        evaluator.collate_inputs_All()
-        evaluator.get_predict_label()
+        # evaluator.collate_inputs_All()
+        # evaluator.get_predict_label()
         # evaluator.eval_all()
-        evaluator.write_badcase()
-        evaluator.eval_bottom_line()
+        # evaluator.write_badcase()
+        # evaluator.eval_bottom_line()
         # evaluator.eval_weighted_user()
 
         evaluator.collate_inputs_Only_User()
         evaluator.get_predict_label()
         # evaluator.eval_all()
-        evaluator.write_badcase()
+        # evaluator.write_badcase()
         evaluator.eval_bottom_line()
         #evaluator.eval_weighted_user()
 

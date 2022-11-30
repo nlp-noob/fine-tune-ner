@@ -1,12 +1,12 @@
 device: cuda
 batch_size: 8
-lr: 0.0001
+lr: 0.000001
 weight_decay: 0.00001
 LABEL_ALL_TOKENS: True
-SLIDING_WIN_SIZE: 0
+SLIDING_WIN_SIZE: 2
 HAVE_PRE: False
 MODEL_PATH: xlm-roberta-large-finetuned-conll03-english
-TRAIN_DATA_DIR: train_data/per_big/
+TRAIN_DATA_DIR: train_data/per_big_new/
 PRE_LABEL: B-PER
 CEN_LABEL: I-PER
 DEFAULT_LABEL: I-PER
@@ -14,6 +14,6 @@ ADD_SPECIAL_TOKENS: True
 USE_SPECIAL_TOKENS: False
 WORD_TRUE_TOR: 0.4
 WORD_FALSE_TOR: 1
-MAX_SEQUENCE: 100
+MAX_SEQUENCE: 300
 
 

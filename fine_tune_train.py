@@ -27,8 +27,11 @@ class MyTrainer:
         self.tokenizer = None
         self.data_collator = None
         self._load_model(None)
-        self.label_encoding_dict = {"I-PER": 6, "O": 7}
-        self.label_list = ["I-PER", "O"]
+        # self.label_encoding_dict = {'B-LOC': 0, 'B-MISC': 1, 'B-ORG': 2, 'I-LOC': 3, 'I-MISC': 4, 'I-ORG': 5, 'I-PER': 6, 'O': 7}
+        self.label_encoding_dict = self.model.config.label2id
+        # self.label_list = ["B-LOC", "B-MISC", "B-ORG", "I-LOC", "I-MISC", "I-ORG", "I-PER", "O"]
+        self.label_list = [key for key in self.label_encoding_dict.keys()]
+        self.config["HAVE_PRE"] = self._check_have_pre()
 
         self.valid_data = None
         self.train_data = None
@@ -60,6 +63,17 @@ class MyTrainer:
         self.model = AutoModelForTokenClassification.from_pretrained(self.config["MODEL_PATH"])
 
 
+    def _check_have_pre(self):
+        per_cnt = 0
+        for label in self.label_list:
+            if "PER" in label:
+                per_cnt += 1
+        if per_cnt == 1:
+            return False
+        elif per_cnt > 1:
+            return True
+
+
     def _get_labels(self, data):
 
         if self.config["HAVE_PRE"]:
@@ -79,7 +93,7 @@ class MyTrainer:
                     text = "[USER] "
                 else:
                     text = "[ADVISOR] "
-                text += sentence[1]
+                text += sentence[1].strip()
                 text = text.split()
                 item["flat_order"].append(text)
                 label_flattened = [ "O" for i in range(len(text))]
@@ -98,8 +112,8 @@ class MyTrainer:
 
 
     def _init_data(self):
-        valid_data_path = self.config["TRAIN_DATA_DIR"]+"valid.json"
-        train_data_path = self.config["TRAIN_DATA_DIR"]+"train.json"
+        valid_data_path = self.config["TRAIN_DATA_DIR"]+"valid0000.json"
+        train_data_path = self.config["TRAIN_DATA_DIR"]+"train0000.json"
         with open(valid_data_path, "r") as vf:
             self.valid_data = json.loads(vf.read())
             vf.close()
@@ -154,17 +168,15 @@ class MyTrainer:
             for word_idx in word_ids:
                 if word_idx is None:
                     label_ids.append(-100)
-                elif label[word_idx] == '0':
-                    label_ids.append(0)
+                elif label[word_idx] == 'O':
+                    label_ids.append(self.label_encoding_dict["O"])
                 elif word_idx != previous_word_idx:
                     label_ids.append(self.label_encoding_dict[label[word_idx]])
                 else:
                     label_ids.append(self.label_encoding_dict[label[word_idx]] if label_all_tokens else -100)
                 previous_word_idx = word_idx
-    
             labels.append(label_ids)
         tokenized_inputs["labels"] = labels
-        import pdb;pdb.set_trace()
         return tokenized_inputs
 
 
@@ -190,10 +202,13 @@ class MyTrainer:
             num_train_epochs=3,
             weight_decay=self.config["weight_decay"],
             fp16=True,
-            fp16_backend=True,
+            half_precision_backend=True,
+            # keep_batchnorm_fp32=False,
+            # fp16_backend=True,
             fp16_full_eval=True,
-            fp16_opt_level="O3"
+            fp16_opt_level="O2"
             )
+        import pdb; pdb.set_trace()
         self.data_collator = DataCollatorForTokenClassification(self.tokenizer)
 
         self.trainer = Trainer(
@@ -201,13 +216,24 @@ class MyTrainer:
             self.train_args,
             train_dataset=self.train_tokenized_datasets,
             eval_dataset=self.valid_tokenized_datasets,
+            # train_dataset=self.train_tokenized_datasets if self.train_args.do_train else None,
+            # eval_dataset=self.valid_tokenized_datasets if self.train_args.do_eval else None,
             data_collator=self.data_collator,
-            tokenizer=self.tokenizer,
-            compute_metrics=self._compute_metrics
+            tokenizer=self.tokenizer
             )
     
 
 def main():
+    model_list = [ 
+                  "xlm-roberta-large-finetuned-conll03-english",
+                  "dslim/bert-base-NER",  
+                  "dslim/bert-large-NER",
+                  "vlan/bert-base-multilingual-cased-ner-hrl",
+                  "dbmdz/bert-large-cased-finetuned-conll03-english",
+                  "Jean-Baptiste/roberta-large-ner-english",
+                  "51la5/bert-large-NER", 
+                  "gunghio/distilbert-base-multilingual-cased-finetuned-conll2003-ner"
+                 ]
     window_size = 1
     with open("config_train.yaml", "r") as configf:
         config = yaml.safe_load(configf)
@@ -215,12 +241,10 @@ def main():
     mytrainer.init_dataset(window_size)
     mytrainer.tokenize_and_align_labels()
     mytrainer.get_trainer()
+    # import pdb; pdb.set_trace()
     mytrainer.trainer.train()
     mytrainer.trainer.evaluate()
     mytrainer.trainer.save_model("test.model")
-
-
-    import pdb;pdb.set_trace()
 
 
 if __name__=="__main__":

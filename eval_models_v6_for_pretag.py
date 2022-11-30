@@ -603,7 +603,7 @@ class Evaluator:
 # 检测模型是否可用，若可用，通过这个函数提取模型中符合这个人名实体提取任务的标签，设置到config相应的参数中
 def modify_config(model_path, config_yaml):
     # modify data_path
-    config_yaml["DATA_FILE_PATH"] = "eval_data/per_data_small_test_tagged.json"
+    config_yaml["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
     try:
         model = AutoModelForTokenClassification.from_pretrained(model_path)
     except:
@@ -633,6 +633,7 @@ def main():
                   ] 
     no_net_work = [
                   "jplu/tf-xlm-r-ner-40-lang",
+                  "cmarkea/distilcamembert-base-ner",
                   ]
     model_list = [ 
                   "xlm-roberta-large-finetuned-conll03-english",
@@ -641,7 +642,6 @@ def main():
                   "vlan/bert-base-multilingual-cased-ner-hrl",
                   "dbmdz/bert-large-cased-finetuned-conll03-english",
                   "Jean-Baptiste/roberta-large-ner-english",
-                  "cmarkea/distilcamembert-base-ner",
                   "51la5/bert-large-NER", 
                   "gunghio/distilbert-base-multilingual-cased-finetuned-conll2003-ner"
                  ]

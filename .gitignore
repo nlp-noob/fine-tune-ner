@@ -11,6 +11,7 @@ test.model
 log/
 test-ner/
 log_pretag.csv
+log_valid.csv
 log_train_valid.csv
 log.csv
 log_birth.csv

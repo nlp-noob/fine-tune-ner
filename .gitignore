@@ -17,3 +17,6 @@ log.csv
 log_birth.csv
 htmls/
 train_data/
+token-classification/
+saved_model/
+badcases_mymodel/

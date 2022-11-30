@@ -458,15 +458,26 @@ class Evaluator:
             len_label = len(self.data[item["dataIndex"]]["label"][bottom_index])
             per_y_true = item["tag"][-len_label:]
             per_y_pred = item["pred"][-len_label:]
+            write_bad_case_flag = False
             for true_label, pred_label in zip(per_y_true, per_y_pred):
                 if(true_label!='O' and true_label==pred_label):
                     True_P += 1
                 elif(pred_label!='O' and true_label!=pred_label):
                     False_P += 1
+                    write_bad_case_flag = True
                 elif(pred_label=='O' and true_label!='O'):
                     False_N += 1
+                    write_bad_case_flag = True
             True_P_W, False_P_W, False_N_W = self._get_metrics_ABC(True_P_W, False_P_W, False_N_W, item, "bottom")
             
+            if write_bad_case_flag:
+                    self.badcase.append(item["input"])
+                    self.badcase.append("pairNO:"+str(item["pairNO"]))
+                    self.badcase.append("orderNO:"+str(item["orderNO"]))
+                    self.badcase.append("origin_toks: \t"+self._format_out_put(item["tokenized_words"][-len_label-1:]))
+                    self.badcase.append("true_label: \t"+self._format_out_put(item["tag"][-len_label:]))
+                    self.badcase.append("pred_lable: \t"+self._format_out_put(item["pred"][-len_label:]))
+                    self.badcase.append("**"*20)
         print("model_path:"+self.config["MODEL_PATH"])
         print("evaluation of bottom line")
         print("**"*20)
@@ -571,7 +582,6 @@ class Evaluator:
         self.write_log("eval_weighted_user", True_P, False_P, False_N, True_P_W, False_P_W, False_N_W)
         self._overlap_dict = {}
         
-        
 
     def write_badcase(self):
         model_path = "_".join(self.config["MODEL_PATH"].split("/"))
@@ -579,7 +589,7 @@ class Evaluator:
         input_type = self.inputs[0]["inputType"]
         if self.config["USE_SPECIAL_TOKENS"]:
             input_type = input_type + "_S"
-        with open("badcases/{}_Win{}_{}.txt".format(model_path, win_size, input_type),  "w") as bf:
+        with open("badcases_mymodel/{}_Win{}_{}.txt".format("mymodel", win_size, input_type),  "w") as bf:
             for line in self.badcase:
                 bf.write(line+"\n")
             bf.close()
@@ -617,7 +627,8 @@ def main():
 
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)
-        config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
+        # config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
+        config["DATA_FILE_PATH"] = "eval_data/per_data_small_test_tagged.json"
     for path in model_list:
         jump_flag, config = modify_config(path, config)
         if not jump_flag:
@@ -637,8 +648,8 @@ def main():
         evaluator.collate_inputs_Only_User()
         evaluator.get_predict_label()
         # evaluator.eval_all()
-        # evaluator.write_badcase()
         evaluator.eval_bottom_line()
+        evaluator.write_badcase()
         #evaluator.eval_weighted_user()
 
 

@@ -5,7 +5,7 @@ weight_decay: 0.00001
 LABEL_ALL_TOKENS: True
 SLIDING_WIN_SIZE: 2
 HAVE_PRE: False
-MODEL_PATH: xlm-roberta-large-finetuned-conll03-english
+MODEL_PATH: dslim/bert-large-NER
 TRAIN_DATA_DIR: train_data/per_big_new/
 PRE_LABEL: B-PER
 CEN_LABEL: I-PER

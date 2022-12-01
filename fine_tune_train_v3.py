@@ -238,8 +238,6 @@ def _get_labels(data):
                     else:
                         tag = cen_tag
                     tag_index = label[label_index] + 1
-                    print(label)
-                    print(text)
                     label_flattened[tag_index] = tag
             item["flat_label"].append(label_flattened)
     return data
@@ -289,11 +287,18 @@ def main():
     send_example_telemetry("run_ner", model_args, data_args)
 
     # Setup logging
+    ####### my_setup
+    my_model_name = model_args.config_name if model_args.config_name else model_args.model_name_or_path
+    my_model_name = "_".join(my_model_name.split('/'))
+    #######
     logging.basicConfig(
-        format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
-        datefmt="%m/%d/%Y %H:%M:%S",
+        format="{}%(asctime)s - %(levelname)s - %(name)s - %(message)s".format(my_model_name),
+        datefmt="{}%m/%d/%Y %H:%M:%S".format(my_model_name),
         handlers=[logging.StreamHandler(sys.stdout)],
     )
+    # logging.basicConfig(
+    #     filename="./test-ner/runs/" + my_model_name+"/",
+    # )
 
     log_level = training_args.get_process_log_level()
     logger.setLevel(log_level)
@@ -351,6 +356,12 @@ def main():
         if data_args.train_file is not None:
             # data_files["train"] = data_args.train_file
             dataset_dict["train"] = get_my_dataset(data_args.train_file, window_size=2)
+            # check data
+            # for i, labels in enumerate(dataset_dict["train"]["ner_tags"]):
+                # if "B-PER" in labels:
+                #     print(dataset_dict["train"]["ner_tags"][i])
+                #     print(dataset_dict["train"]["tokens"][i])
+                #     import pdb; pdb.set_trace()
             
         if data_args.validation_file is not None:
             # data_files["validation"] = data_args.validation_file
@@ -583,7 +594,11 @@ def main():
     metric = evaluate.load("seqeval")
 
     def compute_metrics(p):
-        predictions, labels = p
+        #########
+        predictions = p.predictions
+        labels = p.label_ids
+        #########
+        # predictions, labels = p
         predictions = np.argmax(predictions, axis=2)
 
         # Remove ignored index (special tokens)
@@ -626,6 +641,18 @@ def main():
         compute_metrics=compute_metrics,
     )
 
+    # Evaluation
+    if training_args.do_eval:
+        logger.info("*** Evaluate ***")
+
+        metrics = trainer.evaluate()
+
+        max_eval_samples = data_args.max_eval_samples if data_args.max_eval_samples is not None else len(eval_dataset)
+        metrics["eval_samples"] = min(max_eval_samples, len(eval_dataset))
+
+        trainer.log_metrics("eval", metrics)
+        trainer.save_metrics("eval", metrics)
+
     # Training
     if training_args.do_train:
         checkpoint = None
@@ -646,17 +673,6 @@ def main():
         trainer.save_metrics("train", metrics)
         trainer.save_state()
 
-    # Evaluation
-    if training_args.do_eval:
-        logger.info("*** Evaluate ***")
-
-        metrics = trainer.evaluate()
-
-        max_eval_samples = data_args.max_eval_samples if data_args.max_eval_samples is not None else len(eval_dataset)
-        metrics["eval_samples"] = min(max_eval_samples, len(eval_dataset))
-
-        trainer.log_metrics("eval", metrics)
-        trainer.save_metrics("eval", metrics)
 
     # Predict
     if training_args.do_predict:

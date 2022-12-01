@@ -21,5 +21,5 @@ python fine_tune_train_v3.py \
     --return_entity_level_metrics True \
     --learning_rate 0.000001 \
     --label_all_tokens True \
-    --ignore_mismatched_sizes True 
+    --ignore_mismatched_sizes True
     

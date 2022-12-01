@@ -219,10 +219,10 @@ def _get_labels(data):
     cen_tag = "I-PER"
     for item in data:
         order = item["order"]
-        label_list = item["label"]
+        my_label_list = item["label"]
         item["flat_order"] = []
         item["flat_label"] = []
-        for sentence, labels in zip(order, label_list):
+        for sentence, labels in zip(order, my_label_list):
             if sentence[0]:
                 text = "[USER] "
             else:
@@ -419,11 +419,13 @@ def main():
 
     num_labels = len(label_list)
 
+
     # Load pretrained model and tokenizer
     #
     # Distributed training:
     # The .from_pretrained methods guarantee that only one local process can concurrently
     # download model & vocab.
+
     config = AutoConfig.from_pretrained(
         model_args.config_name if model_args.config_name else model_args.model_name_or_path,
         num_labels=num_labels,
@@ -434,6 +436,7 @@ def main():
     )
 
     tokenizer_name_or_path = model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path
+
     if config.model_type in {"bloom", "gpt2", "roberta"}:
         tokenizer = AutoTokenizer.from_pretrained(
             tokenizer_name_or_path,
@@ -471,7 +474,7 @@ def main():
         )
 
     # Model has labels -> use them.
-    if model.config.label2id != PretrainedConfig(num_labels=num_labels).label2id:
+    if model.config.label2id != PretrainedConfig(num_labels=len(label_list)).label2id:
         if list(sorted(model.config.label2id.keys())) == list(sorted(label_list)):
             # Reorganize `label_list` to match the ordering of the model.
             if labels_are_int:
@@ -640,18 +643,13 @@ def main():
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
-
-    # Evaluation
-    if training_args.do_eval:
-        logger.info("*** Evaluate ***")
-
-        metrics = trainer.evaluate()
-
-        max_eval_samples = data_args.max_eval_samples if data_args.max_eval_samples is not None else len(eval_dataset)
-        metrics["eval_samples"] = min(max_eval_samples, len(eval_dataset))
-
-        trainer.log_metrics("eval", metrics)
-        trainer.save_metrics("eval", metrics)
+    print("**"*50)
+    print("**"*50)
+    print("**"*50)
+    print("**"*50)
+    print("**"*50)
+    print("**"*50)
+    print("**"*50)
 
     # Training
     if training_args.do_train:
@@ -673,6 +671,17 @@ def main():
         trainer.save_metrics("train", metrics)
         trainer.save_state()
 
+    # Evaluation
+    if training_args.do_eval:
+        logger.info("*** Evaluate ***")
+
+        metrics = trainer.evaluate()
+
+        max_eval_samples = data_args.max_eval_samples if data_args.max_eval_samples is not None else len(eval_dataset)
+        metrics["eval_samples"] = min(max_eval_samples, len(eval_dataset))
+
+        trainer.log_metrics("eval", metrics)
+        trainer.save_metrics("eval", metrics)
 
     # Predict
     if training_args.do_predict:

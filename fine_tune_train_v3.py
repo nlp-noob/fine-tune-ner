@@ -49,7 +49,32 @@ from transformers import (
 from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
+from typing import Dict
 
+#### 重写trainer方法里面的log控制输出结果
+class CustomTrainer(Trainer):
+    def log(self, logs: Dict[str, float]) -> None:
+        """
+        Log `logs` on the various objects watching training.
+
+        Subclass and override this method to inject custom behavior.
+
+        Args:
+            logs (`Dict[str, float]`):
+                The values to log.
+        """
+        if self.state.epoch is not None:
+            logs["epoch"] = round(self.state.epoch, 2)
+        output = {**logs, **{"step": self.state.global_step}}
+        # 在这里对log进行过滤
+        #if self.state.global_step%10==0:
+        #    import pdb;pdb.set_trace()
+        label_list = list(self.model.config.label2id.keys())
+        self.state.log_history.append(output)
+        self.control = self.callback_handler.on_log(self.args, self.state, self.control, logs)
+
+
+####
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 # 不知道这里为什么是这个版本，在pipversion里面最高只有24
@@ -206,7 +231,24 @@ class DataTrainingArguments:
             if self.validation_file is not None:
                 extension = self.validation_file.split(".")[-1]
                 assert extension in ["csv", "json"], "`validation_file` should be a csv or a json file."
+        
         self.task_name = self.task_name.lower()
+
+
+@dataclass
+class CustomArguments:
+    use_padding_for_context: bool = field(
+        default=None,
+        metadata={
+            "help": (
+                "You should set this value to decide whether to use the padding for contx"
+            )
+        },
+    )
+    def __post_init__(self):
+        if self.use_padding_for_context is None:
+            raise ValueError("You should specify whether to use tje padding for label to context or not.")
+
 #####
 def _merge_lines(lines):
     result = []
@@ -247,14 +289,16 @@ def get_my_dataset(path, window_size):
     with open(path, "r") as fin:
         data = json.loads(fin.read())
         fin.close()
+    ####
     data = _get_labels(data)
-    input_dict = {"tokens": [] , "labels": []}
+    input_dict = {"tokens": [] , "labels": [], "bottom_len":[]}
     for order in data:
         for line_index in range(len(order["order"])):
             is_user = order["order"][line_index][0]
             if is_user:
                 temp_tokens = [order["flat_order"][line_index]]
                 temp_labels = [order["flat_label"][line_index]]
+                input_dict["bottom_len"].append(len(order["flat_order"][line_index]))
                 for i in range(window_size):
                     now_index = line_index - i - 1
                     if now_index>=0:
@@ -265,7 +309,8 @@ def get_my_dataset(path, window_size):
                 input_dict["tokens"].append(_merge_lines(temp_tokens))
                 input_dict["labels"].append(_merge_lines(temp_labels))
     return Dataset.from_pandas(pd.DataFrame({'tokens': input_dict["tokens"], 
-                                             'ner_tags': input_dict["labels"]}))
+                                             'ner_tags': input_dict["labels"],
+                                             'bottom_len': input_dict["bottom_len"]}))
 
 #####
 
@@ -274,13 +319,13 @@ def main():
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 
-    parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
+    parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments, CustomArguments))
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
         # If we pass only one argument to the script and it's the path to a json file,
         # let's parse it to get our arguments.
-        model_args, data_args, training_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
+        model_args, data_args, training_args, custom_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
     else:
-        model_args, data_args, training_args = parser.parse_args_into_dataclasses()
+        model_args, data_args, training_args, custom_args = parser.parse_args_into_dataclasses()
 
     # Sending telemetry. Tracking the example usage helps us better allocate resources to maintain them. The
     # information sent is the one passed as arguments along with your Python/PyTorch versions.
@@ -508,6 +553,13 @@ def main():
 
     # Tokenize all texts and align the labels with them.
     def tokenize_and_align_labels(examples):
+        # check for bottom line
+        if custom_args.use_padding_for_context:
+            for i, tokens_check in enumerate(examples[text_column_name]):
+                bottom_len = examples["bottom_len"][i]
+                if examples["tokens"][i][-bottom_len]!="[USER]":
+                    raise ValueError("wrong dataset")
+            
         tokenized_inputs = tokenizer(
             examples[text_column_name],
             padding=padding,
@@ -521,10 +573,25 @@ def main():
             word_ids = tokenized_inputs.word_ids(batch_index=i)
             previous_word_idx = None
             label_ids = []
-            for word_idx in word_ids:
+
+            if custom_args.use_padding_for_context:
+                bottom_len = examples["bottom_len"][i]
+                tokenized_bottom = tokenizer(
+                    examples[text_column_name][i][-bottom_len:],
+                    padding=padding,
+                    truncation=True,
+                    max_length=data_args.max_seq_length,
+                    # We use this argument because the texts in our dataset are lists of words (with a label for each word).
+                    is_split_into_words=True,
+                )
+                len_tokenized_bottom = len(tokenized_bottom["input_ids"]) - 2
+
+            for j, word_idx in enumerate(word_ids):
                 # Special tokens have a word id that is None. We set the label to -100 so they are automatically
                 # ignored in the loss function.
                 if word_idx is None:
+                    label_ids.append(-100)
+                elif custom_args.use_padding_for_context and j<=(len(word_ids)-len_tokenized_bottom):
                     label_ids.append(-100)
                 # We set the label for the first token of each word.
                 elif word_idx != previous_word_idx:
@@ -537,7 +604,6 @@ def main():
                     else:
                         label_ids.append(-100)
                 previous_word_idx = word_idx
-
             labels.append(label_ids)
         tokenized_inputs["labels"] = labels
         return tokenized_inputs
@@ -596,6 +662,16 @@ def main():
     # Metrics
     metric = evaluate.load("seqeval")
 
+    def _split_into_word_list(labels):
+        flattened_labels = []
+        for a_line_labels in labels:
+            for a_label in a_line_labels:
+                # 因为这个是模型的预测结果，不会再进行id映射，定义一个任意的label告诉metrics这是单独的片段即可
+                if a_label!="O":
+                    a_label="B-PER"
+                flattened_labels.append([a_label])
+        return flattened_labels
+
     def compute_metrics(p):
         #########
         predictions = p.predictions
@@ -614,16 +690,29 @@ def main():
             for prediction, label in zip(predictions, labels)
         ]
 
-        results = metric.compute(predictions=true_predictions, references=true_labels)
+
+        true_pred_splitted = _split_into_word_list(true_predictions)
+        true_labels_splitted = _split_into_word_list(true_labels)
+
+        # 按照词片段
+        results_piece = metric.compute(predictions=true_predictions, references=true_labels)
+        # 按照标签
+        results_token_level = metric.compute(predictions=true_pred_splitted, references=true_labels_splitted)
         if data_args.return_entity_level_metrics:
             # Unpack nested dictionaries
             final_results = {}
-            for key, value in results.items():
+            for key, value in results_piece.items():
                 if isinstance(value, dict):
                     for n, v in value.items():
-                        final_results[f"{key}_{n}"] = v
+                        final_results[f"word_piece_{key}_{n}"] = v
                 else:
-                    final_results[key] = value
+                    final_results["word_piece_" + key] = value
+            for key, value in results_token_level.items():
+                if isinstance(value, dict):
+                    for n, v in value.items():
+                        final_results[f"token_level_{key}_{n}"] = v
+                else:
+                    final_results["token_level_" + key] = value
             return final_results
         else:
             return {
@@ -633,8 +722,8 @@ def main():
                 "accuracy": results["overall_accuracy"],
             }
 
-    # Initialize our Trainer
-    trainer = Trainer(
+    # Initialize our CustomTrainer extends from Trainer
+    trainer = CustomTrainer(
         model=model,
         args=training_args,
         train_dataset=train_dataset if training_args.do_train else None,
@@ -658,7 +747,9 @@ def main():
             checkpoint = training_args.resume_from_checkpoint
         elif last_checkpoint is not None:
             checkpoint = last_checkpoint
+        # training begin
         train_result = trainer.train(resume_from_checkpoint=checkpoint)
+        # training end
         metrics = train_result.metrics
         trainer.save_model()  # Saves the tokenizer too for easy upload
 
@@ -671,6 +762,7 @@ def main():
         trainer.save_metrics("train", metrics)
         trainer.save_state()
 
+    # When training ended
     # Evaluation
     if training_args.do_eval:
         logger.info("*** Evaluate ***")

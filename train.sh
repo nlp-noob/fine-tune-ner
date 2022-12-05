@@ -1,6 +1,6 @@
 python fine_tune_train_v3.py \
-    --model_name_or_path dslim/bert-base-NER \
-    --output_dir ./test-ner \
+    --model_name_or_path xlm-roberta-large-finetuned-conll03-english \
+    --output_dir ./log-ner \
     --do_train True \
     --do_eval True \
     --overwrite_output_dir True \
@@ -9,17 +9,19 @@ python fine_tune_train_v3.py \
     --auto_find_batch_size True \
     --num_train_epochs 3 \
     --save_strategy "epoch" \
-    --save_steps 50 \
+    --save_steps 1 \
     --logging_first_step True \
-    --logging_steps 10 \
+    --logging_steps 200 \
     --evaluation_strategy "steps" \
-    --eval_steps 10 \
+    --eval_steps 200 \
     --include_inputs_for_metrics True \
     --include_inputs_for_metrics True \
     --per_device_train_batch_size 8 \
     --fp16_full_eval True \
     --return_entity_level_metrics True \
-    --learning_rate 0.000001 \
+    --learning_rate 0.0000003 \
     --label_all_tokens True \
-    --ignore_mismatched_sizes True
+    --ignore_mismatched_sizes True \
+    --use_padding_for_context True \
+    --fp16 True \
     

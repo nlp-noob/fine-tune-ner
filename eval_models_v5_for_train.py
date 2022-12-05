@@ -446,6 +446,106 @@ class Evaluator:
         print("**"*20)
         self.write_log("eval_all", True_P, False_P, False_N, True_P_W, False_P_W, False_N_W)
 
+    def compute_metrics(p):
+        #########
+        predictions = p.predictions
+        labels = p.label_ids
+        #########
+        # predictions, labels = p
+        predictions = np.argmax(predictions, axis=2)
+
+        # Remove ignored index (special tokens)
+        true_predictions = [
+            [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
+            for prediction, label in zip(predictions, labels)
+        ]
+        true_labels = [
+            [label_list[l] for (p, l) in zip(prediction, label) if l != -100]
+            for prediction, label in zip(predictions, labels)
+        ]
+
+        results = metric.compute(predictions=true_predictions, references=true_labels)
+        if data_args.return_entity_level_metrics:
+            # Unpack nested dictionaries
+            final_results = {}
+            for key, value in results.items():
+                if isinstance(value, dict):
+                    for n, v in value.items():
+                        final_results[f"{key}_{n}"] = v
+                else:
+                    final_results[key] = value
+            return final_results
+        else:
+            return {
+                "precision": results["overall_precision"],
+                "recall": results["overall_recall"],
+                "f1": results["overall_f1"],
+                "accuracy": results["overall_accuracy"],
+            }
+
+    def eval_bottom_line_test(self):
+        ##########test_metrics
+        fin = open("test_metrics.json", "r")
+        test_data = json.loads(fin.read())
+        per_y_true = test_data["references"]
+        per_y_pred = test_data["predictions"]
+        True_P = 0
+        False_P = 0
+        False_N = 0
+        ##########
+        for true_label_list, pred_label_list in zip(per_y_true, per_y_pred):
+            for true_label, pred_label in zip(true_label_list, pred_label_list):
+                if(true_label!='O' and pred_label!="O"):
+                    True_P += 1
+                elif(pred_label!='O' and true_label=="O"):
+                    False_P += 1
+                elif(pred_label=='O' and true_label!='O'):
+                    False_N += 1
+        print("**"*20)
+        print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
+        print("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N))
+        Precision, Recall, F1 = self._get_metrics(True_P, False_P, False_N)
+        print("The PER Precision is:{}".format(Precision), end="\t")
+        print("The PER Recall is:{}".format(Recall), end="\t")
+        print("The PER F1 is:{}".format(F1))
+        True_P = 0
+        False_P = 0
+        False_N = 0
+        ##########
+        for true_label_list, pred_label_list in zip(per_y_true, per_y_pred):
+            for true_label, pred_label in zip(true_label_list, pred_label_list):
+                if(true_label=='B-PER' and pred_label=="B-PER"):
+                    True_P += 1
+                elif(pred_label=='B-PER' and true_label!="B-PER"):
+                    False_P += 1
+                elif(pred_label!='B-PER' and true_label=='B-PER'):
+                    False_N += 1
+        print("**"*20)
+        print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
+        print("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N))
+        Precision, Recall, F1 = self._get_metrics(True_P, False_P, False_N)
+        print("The B-PER Precision is:{}".format(Precision), end="\t")
+        print("The B-PER Recall is:{}".format(Recall), end="\t")
+        print("The B-PER F1 is:{}".format(F1))
+        print("**"*20)
+        ##########
+        for true_label_list, pred_label_list in zip(per_y_true, per_y_pred):
+            for true_label, pred_label in zip(true_label_list, pred_label_list):
+                if(true_label=='I-PER' and pred_label=="I-PER"):
+                    True_P += 1
+                elif(pred_label=='I-PER' and true_label=="O"):
+                    False_P += 1
+                elif(pred_label=='O' and true_label=='I-PER'):
+                    False_N += 1
+        print("**"*20)
+        print("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N))
+        Precision, Recall, F1 = self._get_metrics(True_P, False_P, False_N)
+        print("The I-PER Precision is:{}".format(Precision), end="\t")
+        print("The I-PER Recall is:{}".format(Recall), end="\t")
+        print("The I-PER F1 is:{}".format(F1))
+        print("**"*20)
+        import pdb;pdb.set_trace()
+
     def eval_bottom_line(self):
         True_P = 0
         False_P = 0
@@ -460,15 +560,17 @@ class Evaluator:
             per_y_pred = item["pred"][-len_label:]
             write_bad_case_flag = False
             for true_label, pred_label in zip(per_y_true, per_y_pred):
-                if(true_label!='O' and true_label==pred_label):
+                if not pred_label in ["O", "I-PER", "B-PER", "PER"]:
+                    continue
+                if(true_label!='O' and pred_label!="O"):
                     True_P += 1
-                elif(pred_label!='O' and true_label!=pred_label):
+                elif(pred_label!='O' and true_label=="O"):
                     False_P += 1
                     write_bad_case_flag = True
                 elif(pred_label=='O' and true_label!='O'):
                     False_N += 1
                     write_bad_case_flag = True
-            True_P_W, False_P_W, False_N_W = self._get_metrics_ABC(True_P_W, False_P_W, False_N_W, item, "bottom")
+            # True_P_W, False_P_W, False_N_W = self._get_metrics_ABC(True_P_W, False_P_W, False_N_W, item, "bottom")
             
             if write_bad_case_flag:
                     self.badcase.append(item["input"])
@@ -490,6 +592,7 @@ class Evaluator:
         print("The F1 is:{}".format(F1))
         print("Using time {} in prediction".format(self.predict_time))
         print("The word metrinput")
+        import pdb;pdb.set_trace()
         print(True_P_W)
         print(False_P_W)
         print(False_N_W)
@@ -622,13 +725,19 @@ def modify_config(model_path, config_yaml):
 def main():
 
     model_list = [ 
-                  "./test.model/",
+                   "xlm-roberta-large-finetuned-conll03-english",
                  ]
+    no_test_list = [
+                   "dslim/bert-large-NER", 
+                    "./test-ner/checkpoint-600/"
+                    "./test.model/",
+                   ]
+
 
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)
-        # config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
-        config["DATA_FILE_PATH"] = "eval_data/per_data_small_test_tagged.json"
+        config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
+        # config["DATA_FILE_PATH"] = "eval_data/per_data_small_test_tagged.json"
     for path in model_list:
         jump_flag, config = modify_config(path, config)
         if not jump_flag:

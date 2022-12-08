@@ -32,6 +32,7 @@ import numpy as np
 from datasets import ClassLabel, load_dataset
 from datasets import Dataset
 
+import torch
 import evaluate
 import transformers
 from transformers import (
@@ -46,13 +47,77 @@ from transformers import (
     TrainingArguments,
     set_seed,
 )
-from transformers.trainer_utils import get_last_checkpoint
-from transformers.utils import check_min_version, send_example_telemetry
+from transformers.trainer_utils import (
+    EvalLoopOutput,
+    EvalPrediction,
+    get_last_checkpoint,
+    has_length,
+    denumpify_detensorize,
+    )
+from transformers.trainer_pt_utils import (
+        find_batch_size, 
+        nested_concat, 
+        nested_numpify, 
+        nested_truncate,
+        )
+from transformers.utils import check_min_version, send_example_telemetry, is_torch_tpu_available
 from transformers.utils.versions import require_version
-from typing import Dict
+from torch.utils.data import DataLoader
+from typing import Dict, List, Optional
+# for drawing pr curve
+from sklearn.metrics import precision_recall_curve, roc_curve
+import sklearn
+import matplotlib.pyplot as plt
 
 #### 重写trainer方法里面的log控制输出结果
 class CustomTrainer(Trainer):
+
+    write_badcases_or_not = False
+    badcases_dir = None
+    input_window_size = None
+    eval_file_name = None
+    # 存储得到的PR曲线相应的值
+    curve_log_history = []
+    draw_curve_or_not = None
+    curve_save_dir = None
+    save_curve_step = None
+    token_level_PR_content = None
+    token_level_PR_auc = None
+    token_level_AUC = None
+    # To save best model for some specific evaluation value
+    best_model_dir = None
+    save_my_best_model_or_not = None
+    best_metrics_keys_list = None
+    # a dict that save the best metrics while training, the dict's keys is given by the list above
+    best_metrics = None
+    # the learning rate schedule
+    lr_schedule_name = None
+
+    def specify_custom_args(
+                            self, 
+                            badcases_dir, 
+                            window_size, 
+                            eval_file_name,
+                            draw_curve_or_not,
+                            curve_save_dir,
+                            save_curve_step,
+                            best_model_dir,
+                            save_my_best_model_or_not,
+                            best_metrics_keys_list,
+                            lr_schedule_name,
+                            ):
+        self.badcases_dir = badcases_dir
+        self.write_badcases_or_not = True
+        self.input_window_size = window_size
+        self.eval_file_name = eval_file_name
+        self.draw_curve_or_not = draw_curve_or_not
+        self.curve_save_dir = curve_save_dir
+        self.save_curve_step = save_curve_step
+        self.best_model_dir = best_model_dir
+        self.save_my_best_model_or_not = save_my_best_model_or_not
+        self.best_metrics_keys_list = best_metrics_keys_list.split(",")
+        self.lr_schedule_name = lr_schedule_name
+
     def log(self, logs: Dict[str, float]) -> None:
         """
         Log `logs` on the various objects watching training.
@@ -67,12 +132,430 @@ class CustomTrainer(Trainer):
             logs["epoch"] = round(self.state.epoch, 2)
         output = {**logs, **{"step": self.state.global_step}}
         # 在这里对log进行过滤
+
+
         #if self.state.global_step%10==0:
         #    import pdb;pdb.set_trace()
         label_list = list(self.model.config.label2id.keys())
         self.state.log_history.append(output)
         self.control = self.callback_handler.on_log(self.args, self.state, self.control, logs)
 
+    def evaluation_loop(
+        self,
+        dataloader: DataLoader,
+        description: str,
+        prediction_loss_only: Optional[bool] = None,
+        ignore_keys: Optional[List[str]] = None,
+        metric_key_prefix: str = "eval",
+    ) -> EvalLoopOutput:
+        """
+        Prediction/evaluation loop, shared by `Trainer.evaluate()` and `Trainer.predict()`.
+
+        Works both with or without labels.
+        """
+        args = self.args
+
+        prediction_loss_only = prediction_loss_only if prediction_loss_only is not None else args.prediction_loss_only
+
+        # if eval is called w/o train init deepspeed here
+        if args.deepspeed and not self.deepspeed:
+
+            # XXX: eval doesn't have `resume_from_checkpoint` arg but we should be able to do eval
+            # from the checkpoint eventually
+            deepspeed_engine, _, _ = deepspeed_init(
+                self, num_training_steps=0, resume_from_checkpoint=None, inference=True
+            )
+            self.model = deepspeed_engine.module
+            self.model_wrapped = deepspeed_engine
+            self.deepspeed = deepspeed_engine
+
+        model = self._wrap_model(self.model, training=False, dataloader=dataloader)
+
+        # if full fp16 or bf16 eval is wanted and this ``evaluation`` or ``predict`` isn't called
+        # while ``train`` is running, cast it to the right dtype first and then put on device
+        if not self.is_in_train:
+            if args.fp16_full_eval:
+                model = model.to(dtype=torch.float16, device=args.device)
+            elif args.bf16_full_eval:
+                model = model.to(dtype=torch.bfloat16, device=args.device)
+
+        batch_size = self.args.eval_batch_size
+
+        logger.info(f"***** Running {description} *****")
+        if has_length(dataloader):
+            logger.info(f"  Num examples = {self.num_examples(dataloader)}")
+        else:
+            logger.info("  Num examples: Unknown")
+        logger.info(f"  Batch size = {batch_size}")
+
+        model.eval()
+
+        self.callback_handler.eval_dataloader = dataloader
+        # Do this before wrapping.
+        eval_dataset = getattr(dataloader, "dataset", None)
+
+        if is_torch_tpu_available():
+            dataloader = pl.ParallelLoader(dataloader, [args.device]).per_device_loader(args.device)
+
+        if args.past_index >= 0:
+            self._past = None
+
+        # Initialize containers
+        # losses/preds/labels on GPU/TPU (accumulated for eval_accumulation_steps)
+        losses_host = None
+        preds_host = None
+        labels_host = None
+        inputs_host = None
+
+        # losses/preds/labels on CPU (final containers)
+        all_losses = None
+        all_preds = None
+        all_labels = None
+        all_inputs = None
+        # Will be useful when we have an iterable dataset so don't know its length.
+
+        observed_num_examples = 0
+        input_ids_for_badcases = []
+        # Main evaluation loop
+        for step, inputs in enumerate(dataloader):
+            input_ids_for_badcases.append(inputs["input_ids"])
+            # Update the observed num examples
+            observed_batch_size = find_batch_size(inputs)
+            if observed_batch_size is not None:
+                observed_num_examples += observed_batch_size
+                # For batch samplers, batch_size is not known by the dataloader in advance.
+                if batch_size is None:
+                    batch_size = observed_batch_size
+
+            # Prediction step
+            loss, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
+            inputs_decode = self._prepare_input(inputs["input_ids"]) if args.include_inputs_for_metrics else None
+
+            if is_torch_tpu_available():
+                xm.mark_step()
+
+            # Update containers on host
+            if loss is not None:
+                losses = self._nested_gather(loss.repeat(batch_size))
+                losses_host = losses if losses_host is None else torch.cat((losses_host, losses), dim=0)
+            if labels is not None:
+                labels = self._pad_across_processes(labels)
+                labels = self._nested_gather(labels)
+                labels_host = labels if labels_host is None else nested_concat(labels_host, labels, padding_index=-100)
+            if inputs_decode is not None:
+                inputs_decode = self._pad_across_processes(inputs_decode)
+                inputs_decode = self._nested_gather(inputs_decode)
+                inputs_host = (
+                    inputs_decode
+                    if inputs_host is None
+                    else nested_concat(inputs_host, inputs_decode, padding_index=-100)
+                )
+            if logits is not None:
+                logits = self._pad_across_processes(logits)
+                logits = self._nested_gather(logits)
+                if self.preprocess_logits_for_metrics is not None:
+                    logits = self.preprocess_logits_for_metrics(logits, labels)
+                preds_host = logits if preds_host is None else nested_concat(preds_host, logits, padding_index=-100)
+            self.control = self.callback_handler.on_prediction_step(args, self.state, self.control)
+
+            # Gather all tensors and put them back on the CPU if we have done enough accumulation steps.
+            if args.eval_accumulation_steps is not None and (step + 1) % args.eval_accumulation_steps == 0:
+                if losses_host is not None:
+                    losses = nested_numpify(losses_host)
+                    all_losses = losses if all_losses is None else np.concatenate((all_losses, losses), axis=0)
+                if preds_host is not None:
+                    logits = nested_numpify(preds_host)
+                    all_preds = logits if all_preds is None else nested_concat(all_preds, logits, padding_index=-100)
+                if inputs_host is not None:
+                    inputs_decode = nested_numpify(inputs_host)
+                    all_inputs = (
+                        inputs_decode
+                        if all_inputs is None
+                        else nested_concat(all_inputs, inputs_decode, padding_index=-100)
+                    )
+                if labels_host is not None:
+                    labels = nested_numpify(labels_host)
+                    all_labels = (
+                        labels if all_labels is None else nested_concat(all_labels, labels, padding_index=-100)
+                    )
+
+                # Set back to None to begin a new accumulation
+                losses_host, preds_host, inputs_host, labels_host = None, None, None, None
+
+        if args.past_index and hasattr(self, "_past"):
+            # Clean the state at the end of the evaluation loop
+            delattr(self, "_past")
+
+        # Gather all remaining tensors and put them back on the CPU
+        if losses_host is not None:
+            losses = nested_numpify(losses_host)
+            all_losses = losses if all_losses is None else np.concatenate((all_losses, losses), axis=0)
+        if preds_host is not None:
+            logits = nested_numpify(preds_host)
+            all_preds = logits if all_preds is None else nested_concat(all_preds, logits, padding_index=-100)
+        if inputs_host is not None:
+            inputs_decode = nested_numpify(inputs_host)
+            all_inputs = (
+                inputs_decode if all_inputs is None else nested_concat(all_inputs, inputs_decode, padding_index=-100)
+            )
+        if labels_host is not None:
+            labels = nested_numpify(labels_host)
+            all_labels = labels if all_labels is None else nested_concat(all_labels, labels, padding_index=-100)
+
+        # Number of samples
+        if has_length(eval_dataset):
+            num_samples = len(eval_dataset)
+        # The instance check is weird and does not actually check for the type, but whether the dataset has the right
+        # methods. Therefore we need to make sure it also has the attribute.
+        elif isinstance(eval_dataset, IterableDatasetShard) and getattr(eval_dataset, "num_examples", 0) > 0:
+            num_samples = eval_dataset.num_examples
+        else:
+            if has_length(dataloader):
+                num_samples = self.num_examples(dataloader)
+            else:  # both len(dataloader.dataset) and len(dataloader) fail
+                num_samples = observed_num_examples
+        if num_samples == 0 and observed_num_examples > 0:
+            num_samples = observed_num_examples
+
+        # Number of losses has been rounded to a multiple of batch_size and in a distributed training, the number of
+        # samplers has been rounded to a multiple of batch_size, so we truncate.
+        if all_losses is not None:
+            all_losses = all_losses[:num_samples]
+        if all_preds is not None:
+            all_preds = nested_truncate(all_preds, num_samples)
+        if all_labels is not None:
+            all_labels = nested_truncate(all_labels, num_samples)
+        if all_inputs is not None:
+            all_inputs = nested_truncate(all_inputs, num_samples)
+
+        # Metrics!
+        if self.compute_metrics is not None and all_preds is not None and all_labels is not None:
+            if args.include_inputs_for_metrics:
+                metrics = self.compute_metrics(
+                    EvalPrediction(predictions=all_preds, label_ids=all_labels, inputs=all_inputs)
+                )
+            else:
+                metrics = self.compute_metrics(EvalPrediction(predictions=all_preds, label_ids=all_labels))
+        else:
+            metrics = {}
+
+        # get the pr and orc curve
+        if self.draw_curve_or_not:
+            self.draw_the_curve(all_preds, all_labels)
+        # 添加曲线的参数
+        metrics["PR_content"] = self.token_level_PR_content
+        metrics["PR_auc"] = self.token_level_PR_auc
+        metrics["ROC_auc"] = self.token_level_AUC
+
+        # 比较参数并保存最好的模型和指标
+        if self.save_my_best_model_or_not:
+            self.save_my_best_model_and_eval(metrics)
+
+        # To be JSON-serializable, we need to remove numpy types or zero-d tensors
+        metrics = denumpify_detensorize(metrics)
+
+        if all_losses is not None:
+            metrics[f"{metric_key_prefix}_loss"] = all_losses.mean().item()
+
+        # Prefix all keys with metric_key_prefix + '_'
+        for key in list(metrics.keys()):
+            if not key.startswith(f"{metric_key_prefix}_"):
+                metrics[f"{metric_key_prefix}_{key}"] = metrics.pop(key)
+
+
+        # Write My Bad case in eval process
+        if self.write_badcases_or_not:
+            tokenized_word_list = [] 
+            for a_input in input_ids_for_badcases:
+                temp_list = []
+                for a_word_id in a_input:
+                    for a_token_id in a_word_id:
+                        temp_list.append(self.tokenizer.decode(a_token_id))
+                    tokenized_word_list.append(" ".join(temp_list))
+                    temp_list = []
+            self.write_badcases(all_preds, all_labels, tokenized_word_list)
+            tokenized_word_list = None
+            input_ids_for_badcases = None
+        ##################
+
+        return EvalLoopOutput(predictions=all_preds, label_ids=all_labels, metrics=metrics, num_samples=num_samples)
+
+    def _find_need_keys_in_metrics(self, metrics):
+        metrics_key_list = list(metrics.keys())
+        if len(self.best_metrics_keys_list)==0:
+            return metrics
+        result_metrics = {}
+        for key in self.best_metrics_keys_list:
+            if key in metrics_key_list:
+                result_metrics[key] = metrics[key]
+            else:
+                continue
+        return result_metrics
+
+    def save_my_best_model_and_eval(self, metrics):
+        need_metrics = self._find_need_keys_in_metrics(metrics)
+        key_list = list(need_metrics.keys())
+        if self.best_metrics is None:
+            self.best_metrics = {}
+            self.best_metrics["step"] = self.state.global_step
+            for key in self.best_metrics_keys_list:
+                self.best_metrics["best_"+key] = need_metrics
+                for key2 in self.best_metrics_keys_list:
+                    if key2 not in key_list:
+                        self.best_metrics["best_"+key][key2] = 0
+        else:
+            self.best_metrics["step"] = self.state.global_step
+            for key in key_list:
+                train_model_name = "_".join(self.model.config.name_or_path.split("/"))
+                dir_name = "{}/{}_win{}_{}".format(self.best_model_dir, train_model_name, self.input_window_size, self.lr_schedule_name)
+                model_name = key + "_best.model"
+                if not os.path.exists(dir_name):
+                    os.mkdir(dir_name)
+                if self.best_metrics["best_"+key][key] < need_metrics[key]:
+                    self.best_metrics["best_"+key] = need_metrics
+                    self.best_metrics["steps"] = self.state.global_step
+                    self.save_model(dir_name + "/" + model_name)
+                    json_str = json.dumps(self.best_metrics, indent=2)
+                    fout = open(dir_name + "/" + "best_metrics.json", "w")
+                    fout.write(json_str)
+                    fout.close()
+
+    def draw_the_curve(self, predictions, label_ids):
+        o_index = None
+        for index, key in enumerate(self.model.config.label2id.keys()):
+            if key=="O":
+                o_index = index
+        # 把softmax得到的结果转化成为最大的非O的几个标签中所对应的最大概率值集合
+        # token_层面的统计
+        probs = []
+        labels = []
+        for a_input_probs, a_input_labels in zip(predictions, label_ids):
+            for a_token_probs, a_label in zip(a_input_probs, a_input_labels):
+                if a_label == -100:
+                    continue
+                elif a_label == self.model.config.label2id["O"]:
+                    label_to_append = 0
+                else:
+                    label_to_append = 1
+                max_prob = -100
+                for index, a_token_prob in enumerate(a_token_probs):
+                    if index==o_index:
+                        continue
+                    elif(a_token_prob>=max_prob):
+                        max_prob = a_token_prob
+                probs.append(max_prob)
+                labels.append(label_to_append)
+
+        model_name = "_".join(self.model.config.name_or_path.split("/"))
+        dir_name = "{}/{}_win{}_{}".format(self.curve_save_dir, model_name, self.input_window_size, self.lr_schedule_name)
+        train_step = self.state.global_step
+        if not os.path.exists(dir_name):
+            os.mkdir(dir_name)
+
+        # token_PR 
+        precision, recall, thresholds = precision_recall_curve(labels,probs,pos_label=1)
+        plt.cla()
+        plt.plot(recall, precision)
+        plt.title("P-R curve")
+        plt.xlabel('recall')
+        plt.ylabel('precision')
+        if train_step % self.save_curve_step == 0:
+            file_name = "PR_curve"+f"{train_step:08d}"+".png"
+            f = plt.gcf()
+            f.savefig(dir_name + "/" + file_name)
+            f.clear()
+        pr_content = 0
+        for index in range(min([len(precision), len(recall)])):
+            if index==0:
+                continue
+            else:
+                pr_content+=(precision[index] + precision[index-1])*abs(recall[index] -recall[index-1])/2
+        self.token_level_PR_auc = pr_content
+        self.token_level_PR_content = pr_content
+        
+        # token_ROC
+        fpr,tpr,thresholds = roc_curve(labels, probs, pos_label=1)
+        plt.cla()
+        plt.plot(fpr,tpr)
+        plt.title("ROC curve")
+        plt.xlabel('FPR')
+        plt.ylabel('TPR')
+        if train_step % self.save_curve_step == 0:
+            file_name = "ROC_curve"+f"{train_step:08d}"+".png"
+            f = plt.gcf()
+            f.savefig(dir_name + "/" + file_name)
+            f.clear()
+        self.token_level_AUC = sklearn.metrics.auc(fpr,tpr)
+
+    def _format_out_put(self, word_list):
+        out_str = ""
+        for word in word_list:
+             tab_num = int(len(word)/4)
+             out_str += word+"\t"*(4-tab_num) 
+        return out_str
+
+    def change_labelid_to_label(self, label_lists):
+        result_label = []
+        for label_list in label_lists:
+            temp_list = []
+            for a_label in label_list:
+                if a_label==-100:
+                    temp_list.append("[PAD]")
+                else:
+                    temp_list.append(self.model.config.id2label[a_label])
+            result_label.append(temp_list)
+        return result_label
+                
+    def _tokens_list_to_words(self, tokens_list):
+        words_list = []
+        for token in tokens_list:
+            if token[:2]=="##":
+                if len(words_list)==0:
+                    words_list.append(token[2:])
+                else:
+                    words_list[-1] = words_list[-1] + token[2:]
+            else:
+                words_list.append(token)
+        return words_list
+
+    def write_badcases(self, all_preds, all_labels, words):
+        pred_labels = self.change_labelid_to_label(np.argmax(all_preds, axis=2))
+        true_labels = self.change_labelid_to_label(all_labels)
+        badcases = [] 
+        model_name = "_".join(self.model.config.name_or_path.split("/"))
+        dir_name = "{}/{}_win{}_{}".format(self.badcases_dir, model_name, self.input_window_size, self.lr_schedule_name)
+        for pred_tags, true_tags, tokenized_word_list in zip(pred_labels, true_labels, words):
+            write_badcases_flag = False
+            pred_tags_to_write = pred_tags[:len(tokenized_word_list.split())]
+            true_tags_to_write = true_tags[:len(tokenized_word_list.split())]
+            tokens_to_write = tokenized_word_list.split()
+            tokens_list = []
+            for a_pred, a_true, a_token in zip(pred_tags, true_tags, tokenized_word_list.split()):
+                if a_true=="[PAD]":
+                    continue
+                if (a_true=="O" and a_pred!="O") or (a_true!="O" and a_pred=="O"):
+                    write_badcases_flag = True
+                if write_badcases_flag and a_token!="[UNK]":
+                    tokens_list.append(a_token)
+            wrong_words = self._tokens_list_to_words(tokens_list)
+            if write_badcases_flag:
+                badcases.append("**"*20)
+                badcases.append("all_words:\t"+"\t".join(wrong_words))
+                badcases.append("origin_toks: \t"+self._format_out_put(tokenized_word_list.split()))
+                badcases.append("true_label: \t"+self._format_out_put(true_tags_to_write))
+                badcases.append("pred_lable: \t"+self._format_out_put(pred_tags_to_write))
+                badcases.append("**"*20)
+        bad_step = self.state.global_step
+
+        if not os.path.exists(dir_name):
+            os.mkdir(dir_name)
+        
+        file_name = "bad_case_for_step_"+f"{bad_step:08d}"+".txt"
+        
+        with open(dir_name + "/" + file_name, "w") as fout:
+            for line in badcases:
+                fout.write(line+"\n")
+            fout.close()
 
 ####
 
@@ -223,7 +706,7 @@ class DataTrainingArguments:
 
     def __post_init__(self):
         if self.dataset_name is None and self.train_file is None and self.validation_file is None:
-            raise ValueError("Need either a dataset name or a training/validation file.")
+            raise oalueError("Need either a dataset name or a training/validation file.")
         else:
             if self.train_file is not None:
                 extension = self.train_file.split(".")[-1]
@@ -241,7 +724,79 @@ class CustomArguments:
         default=None,
         metadata={
             "help": (
-                "You should set this value to decide whether to use the padding for contx"
+                "You should set this value to decide whether to use the padding for contex"
+            )
+        },
+    )
+    write_badcases: bool = field(
+        default=None,
+        metadata={
+            "help": (
+                "this option specify whether to write badcases or not "
+            )
+        },
+    )
+    badcases_dir: str = field(
+        default=None,
+        metadata={
+            "help": (
+                "specify the path to badcases"
+            )
+        },
+    )
+    input_window_size: int = field(
+        default=None,
+        metadata={
+            "help": (
+                "the windowsize of the input that create by the input creater."
+            )
+        },
+    )
+    draw_curve_or_not: bool = field(
+        default=False,
+        metadata={
+            "help": (
+                "If you wanna draw a PR curve in the eval process."
+            )
+        },
+    )
+    curve_save_dir: str = field(
+        default=None,
+        metadata={
+            "help": (
+                "the path that the pr curve save to."
+            )
+        },
+    )
+    save_curve_step: int = field(
+        default=None,
+        metadata={
+            "help": (
+                "the step to save curve picture."
+            )
+        },
+    )
+    best_model_dir: str = field(
+        default=None,
+        metadata={
+            "help": (
+                "specify the path to save my model"
+            )
+        },
+    )
+    save_my_best_model_or_not: bool = field(
+        default=None,
+        metadata={
+            "help": (
+                "whether to save the best model or not. may be have some effect on the training time using"
+            )
+        },
+    )
+    best_metrics_keys_list: str = field(
+        default=None,
+        metadata={
+            "help": (
+                "the key to compare in order to get the best model, please split different words in , trunc"
             )
         },
     )
@@ -400,7 +955,7 @@ def main():
         dataset_dict = {}
         if data_args.train_file is not None:
             # data_files["train"] = data_args.train_file
-            dataset_dict["train"] = get_my_dataset(data_args.train_file, window_size=2)
+            dataset_dict["train"] = get_my_dataset(data_args.train_file, custom_args.input_window_size)
             # check data
             # for i, labels in enumerate(dataset_dict["train"]["ner_tags"]):
                 # if "B-PER" in labels:
@@ -410,10 +965,10 @@ def main():
             
         if data_args.validation_file is not None:
             # data_files["validation"] = data_args.validation_file
-            dataset_dict["validation"] = get_my_dataset(data_args.validation_file, window_size=2)
+            dataset_dict["validation"] = get_my_dataset(data_args.validation_file, custom_args.input_window_size)
         if data_args.test_file is not None:
             # data_files["test"] = data_args.test_file
-            dataset_dict["test"] = get_my_dataset(data_args.test_file, window_size=2)
+            dataset_dict["test"] = get_my_dataset(data_args.test_file, custom_args.input_window_size)
         raw_datasets = datasets.DatasetDict(dataset_dict) 
         # extension = data_args.train_file.split(".")[-1]
         # raw_datasets = load_dataset(extension, data_files=data_files, cache_dir=model_args.cache_dir)
@@ -732,6 +1287,20 @@ def main():
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
+    if custom_args.write_badcases:
+        trainer.specify_custom_args(
+                                        custom_args.badcases_dir, 
+                                        custom_args.input_window_size,
+                                        data_args.validation_file,
+                                        custom_args.draw_curve_or_not,
+                                        custom_args.curve_save_dir,
+                                        custom_args.save_curve_step,
+                                        custom_args.best_model_dir,
+                                        custom_args.save_my_best_model_or_not,
+                                        custom_args.best_metrics_keys_list, 
+                                        training_args.lr_scheduler_type,
+                                      )
+    
     print("**"*50)
     print("**"*50)
     print("**"*50)

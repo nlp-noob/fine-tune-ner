@@ -1,27 +1,36 @@
 python fine_tune_train_v3.py \
-    --model_name_or_path xlm-roberta-large-finetuned-conll03-english \
-    --output_dir ./log-ner \
+    --model_name_or_path dslim/bert-large-NER \
+    --output_dir ./test-ner \
     --do_train True \
     --do_eval True \
     --overwrite_output_dir True \
-    --train_file ./train_data/per_big_new/train0000.json \
-    --validation_file ./train_data/per_big_new/valid0000.json \
+    --train_file ./train_data/per_big_new/train0000_01.json \
+    --validation_file ./train_data/per_big_new/valid0000_01.json \
     --auto_find_batch_size True \
-    --num_train_epochs 3 \
-    --save_strategy "epoch" \
-    --save_steps 1 \
+    --num_train_epochs 4 \
     --logging_first_step True \
-    --logging_steps 200 \
+    --logging_steps 50 \
+    --eval_steps 50 \
     --evaluation_strategy "steps" \
-    --eval_steps 200 \
-    --include_inputs_for_metrics True \
-    --include_inputs_for_metrics True \
     --per_device_train_batch_size 8 \
     --fp16_full_eval True \
     --return_entity_level_metrics True \
-    --learning_rate 0.0000003 \
+    --learning_rate 0.0000001 \
     --label_all_tokens True \
     --ignore_mismatched_sizes True \
     --use_padding_for_context True \
     --fp16 True \
+    --write_badcases True \
+    --badcases_dir ./badcases_train \
+    --lr_scheduler_type cosine \
+    --warmup_ratio 0.2 \
+    --input_window_size 3 \
+    --draw_curve_or_not True \
+    --curve_save_dir ./curves_train \
+    --save_curve_step 200 \
+    --save_strategy "steps" \
+    --save_steps 800000 \
+    --best_model_dir ./best_model \
+    --save_my_best_model_or_not True \
+    --best_metrics_keys_list "PR_content,ROC_auc,token_level_PER_f1,token_level_PER_recall,token_level_PER_precision"
     

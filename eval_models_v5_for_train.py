@@ -737,6 +737,7 @@ def main():
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)
         config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
+        config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
         # config["DATA_FILE_PATH"] = "eval_data/per_data_small_test_tagged.json"
     for path in model_list:
         jump_flag, config = modify_config(path, config)

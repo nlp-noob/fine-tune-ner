@@ -20,4 +20,7 @@ train_data/
 token-classification/
 saved_model/
 badcases_mymodel/
+badcases_train/
 log-ner/
+curves_train/
+best_model/

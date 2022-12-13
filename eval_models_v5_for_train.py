@@ -553,6 +553,7 @@ class Evaluator:
         True_P_W = [0, 0, 0]
         False_P_W = [0, 0, 0]
         False_N_W = [0, 0, 0]
+        total_tags = 0
         for item in self.inputs:
             bottom_index = item["inputIndex"][-1]
             len_label = len(self.data[item["dataIndex"]]["label"][bottom_index])
@@ -561,14 +562,19 @@ class Evaluator:
             write_bad_case_flag = False
             for true_label, pred_label in zip(per_y_true, per_y_pred):
                 if not pred_label in ["O", "I-PER", "B-PER", "PER"]:
+                    if(true_label!="O"):
+                        False_N += 1
+                        total_tags += 1
                     continue
                 if(true_label!='O' and pred_label!="O"):
                     True_P += 1
+                    total_tags += 1
                 elif(pred_label!='O' and true_label=="O"):
                     False_P += 1
                     write_bad_case_flag = True
                 elif(pred_label=='O' and true_label!='O'):
                     False_N += 1
+                    total_tags += 1
                     write_bad_case_flag = True
             # True_P_W, False_P_W, False_N_W = self._get_metrics_ABC(True_P_W, False_P_W, False_N_W, item, "bottom")
             
@@ -584,7 +590,7 @@ class Evaluator:
         print("evaluation of bottom line")
         print("**"*20)
         print("The Window SIZE is:  "+str(self.config["SLIDING_WIN_SIZE"]))
-        print("There are totally {} tags.".format(self.total_label))
+        print("There are totally {} tags.".format(total_tags))
         print("TF = "+str(True_P)+"\t\t"+"FP = "+str(False_P)+"\t\t"+"FN = "+str(False_N))
         Precision, Recall, F1 = self._get_metrics(True_P, False_P, False_N)
         print("The Precision is:{}".format(Precision), end="\t")
@@ -592,7 +598,6 @@ class Evaluator:
         print("The F1 is:{}".format(F1))
         print("Using time {} in prediction".format(self.predict_time))
         print("The word metrinput")
-        import pdb;pdb.set_trace()
         print(True_P_W)
         print(False_P_W)
         print(False_N_W)
@@ -725,10 +730,13 @@ def modify_config(model_path, config_yaml):
 def main():
 
     model_list = [ 
+                   "philschmid/distilroberta-base-ner-conll2003",
+                   "dslim/bert-large-NER", 
                    "xlm-roberta-large-finetuned-conll03-english",
                  ]
     no_test_list = [
-                   "dslim/bert-large-NER", 
+                    "./best_model/dslim_bert-large-NER_win3_cosine/PR_content_best.model/",
+                    "dslim/bert-large-NER", 
                     "./test-ner/checkpoint-600/"
                     "./test.model/",
                    ]
@@ -736,8 +744,7 @@ def main():
 
     with open("config.yaml","r") as stream:
         config = yaml.safe_load(stream)
-        config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
-        config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000.json"
+        config["DATA_FILE_PATH"] = "train_data/per_big_new/valid0000_01.json"
         # config["DATA_FILE_PATH"] = "eval_data/per_data_small_test_tagged.json"
     for path in model_list:
         jump_flag, config = modify_config(path, config)
@@ -745,7 +752,7 @@ def main():
             print("Jump the path:{}. no related label".format(path))
             continue
         win_size = config["SLIDING_WIN_SIZE"]
-        config["SLIDING_WIN_SIZE"] = 2
+        config["SLIDING_WIN_SIZE"] = 3
         evaluator = Evaluator(config)
         
         # evaluator.collate_inputs_All()

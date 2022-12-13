@@ -108,8 +108,5 @@ def main():
         fout.close()
         print("Write Succes")
 
-
-    
-
 if __name__=="__main__":
     main()

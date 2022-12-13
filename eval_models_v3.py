@@ -613,6 +613,7 @@ def main():
     tested_list = [
                   ] 
     no_net_work = [
+                  "philschmid/distilroberta-base-ner-conll2003",
                   "jplu/tf-xlm-r-ner-40-lang",
                   ]
     model_list = [ 

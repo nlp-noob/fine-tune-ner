@@ -38,6 +38,9 @@ python eval_models_v1.py
 ```
 badceses/   log/
 ```
-
-
+# Training
+additional info for train.sh
+--output_dir:
+two choices: 
+./test-ner ./log-ner
 

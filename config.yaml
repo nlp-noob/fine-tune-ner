@@ -1,7 +1,7 @@
 LABEL_ALL_TOKENS: True
 SLIDING_WIN_SIZE: 4
 HAVE_PRE: False
-MODEL_PATH: xlm-roberta-large-finetuned-conll03-english  
+MODEL_PATH: ./best_model/dslim_bert-large-NER_win3_cosine/PR_content_best.model/
 DATA_FILE_PATH: eval_data/eval_data.json
 PRE_LABEL: B-PER
 CEN_LABEL: I-PER

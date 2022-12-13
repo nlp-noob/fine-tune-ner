@@ -2,10 +2,10 @@ import json
 import readline
 
 
-DATA_PATH = "train_data/per_big_new/valid0009.json"
-OUTPUT_PATH = "train_data/per_big_new/valid0009_fixxed.json"
-BADCASE_FILE = "badcases_train/dslim_bert-large-NER_win3_cosine/bad_case_for_step_00001350.txt"
-FORBIDDEN_WORDS = ["er"]
+DATA_PATH = "train_data/per_big_new/valid0001_01.json"
+OUTPUT_PATH = "train_data/per_big_new/valid0001_01_fixxed.json"
+BADCASE_FILE = "badcases_train/dslim_bert-large-NER_win3_cosine/bad_case_for_step_00002400.txt"
+FORBIDDEN_WORDS = ["er", "ke"]
 
 
 def number_words_in_sentence(sentence):

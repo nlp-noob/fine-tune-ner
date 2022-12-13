@@ -53,21 +53,38 @@ from transformers.trainer_utils import (
     get_last_checkpoint,
     has_length,
     denumpify_detensorize,
+    find_executable_batch_size,
     )
 from transformers.trainer_pt_utils import (
-        find_batch_size, 
-        nested_concat, 
-        nested_numpify, 
-        nested_truncate,
-        )
-from transformers.utils import check_min_version, send_example_telemetry, is_torch_tpu_available
+    find_batch_size, 
+    nested_concat, 
+    nested_numpify, 
+    nested_truncate,
+    )
+from transformers.utils import (
+    check_min_version, 
+    send_example_telemetry, 
+    is_torch_tpu_available,
+    is_sagemaker_mp_enabled,
+    )
+from transformers.optimization import get_scheduler
 from transformers.utils.versions import require_version
 from torch.utils.data import DataLoader
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union, Any
 # for drawing pr curve
 from sklearn.metrics import precision_recall_curve, roc_curve
 import sklearn
 import matplotlib.pyplot as plt
+
+if is_sagemaker_mp_enabled():
+    import smdistributed.modelparallel.torch as smp
+    from smdistributed.modelparallel import __version__ as SMP_VERSION
+
+    IS_SAGEMAKER_MP_POST_1_10 = version.parse(SMP_VERSION) >= version.parse("1.10")
+
+    from .trainer_pt_utils import smp_forward_backward, smp_forward_only, smp_gather, smp_nested_concat
+else:
+    IS_SAGEMAKER_MP_POST_1_10 = False
 
 #### 重写trainer方法里面的log控制输出结果
 class CustomTrainer(Trainer):
@@ -92,6 +109,8 @@ class CustomTrainer(Trainer):
     best_metrics = None
     # the learning rate schedule
     lr_schedule_name = None
+    # specify that use special tokens to represent the "[USER]" and "[ADVISOR]" or not
+    use_special_tokens_or_not = None
 
     def specify_custom_args(
                             self, 
@@ -105,6 +124,7 @@ class CustomTrainer(Trainer):
                             save_my_best_model_or_not,
                             best_metrics_keys_list,
                             lr_schedule_name,
+                            use_special_tokens_or_not,
                             ):
         self.badcases_dir = badcases_dir
         self.write_badcases_or_not = True
@@ -117,6 +137,7 @@ class CustomTrainer(Trainer):
         self.save_my_best_model_or_not = save_my_best_model_or_not
         self.best_metrics_keys_list = best_metrics_keys_list.split(",")
         self.lr_schedule_name = lr_schedule_name
+        self.use_special_tokens_or_not = use_special_tokens_or_not
 
     def log(self, logs: Dict[str, float]) -> None:
         """
@@ -139,6 +160,48 @@ class CustomTrainer(Trainer):
         label_list = list(self.model.config.label2id.keys())
         self.state.log_history.append(output)
         self.control = self.callback_handler.on_log(self.args, self.state, self.control, logs)
+    
+    def create_optimizer_and_scheduler(self, num_training_steps: int):
+        """
+        Setup the optimizer and the learning rate scheduler.
+
+        We provide a reasonable default that works well. If you want to use something else, you can pass a tuple in the
+        Trainer's init through `optimizers`, or subclass and override this method (or `create_optimizer` and/or
+        `create_scheduler`) in a subclass.
+        """
+        self.create_optimizer()
+        if IS_SAGEMAKER_MP_POST_1_10 and smp.state.cfg.fp16:
+            # If smp >= 1.10 and fp16 is enabled, we unwrap the optimizer
+            optimizer = self.optimizer.optimizer
+        else:
+            optimizer = self.optimizer
+        self.create_scheduler(num_training_steps=num_training_steps, optimizer=optimizer)
+
+    def create_scheduler(self, num_training_steps: int, optimizer: torch.optim.Optimizer = None):
+        """
+        Setup the scheduler. The optimizer of the trainer must have been set up either before this method is called or
+        passed as an argument.
+
+        Args:
+            num_training_steps (int): The number of training steps to do.
+        """
+        if self.lr_scheduler is None:
+            self.lr_scheduler = get_scheduler(
+                self.args.lr_scheduler_type,
+                optimizer=self.optimizer if optimizer is None else optimizer,
+                num_warmup_steps=self.args.get_warmup_steps(num_training_steps),
+                num_training_steps=num_training_steps,
+            )
+        # this is my method to deal with the problem 
+        # that the scheduler is not updated when the training step is double because of the memory size
+        else:
+            self.lr_scheduler = get_scheduler(
+                self.args.lr_scheduler_type,
+                optimizer=self.optimizer if optimizer is None else optimizer,
+                num_warmup_steps=self.args.get_warmup_steps(num_training_steps),
+                num_training_steps=num_training_steps,
+            )
+        return self.lr_scheduler
 
     def evaluation_loop(
         self,
@@ -407,6 +470,8 @@ class CustomTrainer(Trainer):
             self.best_metrics["step"] = self.state.global_step
             for key in key_list:
                 train_model_name = "_".join(self.model.config.name_or_path.split("/"))
+                if self.use_special_tokens_or_not:
+                    train_model_name += "_s"
                 dir_name = "{}/{}_win{}_{}".format(self.best_model_dir, train_model_name, self.input_window_size, self.lr_schedule_name)
                 model_name = key + "_best.model"
                 if not os.path.exists(dir_name):
@@ -419,6 +484,23 @@ class CustomTrainer(Trainer):
                     fout = open(dir_name + "/" + "best_metrics.json", "w")
                     fout.write(json_str)
                     fout.close()
+
+    def _sort_for_pr_auc(self, prediction, recall):
+        array_for_sort = np.array([])
+        for index, pred in enumerate(prediction):
+            if index == 0:
+                array_for_sort = np.array([[prediction[index], recall[index]]])
+            else:    
+                array_for_sort = np.append(array_for_sort, [[prediction[index], recall[index]]], axis=0)
+        index1 = (array_for_sort[:,1]).argsort()
+        sorted_array = array_for_sort[index1]
+        sorted_prediction = []
+        sorted_recall = []
+        for a_unit in sorted_array:
+            sorted_prediction.append(a_unit[0])
+            sorted_recall.append(a_unit[1])
+        return sklearn.metrics.auc(sorted_recall, sorted_prediction)
+        
 
     def draw_the_curve(self, predictions, label_ids):
         o_index = None
@@ -447,6 +529,8 @@ class CustomTrainer(Trainer):
                 labels.append(label_to_append)
 
         model_name = "_".join(self.model.config.name_or_path.split("/"))
+        if self.use_special_tokens_or_not:
+            model_name += "_s"
         dir_name = "{}/{}_win{}_{}".format(self.curve_save_dir, model_name, self.input_window_size, self.lr_schedule_name)
         train_step = self.state.global_step
         if not os.path.exists(dir_name):
@@ -470,8 +554,8 @@ class CustomTrainer(Trainer):
                 continue
             else:
                 pr_content+=(precision[index] + precision[index-1])*abs(recall[index] -recall[index-1])/2
-        self.token_level_PR_auc = pr_content
         self.token_level_PR_content = pr_content
+        self.token_level_PR_auc = self._sort_for_pr_auc(precision, recall)
         
         # token_ROC
         fpr,tpr,thresholds = roc_curve(labels, probs, pos_label=1)
@@ -523,6 +607,8 @@ class CustomTrainer(Trainer):
         true_labels = self.change_labelid_to_label(all_labels)
         badcases = [] 
         model_name = "_".join(self.model.config.name_or_path.split("/"))
+        if self.use_special_tokens_or_not:
+            model_name += "_s"
         dir_name = "{}/{}_win{}_{}".format(self.badcases_dir, model_name, self.input_window_size, self.lr_schedule_name)
         for pred_tags, true_tags, tokenized_word_list in zip(pred_labels, true_labels, words):
             write_badcases_flag = False
@@ -800,6 +886,22 @@ class CustomArguments:
             )
         },
     )
+    use_special_tokens_or_not: bool = field(
+        default=False,
+        metadata={
+            "help": (
+                "decide using the special tokens or not"
+            )
+        },
+    )
+    special_tokens_list: str = field(
+        default=None,
+        metadata={
+            "help": (
+                "specify the tokens that you wanna add to the embeddings please split different words in , trunc"
+            )
+        },
+    )
     def __post_init__(self):
         if self.use_padding_for_context is None:
             raise ValueError("You should specify whether to use tje padding for label to context or not.")
@@ -1064,6 +1166,12 @@ def main():
         use_auth_token=True if model_args.use_auth_token else None,
         ignore_mismatched_sizes=model_args.ignore_mismatched_sizes,
     )
+    # use the special tokens "[USER]" "[ADVISOR]"
+    if custom_args.use_special_tokens_or_not:
+        special_tokens_list = custom_args.special_tokens_list.split(",")
+        special_tokens_dict = {"additional_special_tokens": ["[USER]","[ADVISOR]"]}
+        num_added_toks = tokenizer.add_special_tokens(special_tokens_dict)
+        model.resize_token_embeddings(len(tokenizer))
 
     # Tokenizer check: this script requires a fast tokenizer.
     if not isinstance(tokenizer, PreTrainedTokenizerFast):
@@ -1299,6 +1407,7 @@ def main():
                                         custom_args.save_my_best_model_or_not,
                                         custom_args.best_metrics_keys_list, 
                                         training_args.lr_scheduler_type,
+                                        custom_args.use_special_tokens_or_not,
                                       )
     
     print("**"*50)

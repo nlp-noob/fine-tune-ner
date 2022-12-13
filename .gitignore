@@ -24,3 +24,5 @@ badcases_train/
 log-ner/
 curves_train/
 best_model/
+bak-ner/
+final_model/

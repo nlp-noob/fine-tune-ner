@@ -6,31 +6,35 @@ python fine_tune_train_v3.py \
     --overwrite_output_dir True \
     --train_file ./train_data/per_big_new/train0000_01.json \
     --validation_file ./train_data/per_big_new/valid0000_01.json \
-    --auto_find_batch_size True \
-    --num_train_epochs 4 \
+    --num_train_epochs 3 \
     --logging_first_step True \
     --logging_steps 50 \
     --eval_steps 50 \
     --evaluation_strategy "steps" \
-    --per_device_train_batch_size 8 \
+    --per_device_train_batch_size 2 \
     --fp16_full_eval True \
     --return_entity_level_metrics True \
-    --learning_rate 0.0000001 \
+    --learning_rate 0.0000002 \
     --label_all_tokens True \
     --ignore_mismatched_sizes True \
     --use_padding_for_context True \
     --fp16 True \
+    --fp16_opt_level O2 \
     --write_badcases True \
     --badcases_dir ./badcases_train \
     --lr_scheduler_type cosine \
-    --warmup_ratio 0.2 \
+    --warmup_ratio 0.15 \
     --input_window_size 3 \
     --draw_curve_or_not True \
     --curve_save_dir ./curves_train \
+    --gradient_accumulation_steps 2 \
     --save_curve_step 200 \
     --save_strategy "steps" \
     --save_steps 800000 \
     --best_model_dir ./best_model \
     --save_my_best_model_or_not True \
-    --best_metrics_keys_list "PR_content,ROC_auc,token_level_PER_f1,token_level_PER_recall,token_level_PER_precision"
+    --best_metrics_keys_list "PR_auc,ROC_auc,token_level_PER_f1,token_level_PER_recall,token_level_PER_precision" \
+    --max_seq_length 150 \
+    --use_special_tokens_or_not False \
+    --special_tokens_list "[USER],[ADVISOR]" \
     
